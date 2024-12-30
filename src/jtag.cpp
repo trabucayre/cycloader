@@ -124,7 +124,7 @@ Jtag::Jtag(const cable_t &cable, const jtag_pins_conf_t *pin_conf,
 		_jtag = new Jlink(clkHZ, verbose, cable.vid, cable.pid);
 		break;
 	case MODE_ESP:
-		_jtag = new esp_usb_jtag(clkHZ, verbose, cable.vid, cable.pid);
+		_jtag = new esp_usb_jtag(clkHZ, verbose, 0x303a, 0x1001);
 		break;
 	case MODE_USBBLASTER:
 		_jtag = new UsbBlaster(cable, firmware_path, verbose);
