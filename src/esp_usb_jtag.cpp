@@ -116,7 +116,7 @@ using namespace std;
 #define ESPUSBJTAG_WRITE_EP    0x02
 #define ESPUSBJTAG_READ_EP     0x83
 
-#define ESPUSBJTAG_TIMEOUT     1000
+#define ESPUSBJTAG_TIMEOUT      500
 
 enum esp_usb_jtag_cmd {
 	CMD_STOP =  0x00,
@@ -279,7 +279,7 @@ static const char *esp_usb_jtag_serial;
 static int esp_usb_vid;
 static int esp_usb_pid;
 static int esp_usb_jtag_caps = 0x2000;
-static int esp_usb_target_chip_id;
+static uint16_t esp_usb_target_chip_id = 0; /* not applicable for FPGA, they have chip id 32-bit wide */
 
 /* end copy from openocd */
 
@@ -349,7 +349,7 @@ bool esp_usb_jtag::getVersion()
 	/*interface*/	0,
 	/*data*/	(unsigned char *)jtag_caps_desc,
 	/*length*/	JTAG_PROTO_CAPS_DATA_LEN,
-	/*timeout*/	ESPUSBJTAG_TIMEOUT);
+	/*timeout ms*/	ESPUSBJTAG_TIMEOUT);
 	if (jtag_caps_read_len <= 0) {
 		cerr << "esp_usb_jtag: could not retrieve jtag_caps descriptor! len=" << jtag_caps_read_len << endl;
 		// goto out;
@@ -379,8 +379,23 @@ bool esp_usb_jtag::getVersion()
 		// goto out;
 	}
 
+	/* TODO: grab from (future) descriptor if we ever have a device with larger IN buffers */
+	// priv->hw_in_fifo_len = 4;
+
 	cerr << "ok" << endl;
-	_version = 1;
+	_version = 1; // currently only protocol version 1 exists
+
+	/* inform bridge board about the connected target chip for the specific operations
+	 * it is also safe to send this info to chips that have builtin usb jtag */
+	libusb_control_transfer(dev_handle,
+	/*type*/	LIBUSB_REQUEST_TYPE_VENDOR,
+	/*brequest*/	VEND_JTAG_SET_CHIPID,
+	/*wvalue*/	esp_usb_target_chip_id,
+	/*interface*/	0,
+	/*data*/	NULL,
+	/*length*/	0,
+	/*timeout ms*/	ESPUSBJTAG_TIMEOUT);
+
 	return true;
 }
 
