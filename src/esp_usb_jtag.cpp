@@ -532,7 +532,7 @@ int esp_usb_jtag::writeTDI(const uint8_t *tx, uint8_t *rx, uint32_t len, bool en
 {
     uint8_t tx_buf[OUT_EP_SZ];
     uint32_t real_bit_len = len;
-    #if 1
+    #if 0
     // for debug force IDCODE 0x12345678 returned
     if(len >= 4) memcpy(rx, "\x78\x56\x34\x12", 4);
     return EXIT_SUCCESS;
