@@ -112,9 +112,9 @@ using namespace std;
 #define ESPUSBJTAG_VID 0x303A
 #define ESPUSBJTAG_PID 0x1001
 
-#define ESPUSBJTAG_INTF		  0
-#define ESPUSBJTAG_WRITE_EP    0x01
-#define ESPUSBJTAG_READ_EP     0x82
+#define ESPUSBJTAG_INTF		  2
+#define ESPUSBJTAG_WRITE_EP    0x02
+#define ESPUSBJTAG_READ_EP     0x83
 
 #define ESPUSBJTAG_TIMEOUT     1000
 
@@ -298,14 +298,14 @@ esp_usb_jtag::esp_usb_jtag(uint32_t clkHZ, int8_t verbose, int vid = ESPUSBJTAG_
 	dev_handle = libusb_open_device_with_vid_pid(usb_ctx,
 					ESPUSBJTAG_VID, ESPUSBJTAG_PID);
 	if (!dev_handle) {
-		cerr << "fails to open device" << endl;
+		cerr << "fails to open esp_usb_jtag device vid:pid 0x" << std::hex << vid << ":0x" << std::hex << endl;
 		libusb_exit(usb_ctx);
 		throw std::exception();
 	}
 
 	ret = libusb_claim_interface(dev_handle, ESPUSBJTAG_INTF);
 	if (ret) {
-		cerr << "libusb error while claiming esp_usb_jtag interface" << endl;
+		cerr << "libusb error while claiming esp_usb_jtag interface of device vid:pid 0x" << std::hex << vid << ":0x" << std::hex << pid << endl;
 		libusb_close(dev_handle);
 		libusb_exit(usb_ctx);
 		throw std::exception();
