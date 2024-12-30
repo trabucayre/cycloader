@@ -531,7 +531,8 @@ int esp_usb_jtag::flush()
 int esp_usb_jtag::writeTDI(const uint8_t *tx, uint8_t *rx, uint32_t len, bool end)
 {
     uint8_t tx_buf[OUT_BUF_SZ];
-    uint32_t real_bit_len = len - (end ? 1 : 0);
+    uint32_t real_bit_len = len;
+    // uint32_t real_bit_len = len - (end ? 1 : 0);
     // uint32_t kRealByteLen = (len + 7) / 8;
     int transferred_length; // never used
 
