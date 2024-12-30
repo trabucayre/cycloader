@@ -135,6 +135,7 @@ set(OPENFPGALOADER_SOURCE
 	src/xilinxMapParser.cpp
 	src/colognechip.cpp
 	src/colognechipCfgParser.cpp
+	src/esp_usb_jtag.cpp
 )
 
 set(OPENFPGALOADER_HEADERS
@@ -189,6 +190,7 @@ set(OPENFPGALOADER_HEADERS
 	src/xilinxMapParser.hpp
 	src/colognechip.hpp
 	src/colognechipCfgParser.hpp
+	src/esp_usb_jtag.hpp
 )
 
 link_directories(

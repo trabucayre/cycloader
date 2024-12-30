@@ -29,6 +29,7 @@ enum communication_type {
 	MODE_REMOTEBITBANG,    /*! Remote Bitbang mode */
 	MODE_CH347,            /*! CH347 JTAG mode */
 	MODE_GWU2X,            /*! Gowin GWU2X JTAG mode */
+	MODE_ESP,              /*! esp32c3, esp32s3 */
 };
 
 /*!
@@ -101,6 +102,7 @@ static std::map <std::string, cable_t> cable_list = {
 	{"digilent_hs3",       FTDI_SER(0x0403, 0x6014, FTDI_INTF_A, 0x88, 0x8B, 0x20, 0x30)},
 	{"digilent_ad",        FTDI_SER(0x0403, 0x6014, FTDI_INTF_A, 0x08, 0x0B, 0x80, 0x80)},
 	{"dirtyJtag",          CABLE_DEF(MODE_DIRTYJTAG, 0x1209, 0xC0CA                    )},
+	{"esp32s3",            CABLE_DEF(MODE_ESP, 0x303a, 0x1001                          )},
 	{"efinix_spi_ft4232",  FTDI_SER(0x0403, 0x6011, FTDI_INTF_A, 0x08, 0x8B, 0x00, 0x00)},
 	{"efinix_jtag_ft4232", FTDI_SER(0x0403, 0x6011, FTDI_INTF_B, 0x08, 0x8B, 0x00, 0x00)},
 	{"efinix_spi_ft2232",  FTDI_SER(0x0403, 0x6010, FTDI_INTF_A, 0x08, 0x8B, 0x00, 0x00)},
