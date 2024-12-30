@@ -457,11 +457,11 @@ int esp_usb_jtag::writeTMS(const uint8_t *tms, uint32_t len,
 	if (len == 0)
 		return 0;
 
-	buf[0] = CMD_FLUSH << 4; // for odd length 1st command is flush = nop
+	uint8_t prev_high_nibble = CMD_FLUSH << 4; // for odd length 1st command is flush = nop
 	uint8_t buffer_idx = 0; // reset
-	uint8_t high_nibble = 1 & ~len;
-	// for even len: start with high_nibble = 1
-	// for odd len:  start with high_nibble = 0
+	uint8_t is_high_nibble = 1 & ~len;
+	// for even len: start with is_high_nibble = 1
+	// for odd len:  start with is_high_nibble = 0
 	//               1st (high nibble) is flush = nop
 	//               2nd (low nibble) is data
 	// last byte in buf will have data in both nibbles, no flush
@@ -469,16 +469,17 @@ int esp_usb_jtag::writeTMS(const uint8_t *tms, uint32_t len,
 	for (uint32_t i = 0; i < len; i++)
 	{
 	    uint8_t tms_bit = (tms[i >> 3] >> (i & 7)) & 1; // get i'th bit from tms
-	    if(high_nibble)
+	    uint8_t cmd = CMD_CLK(0, 0, tms_bit);
+	    if(is_high_nibble)
             {   // 1st (high nibble) = data
-                buf[buffer_idx] = CMD_CLK(0, 0, tms_bit) << 4;
-                high_nibble = 0;
+                buf[buffer_idx] = prev_high_nibble = cmd << 4;
+                is_high_nibble = 0;
             }
             else // low nibble
-	    {   // 2nd (low nibble) = data, keep high nibble
-                buf[buffer_idx] = ((buf[buffer_idx] & 15) << 4) | tms_bit;
+	    {   // 2nd (low nibble) = data, keep prev high nibble
+                buf[buffer_idx] = prev_high_nibble | cmd;
                 buffer_idx++; // byte complete, advance to the next byte in buf
-                high_nibble = 1;
+                is_high_nibble = 1;
 	    }
 	    if (buffer_idx >= sizeof(buf) /*buf full*/ || i == len - 1 /*last*/)
 	    {
@@ -499,26 +500,56 @@ int esp_usb_jtag::writeTMS(const uint8_t *tms, uint32_t len,
 	return len;
 }
 
-int esp_usb_jtag::toggleClk(uint8_t tms, uint8_t tdi, uint32_t clk_len)
+int esp_usb_jtag::toggleClk(uint8_t tms, uint8_t tdi, uint32_t len)
 {
-	int actual_length;
-	uint8_t buf[] = {CMD_CLK,
-				static_cast<uint8_t>(((tms) ? SIG_TMS : 0) | ((tdi) ? SIG_TDI : 0)),
-				0,
-				CMD_STOP};
-	while (clk_len > 0) {
-		buf[2] = (clk_len > 64) ? 64 : (uint8_t)clk_len;
+    uint8_t buf[OUT_BUF_SZ];
+    int transferred_length; // never used
 
-		int ret = libusb_bulk_transfer(dev_handle, ESPUSBJTAG_WRITE_EP,
-				buf, 4, &actual_length, ESPUSBJTAG_TIMEOUT_MS);
-		if (ret < 0) {
-			cerr << "toggleClk: usb bulk write failed " << ret << endl;
-			return -EXIT_FAILURE;
-		}
-		clk_len -= buf[2];
+    if (len == 0)
+	return 0;
+
+    uint8_t prev_high_nibble = CMD_FLUSH << 4; // for odd length 1st command is flush = nop
+    uint8_t buffer_idx = 0; // reset
+    uint8_t is_high_nibble = 1 & ~len;
+    // for even len: start with is_high_nibble = 1
+    // for odd len:  start with is_high_nibble = 0
+    //               1st (high nibble) is flush = nop
+    //               2nd (low nibble) is data
+    // last byte in buf will have data in both nibbles, no flush
+    // exec order: high-nibble-first, low-nibble-second
+    uint8_t cmd = CMD_CLK(0, tdi, tms);
+    for (uint32_t i = 0; i < len; i++)
+    {
+        // TODO: repeat clocking with CMD_REP
+        if(is_high_nibble)
+        {   // 1st (high nibble) = cmd
+            buf[buffer_idx] = prev_high_nibble;
+            is_high_nibble = 0;
+        }
+        else // low nibble
+	{   // 2nd (low nibble) = cmd, keep prev high nibble
+            buf[buffer_idx] = prev_high_nibble | cmd;
+            buffer_idx++; // byte complete, advance to the next byte in buf
+            is_high_nibble = 1;
 	}
 
-	return EXIT_SUCCESS;
+	if (buffer_idx >= sizeof(buf) /*buf full*/ || i == len - 1 /*last*/)
+	{
+            int ret = libusb_bulk_transfer(dev_handle,
+	    /*endpoint*/                   ESPUSBJTAG_WRITE_EP,
+            /*data*/                       buf,
+            /*length*/                     buffer_idx,
+            /*transferred length*/         &transferred_length,
+            /*timeout ms*/                 ESPUSBJTAG_TIMEOUT_MS);
+            if (ret != 0)
+            {
+                cerr << "toggleClk: usb bulk write failed " << ret << endl;
+                return -EXIT_FAILURE;
+            }
+            buffer_idx = 0; // reset
+        }
+    }
+    return EXIT_SUCCESS;
 }
 
 int esp_usb_jtag::flush()
