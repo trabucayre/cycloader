@@ -408,6 +408,9 @@ int esp_usb_jtag::writeTMS(const uint8_t *tms, uint32_t len,
     uint8_t buf[OUT_BUF_SZ];
     int transferred_length; // never used
 
+    if(flush_buffer)
+        flush();
+
     if (len == 0)
 	return 0;
 
@@ -423,7 +426,7 @@ int esp_usb_jtag::writeTMS(const uint8_t *tms, uint32_t len,
     for (uint32_t i = 0; i < len; i++)
     {
         uint8_t tms_bit = (tms[i >> 3] >> (i & 7)) & 1; // get i'th bit from tms
-        uint8_t cmd = CMD_CLK(0, 0, tms_bit);
+        uint8_t cmd = CMD_CLK(0, tdi, tms_bit);
         if(is_high_nibble)
         {   // 1st (high nibble) = data
             buf[buffer_idx] = prev_high_nibble = cmd << 4;
@@ -449,6 +452,7 @@ int esp_usb_jtag::writeTMS(const uint8_t *tms, uint32_t len,
                 cerr << "writeTMS: usb bulk write failed " << ret << endl;
                 return -EXIT_FAILURE;
             }
+            cerr << "tms" << endl;
             buffer_idx = 0; // reset
         }
     }
@@ -501,6 +505,7 @@ int esp_usb_jtag::toggleClk(uint8_t tms, uint8_t tdi, uint32_t len)
                 cerr << "toggleClk: usb bulk write failed " << ret << endl;
                 return -EXIT_FAILURE;
             }
+            cerr << "clk" << endl;
             buffer_idx = 0; // reset
         }
     }
@@ -522,6 +527,7 @@ int esp_usb_jtag::flush()
         cerr << "flush: usb bulk write failed " << ret << endl;
         return -EXIT_FAILURE;
     }
+    cerr << "flush" << endl;
     return 0;
 }
 
@@ -584,6 +590,7 @@ int esp_usb_jtag::writeTDI(const uint8_t *tx, uint8_t *rx, uint32_t len, bool en
                 cerr << "writeTDI: usb bulk write failed " << ret << endl;
                 return -EXIT_FAILURE;
             }
+            cerr << "writeTDI write" << endl;
             // TODO support odd len for TDO
             // currently only even len TDO works correctly
             // for odd len first command sent is CMD_FUSH
@@ -599,6 +606,7 @@ int esp_usb_jtag::writeTDI(const uint8_t *tx, uint8_t *rx, uint32_t len, bool en
                 cerr << "writeTDI: usb bulk read failed " << ret << endl;
                 return -EXIT_FAILURE;
             }
+            cerr << "writeTDI read" << endl;
             if ((tx_buffer_idx>>3) != transferred_length)
             {
                 cerr << "writeTDI: usb bulk read expected=" << (tx_buffer_idx>>3) << " received=" << transferred_length << endl;
