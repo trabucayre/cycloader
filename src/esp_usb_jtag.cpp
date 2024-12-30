@@ -458,7 +458,7 @@ int esp_usb_jtag::writeTMS(const uint8_t *tms, uint32_t len,
 		return 0;
 
 	uint8_t prev_high_nibble = CMD_FLUSH << 4; // for odd length 1st command is flush = nop
-	uint8_t buffer_idx = 0; // reset
+	uint32_t buffer_idx = 0; // reset
 	uint8_t is_high_nibble = 1 & ~len;
 	// for even len: start with is_high_nibble = 1
 	// for odd len:  start with is_high_nibble = 0
@@ -509,7 +509,7 @@ int esp_usb_jtag::toggleClk(uint8_t tms, uint8_t tdi, uint32_t len)
 	return 0;
 
     uint8_t prev_high_nibble = CMD_FLUSH << 4; // for odd length 1st command is flush = nop
-    uint8_t buffer_idx = 0; // reset
+    uint32_t buffer_idx = 0; // reset
     uint8_t is_high_nibble = 1 & ~len;
     // for even len: start with is_high_nibble = 1
     // for odd len:  start with is_high_nibble = 0
