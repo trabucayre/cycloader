@@ -276,9 +276,9 @@ static struct esp_usb_jtag_s esp_usb_jtag_priv;
 static struct esp_usb_jtag_s *priv = &esp_usb_jtag_priv;
 static const char *esp_usb_jtag_serial;
 
-static int esp_usb_vid;
-static int esp_usb_pid;
-static int esp_usb_jtag_caps = 0x2000;
+static uint16_t esp_usb_vid = ESPUSBJTAG_VID;
+static uint16_t esp_usb_pid = ESPUSBJTAG_PID;
+static uint16_t esp_usb_jtag_caps = 0x2000; /* capabilites descriptor ID, different esp32 chip may need different value */
 static uint16_t esp_usb_target_chip_id = 0; /* not applicable for FPGA, they have chip id 32-bit wide */
 
 /* end copy from openocd */
