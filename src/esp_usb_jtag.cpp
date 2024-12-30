@@ -125,7 +125,7 @@ enum esp_usb_jtag_cmd {
 	CMD_XFER =  0x03,
 	CMD_SETSIG = 0x04,
 	CMD_GETSIG = 0x05,
-	CMD_CLK =    0x06
+	// CMD_CLK =    0x06
 };
 
 // Modifiers applicable only to esp_usb_jtag_2
@@ -451,53 +451,54 @@ int esp_usb_jtag::writeTMS(const uint8_t *tms, uint32_t len,
 		__attribute__((unused)) bool flush_buffer,
 		__attribute__((unused)) const uint8_t tdi)
 {
-	uint8_t buf[OUT_BUF_SZ];
-	int transferred_length; // never used
+    uint8_t buf[OUT_BUF_SZ];
+    int transferred_length; // never used
 
-	if (len == 0)
-		return 0;
+    if (len == 0)
+	return 0;
 
-	uint8_t prev_high_nibble = CMD_FLUSH << 4; // for odd length 1st command is flush = nop
-	uint32_t buffer_idx = 0; // reset
-	uint8_t is_high_nibble = 1 & ~len;
-	// for even len: start with is_high_nibble = 1
-	// for odd len:  start with is_high_nibble = 0
-	//               1st (high nibble) is flush = nop
-	//               2nd (low nibble) is data
-	// last byte in buf will have data in both nibbles, no flush
-	// exec order: high-nibble-first, low-nibble-second
-	for (uint32_t i = 0; i < len; i++)
-	{
-	    uint8_t tms_bit = (tms[i >> 3] >> (i & 7)) & 1; // get i'th bit from tms
-	    uint8_t cmd = CMD_CLK(0, 0, tms_bit);
-	    if(is_high_nibble)
-            {   // 1st (high nibble) = data
-                buf[buffer_idx] = prev_high_nibble = cmd << 4;
-                is_high_nibble = 0;
+    uint8_t prev_high_nibble = CMD_FLUSH << 4; // for odd length 1st command is flush = nop
+    uint32_t buffer_idx = 0; // reset
+    uint8_t is_high_nibble = 1 & ~len;
+    // for even len: start with is_high_nibble = 1
+    // for odd len:  start with is_high_nibble = 0
+    //               1st (high nibble) is flush = nop
+    //               2nd (low nibble) is data
+    // last byte in buf will have data in both nibbles, no flush
+    // exec order: high-nibble-first, low-nibble-second
+    for (uint32_t i = 0; i < len; i++)
+    {
+        uint8_t tms_bit = (tms[i >> 3] >> (i & 7)) & 1; // get i'th bit from tms
+        uint8_t cmd = CMD_CLK(0, 0, tms_bit);
+        if(is_high_nibble)
+        {   // 1st (high nibble) = data
+            buf[buffer_idx] = prev_high_nibble = cmd << 4;
+            is_high_nibble = 0;
+        }
+        else // low nibble
+        {   // 2nd (low nibble) = data, keep prev high nibble
+            buf[buffer_idx] = prev_high_nibble | cmd;
+            buffer_idx++; // byte complete, advance to the next byte in buf
+            is_high_nibble = 1;
+        }
+
+        if (buffer_idx >= sizeof(buf) /*buf full*/ || i == len - 1 /*last*/)
+        {
+            int ret = libusb_bulk_transfer(dev_handle,
+            /*endpoint*/                   ESPUSBJTAG_WRITE_EP,
+            /*data*/                       buf,
+            /*length*/                     buffer_idx,
+            /*transf.len*/                 &transferred_length,
+            /*timeout ms*/                 ESPUSBJTAG_TIMEOUT_MS);
+            if (ret != 0)
+            {
+                cerr << "writeTMS: usb bulk write failed " << ret << endl;
+                return -EXIT_FAILURE;
             }
-            else // low nibble
-	    {   // 2nd (low nibble) = data, keep prev high nibble
-                buf[buffer_idx] = prev_high_nibble | cmd;
-                buffer_idx++; // byte complete, advance to the next byte in buf
-                is_high_nibble = 1;
-	    }
-	    if (buffer_idx >= sizeof(buf) /*buf full*/ || i == len - 1 /*last*/)
-	    {
-		int ret = libusb_bulk_transfer(dev_handle,
-			/*endpoint*/    ESPUSBJTAG_WRITE_EP,
-			/*data*/        buf,
-			/*length*/      buffer_idx,
-			/*transf.len*/  &transferred_length,
-			/*timeout ms*/  ESPUSBJTAG_TIMEOUT_MS);
-		if (ret != 0)
-		{
-                    cerr << "writeTMS: usb bulk write failed " << ret << endl;
-                    return -EXIT_FAILURE;
-		}
-                buffer_idx = 0; // reset
-            }
-	}
-	return len;
+            buffer_idx = 0; // reset
+        }
+    }
+    return len;
 }
 
 int esp_usb_jtag::toggleClk(uint8_t tms, uint8_t tdi, uint32_t len)
@@ -560,6 +561,7 @@ int esp_usb_jtag::flush()
 
 int esp_usb_jtag::writeTDI(const uint8_t *tx, uint8_t *rx, uint32_t len, bool end)
 {
+#if 0
 	int actual_length;
 	uint32_t real_bit_len = len - (end ? 1 : 0);
 	uint32_t kRealByteLen = (len + 7) / 8;
@@ -698,5 +700,6 @@ int esp_usb_jtag::writeTDI(const uint8_t *tx, uint8_t *rx, uint32_t len, bool en
 			}
 		}
 	}
+#endif
 	return EXIT_SUCCESS;
 }
