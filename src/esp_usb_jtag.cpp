@@ -186,7 +186,7 @@ struct jtag_proto_caps_speed_apb {
 #define CMD_REP_MAX_REPS 1024
 
 /* Currently we only support one USB device. */
-#define USB_CONFIGURATION 0
+// #define USB_CONFIGURATION 0
 
 /* Buffer size; is equal to the endpoint size. In bytes
  * TODO for future adapters: read from device configuration? */
@@ -206,8 +206,6 @@ struct jtag_proto_caps_speed_apb {
  * As per the USB 3.0 specs, the current maximum limit for the depth is 7.
  */
 #define MAX_USB_PORTS   7
-
-#define ESP_USB_INTERFACE       1
 
 /* Private data */
 struct esp_usb_jtag_s {
@@ -347,7 +345,7 @@ bool esp_usb_jtag::getVersion()
 	/* TODO: grab from (future) descriptor if we ever have a device with larger IN buffers */
 	// priv->hw_in_fifo_len = 4;
 
-	cerr << "ok" << endl;
+	cerr << "getversion" << endl;
 	_version = 1; // currently only protocol version 1 exists
 
 	/* inform bridge board about the connected target chip for the specific operations
