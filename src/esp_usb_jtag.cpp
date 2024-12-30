@@ -554,7 +554,8 @@ int esp_usb_jtag::toggleClk(uint8_t tms, uint8_t tdi, uint32_t len)
 
 int esp_usb_jtag::flush()
 {
-	return 0;
+    // TODO OUT CMD_FLUSH
+    return 0;
 }
 
 int esp_usb_jtag::writeTDI(const uint8_t *tx, uint8_t *rx, uint32_t len, bool end)
