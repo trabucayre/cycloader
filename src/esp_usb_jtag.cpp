@@ -368,37 +368,37 @@ bool esp_usb_jtag::getVersion()
 
 int esp_usb_jtag::setClkFreq(uint32_t clkHZ)
 {
-	int actual_length;
-	int ret = 0, req_freq = clkHZ;
+    int actual_length;
+    int ret = 0, req_freq = clkHZ;
 
-	if (clkHZ > 40000000) {
-		printWarn("esp_usb_jtag probe limited to 40000kHz");
-		clkHZ = 40000000;
-	}
+    if (clkHZ > 40000000) {
+	printWarn("esp_usb_jtag probe limited to 40000kHz");
+	clkHZ = 40000000;
+    }
 
-	_clkHZ = clkHZ;
+    uint32_t base_speed_Hz = 240000000; // TODO read base speed from caps
+    uint16_t divisor = base_speed_Hz / clkHZ;
 
-	printInfo("Jtag frequency : requested " + std::to_string(req_freq) +
-			"Hz -> real " + std::to_string(clkHZ) + "Hz");
+    _clkHZ = clkHZ;
 
-        #if 0
-        // TODO make something like this
-	ret = libusb_control_transfer(dev_handle,
-	/*type*/	LIBUSB_REQUEST_TYPE_VENDOR,
-	/*brequest*/	VEND_JTAG_SET_CHIPID,
-	/*wvalue*/	esp_usb_target_chip_id,
-	/*windex*/	0,
-	/*data*/	NULL,
-	/*length*/	0,
-	/*timeout ms*/	ESPUSBJTAG_TIMEOUT_MS);
-        #endif
+    printInfo("Jtag frequency : requested " + std::to_string(req_freq) +
+              "Hz -> real " + std::to_string(clkHZ) + "Hz divisor=" + std::to_string(divisor));
 
-	if (ret < 0) {
-		cerr << "setClkFreq: usb bulk write failed " << ret << endl;
-		return -EXIT_FAILURE;
-	}
+    ret = libusb_control_transfer(dev_handle,
+    /*type*/            LIBUSB_REQUEST_TYPE_VENDOR,
+    /*brequest*/        VEND_JTAG_SETDIV,
+    /*wvalue*/          divisor,
+    /*windex*/          0,
+    /*data*/            NULL,
+    /*length*/          0,
+    /*timeout ms*/      ESPUSBJTAG_TIMEOUT_MS);
 
-	return clkHZ;
+    if (ret != 0) {
+        cerr << "setClkFreq: usb bulk write failed " << ret << endl;
+        return -EXIT_FAILURE;
+    }
+
+    return clkHZ;
 }
 
 int esp_usb_jtag::writeTMS(const uint8_t *tms, uint32_t len,
@@ -426,7 +426,7 @@ int esp_usb_jtag::writeTMS(const uint8_t *tms, uint32_t len,
     for (uint32_t i = 0; i < len; i++)
     {
         uint8_t tms_bit = (tms[i >> 3] >> (i & 7)) & 1; // get i'th bit from tms
-        uint8_t cmd = CMD_CLK(0, tdi, tms_bit);
+        uint8_t cmd = CMD_CLK(0, 1, tms_bit);
         if(is_high_nibble)
         {   // 1st (high nibble) = data
             buf[buffer_idx] = prev_high_nibble = cmd << 4;
