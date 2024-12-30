@@ -278,7 +278,7 @@ static const char *esp_usb_jtag_serial;
 
 static int esp_usb_vid;
 static int esp_usb_pid;
-static int esp_usb_jtag_caps;
+static int esp_usb_jtag_caps = 0x2000;
 static int esp_usb_target_chip_id;
 
 /* end copy from openocd */
@@ -336,31 +336,51 @@ bool esp_usb_jtag::getVersion()
 	uint8_t buf[] = {CMD_INFO,
 					CMD_STOP};
 	uint8_t rx_buf[64];
-	ret = libusb_bulk_transfer(dev_handle, ESPUSBJTAG_WRITE_EP,
-					buf, 2, &actual_length, ESPUSBJTAG_TIMEOUT);
-	if (ret < 0) {
-		cerr << "getVersion: usb bulk write failed " << ret << endl;
-		return false;
+
+
+	/* TODO: This is not proper way to get caps data. Two requests can be done.
+	 * 1- With the minimum size required to get to know the total length of that struct,
+	 * 2- Then exactly the length of that struct. */
+	uint8_t jtag_caps_desc[JTAG_PROTO_CAPS_DATA_LEN];
+	int jtag_caps_read_len = libusb_control_transfer(dev_handle,
+	/*type*/	LIBUSB_ENDPOINT_IN | LIBUSB_REQUEST_TYPE_STANDARD | LIBUSB_RECIPIENT_DEVICE,
+	/*brequest*/	LIBUSB_REQUEST_GET_DESCRIPTOR,
+	/*wvalue*/	esp_usb_jtag_caps,
+	/*interface*/	0,
+	/*data*/	(unsigned char *)jtag_caps_desc,
+	/*length*/	JTAG_PROTO_CAPS_DATA_LEN,
+	/*timeout*/	ESPUSBJTAG_TIMEOUT);
+	if (jtag_caps_read_len <= 0) {
+		cerr << "esp_usb_jtag: could not retrieve jtag_caps descriptor! len=" << jtag_caps_read_len << endl;
+		// goto out;
 	}
-	do {
-		ret = libusb_bulk_transfer(dev_handle, ESPUSBJTAG_READ_EP,
-						rx_buf, 64, &actual_length, ESPUSBJTAG_TIMEOUT);
-		if (ret < 0) {
-			cerr << "getVersion: read: usb bulk read failed " << ret << endl;
-			return false;
-		}
-	} while (actual_length == 0);
-	if (!strncmp("DJTAG1\n", (char*)rx_buf, 7)) {
-		_version = 1;
-	} else if (!strncmp("DJTAG2\n", (char*)rx_buf, 7)) {
-		_version = 2;
-	} else if (!strncmp("DJTAG3\n", (char*)rx_buf, 7)) {
-		_version = 3;
-	} else 	{
-		cerr << "espUSBJtag version unknown" << endl;
-		_version = 0;
+	for(int i = 0; i < jtag_caps_read_len; i++)
+	  cerr << " 0x" << std::hex << (int)(jtag_caps_desc[i]);
+	cerr << endl;
+
+	int p = esp_usb_jtag_caps ==
+		VEND_DESCR_BUILTIN_JTAG_CAPS ? JTAG_BUILTIN_DESCR_START_OFF : JTAG_EUB_DESCR_START_OFF;
+
+	if (p + sizeof(struct jtag_proto_caps_hdr) > (unsigned int)jtag_caps_read_len) {
+		cerr << "esp_usb_jtag: not enough data to get header" << endl;
+		// goto out;
 	}
 
+	struct jtag_proto_caps_hdr *hdr = (struct jtag_proto_caps_hdr *)&jtag_caps_desc[p];
+	if (hdr->proto_ver != JTAG_PROTO_CAPS_VER) {
+		cerr << "esp_usb_jtag: unknown jtag_caps descriptor version 0x" << std::hex
+		     << hdr->proto_ver << endl;
+		// goto out;
+	}
+	if (hdr->length > jtag_caps_read_len) {
+		cerr << "esp_usb_jtag: header length (" << hdr->length
+		     << ") bigger then max read bytes (" << jtag_caps_read_len
+		     << ")" << endl;
+		// goto out;
+	}
+
+	cerr << "ok" << endl;
+	_version = 1;
 	return true;
 }
 
