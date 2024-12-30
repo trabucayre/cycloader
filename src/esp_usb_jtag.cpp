@@ -92,6 +92,67 @@ descriptor.
 this description is a copy from openocd/src/jtag/drivers/esp_usb_jtag.c
 */
 
+
+#include <libusb.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdint.h>
+
+#include <iostream>
+#include <map>
+#include <vector>
+#include <string>
+#include <cassert>
+
+#include "esp_usb_jtag.hpp"
+#include "display.hpp"
+
+using namespace std;
+
+#define ESPUSBJTAG_VID 0x303A
+#define ESPUSBJTAG_PID 0x1001
+
+#define ESPUSBJTAG_INTF		  0
+#define ESPUSBJTAG_WRITE_EP    0x01
+#define ESPUSBJTAG_READ_EP     0x82
+
+#define ESPUSBJTAG_TIMEOUT     1000
+
+enum esp_usb_jtag_cmd {
+	CMD_STOP =  0x00,
+	CMD_INFO =  0x01,
+	CMD_FREQ =  0x02,
+	CMD_XFER =  0x03,
+	CMD_SETSIG = 0x04,
+	CMD_GETSIG = 0x05,
+	CMD_CLK =    0x06
+};
+
+// Modifiers applicable only to esp_usb_jtag_2
+enum CommandModifier {
+  EXTEND_LENGTH = 0x40,
+  NO_READ       = 0x80
+};
+
+struct version_specific
+{
+	uint8_t no_read;  // command modifier for xfer no read
+	uint16_t max_bits;  // max bit count that can be transferred
+};
+
+static version_specific v_options[4] ={{0, 240}, {0, 240}, {NO_READ, 496},
+									{NO_READ, 4000}};
+
+
+enum espUSBJtagSig {
+	SIG_TCK =   (1 << 1),
+	SIG_TDI =   (1 << 2),
+	SIG_TDO =   (1 << 3),
+	SIG_TMS =   (1 << 4)
+};
+
+/* begin copy from openocd */
+
 #define JTAG_PROTO_CAPS_VER 1	/* Version field. At the moment, only version 1 is defined. */
 struct jtag_proto_caps_hdr {
 	uint8_t proto_ver;	/* Protocol version. Expects JTAG_PROTO_CAPS_VER for now. */
@@ -180,7 +241,7 @@ struct jtag_proto_caps_speed_apb {
 #define ESP_USB_INTERFACE       1
 
 /* Private data */
-struct esp_usb_jtag {
+struct esp_usb_jtag_s {
 	struct libusb_device_handle *usb_device;
 	uint32_t base_speed_khz;
 	uint16_t div_min;
@@ -201,18 +262,18 @@ struct esp_usb_jtag {
 
 	/* This is the total number of in bits we need to read, including in unsent commands */
 	unsigned int pending_in_bits;
-	FILE *logfile;			/* If non-NULL, we log communication traces here. */
+	// FILE *logfile;			/* If non-NULL, we log communication traces here. */
 
 	unsigned int hw_in_fifo_len;
 	char *serial[256 + 1];	/* device serial */
 
-	struct bitq_interface bitq_interface;
+	// struct bitq_interface bitq_interface;
 };
 
 /* For now, we only use one static private struct. Technically, we can re-work this, but I don't think
  * OpenOCD supports multiple JTAG adapters anyway. */
-static struct esp_usb_jtag esp_usb_jtag_priv;
-static struct esp_usb_jtag *priv = &esp_usb_jtag_priv;
+static struct esp_usb_jtag_s esp_usb_jtag_priv;
+static struct esp_usb_jtag_s *priv = &esp_usb_jtag_priv;
 static const char *esp_usb_jtag_serial;
 
 static int esp_usb_vid;
@@ -220,62 +281,8 @@ static int esp_usb_pid;
 static int esp_usb_jtag_caps;
 static int esp_usb_target_chip_id;
 
-#include <libusb.h>
-#include <stdio.h>
-#include <string.h>
+/* end copy from openocd */
 
-#include <iostream>
-#include <map>
-#include <vector>
-#include <string>
-#include <cassert>
-
-#include "esp_usb_jtag.hpp"
-#include "display.hpp"
-
-using namespace std;
-
-#define ESPUSBJTAG_VID 0x303A
-#define ESPUSBJTAG_PID 0x1001
-
-#define ESPUSBJTAG_INTF		  0
-#define ESPUSBJTAG_WRITE_EP    0x01
-#define ESPUSBJTAG_READ_EP     0x82
-
-#define ESPUSBJTAG_TIMEOUT     1000
-
-enum esp_usb_jtag_cmd {
-	CMD_STOP =  0x00,
-	CMD_INFO =  0x01,
-	CMD_FREQ =  0x02,
-	CMD_XFER =  0x03,
-	CMD_SETSIG = 0x04,
-	CMD_GETSIG = 0x05,
-	CMD_CLK =    0x06
-};
-
-// Modifiers applicable only to esp_usb_jtag_2
-enum CommandModifier {
-  EXTEND_LENGTH = 0x40,
-  NO_READ       = 0x80
-};
-
-struct version_specific
-{
-	uint8_t no_read;  // command modifier for xfer no read
-	uint16_t max_bits;  // max bit count that can be transferred
-};
-
-static version_specific v_options[4] ={{0, 240}, {0, 240}, {NO_READ, 496},
-									{NO_READ, 4000}};
-
-
-enum espUSBJtagSig {
-	SIG_TCK =   (1 << 1),
-	SIG_TDI =   (1 << 2),
-	SIG_TDO =   (1 << 3),
-	SIG_TMS =   (1 << 4)
-};
 
 esp_usb_jtag::esp_usb_jtag(uint32_t clkHZ, int8_t verbose, int vid = ESPUSBJTAG_VID, int pid = ESPUSBJTAG_PID):
 			_verbose(verbose),
