@@ -413,6 +413,10 @@ int esp_usb_jtag::writeTMS(const uint8_t *tms, uint32_t len,
     if (len == 0)
 	return 0;
 
+    for(int i = 0; i < (len+7)>>3; i++)
+      cerr << " " << std::hex << (int)tms[i];
+    cerr << endl;
+
     uint8_t prev_high_nibble = CMD_FLUSH << 4; // for odd length 1st command is flush = nop
     uint32_t buffer_idx = 0; // reset
     uint8_t is_high_nibble = 1 & ~len;
@@ -581,7 +585,7 @@ int esp_usb_jtag::writeTDI(const uint8_t *tx, uint8_t *rx, uint32_t len, bool en
     // exec order: high-nibble-first, low-nibble-second
     cerr << "is high nibble=" << (int)is_high_nibble << endl;
     int bits_in_tx_buf = 0;
-    for(int i = 0; i < (real_bit_len>>3); i++)
+    for(int i = 0; i < (real_bit_len+7)>>3; i++)
       cerr << " " << std::hex << (int)tx[i];
     cerr << endl;
     cerr << "tdi_bits ";
