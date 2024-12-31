@@ -581,7 +581,7 @@ int esp_usb_jtag::writeTDI(const uint8_t *tx, uint8_t *rx, uint32_t len, bool en
     // exec order: high-nibble-first, low-nibble-second
     cerr << "is high nibble=" << (int)is_high_nibble << endl;
     int bits_in_tx_buf = 0;
-    for(int i = 0; i < (real_bit_len>>4)+1; i++)
+    for(int i = 0; i < (real_bit_len>>3); i++)
       cerr << " " << std::hex << (int)tx[i];
     cerr << endl;
     cerr << "tdi_bits ";
