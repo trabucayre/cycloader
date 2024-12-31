@@ -116,7 +116,7 @@ using namespace std;
 #define ESPUSBJTAG_WRITE_EP    0x02
 #define ESPUSBJTAG_READ_EP     0x83
 
-#define ESPUSBJTAG_TIMEOUT_MS   500
+#define ESPUSBJTAG_TIMEOUT_MS  1000
 
 /* begin copy from openocd */
 
@@ -376,6 +376,7 @@ int esp_usb_jtag::setClkFreq(uint32_t clkHZ)
 
     uint32_t base_speed_Hz = 240000000; // TODO read base speed from caps
     uint16_t divisor = base_speed_Hz / clkHZ;
+    divisor = 10000;
 
     _clkHZ = clkHZ;
 
@@ -423,8 +424,8 @@ int esp_usb_jtag::writeTMS(const uint8_t *tms, uint32_t len,
     // exec order: high-nibble-first, low-nibble-second
     for (uint32_t i = 0; i < len; i++)
     {
-        uint8_t tms_bit = (tms[i >> 3] >> (i & 7)) & 1; // get i'th bit from tms
-        uint8_t cmd = CMD_CLK(0, 1, tms_bit);
+        uint8_t tms_bit = (tms[i>>3] >> (i&7)) & 1; // get i'th bit from tms
+        uint8_t cmd = CMD_CLK(0, 0, tms_bit);
         if(is_high_nibble)
         {   // 1st (high nibble) = data
             buf[buffer_idx] = prev_high_nibble = cmd << 4;
@@ -536,6 +537,7 @@ int esp_usb_jtag::writeTDI(const uint8_t *tx, uint8_t *rx, uint32_t len, bool en
 {
     uint8_t tx_buf[OUT_EP_SZ];
     uint32_t real_bit_len = len;
+    memset(rx, 0, len>>3);
     #if 0
     // for debug force IDCODE 0x12345678 returned
     if(len >= 4) memcpy(rx, "\x78\x56\x34\x12", 4);
@@ -543,12 +545,12 @@ int esp_usb_jtag::writeTDI(const uint8_t *tx, uint8_t *rx, uint32_t len, bool en
     #endif
     // uint32_t real_bit_len = len - (end ? 1 : 0);
     // uint32_t kRealByteLen = (len + 7) / 8;
-    int transferred_length; // never used
+    int transferred_length;
 
     if (len == 0)
 	return 0;
 
-    uint32_t rx_buffer_idx = 0;
+    cerr << "real_bit_len=" << real_bit_len << endl;
 
     uint8_t prev_high_nibble = CMD_FLUSH << 4; // for odd length 1st command is flush = nop
     uint32_t tx_buffer_idx = 0; // reset
@@ -561,7 +563,7 @@ int esp_usb_jtag::writeTDI(const uint8_t *tx, uint8_t *rx, uint32_t len, bool en
     // exec order: high-nibble-first, low-nibble-second
     for (uint32_t i = 0; i < real_bit_len; i++)
     {
-        uint8_t tdi_bit = (tx[i >> 3] >> (i & 7)) & 1; // get i'th bit from rx
+        uint8_t tdi_bit = (tx[i>>3] >> (i&7)) & 1; // get i'th bit from rx
         uint8_t cmd = CMD_CLK(1, tdi_bit, 0); // with TDO capture
         if(is_high_nibble)
         {   // 1st (high nibble) = data
@@ -577,11 +579,12 @@ int esp_usb_jtag::writeTDI(const uint8_t *tx, uint8_t *rx, uint32_t len, bool en
 
         if (tx_buffer_idx >= sizeof(tx_buf) /*buf full*/ || i == real_bit_len - 1 /*last*/)
         {
+            cerr << "writeTDI: write_ep len bytes=" << tx_buffer_idx << endl;
             int ret = libusb_bulk_transfer(dev_handle,
             /*endpoint*/                   ESPUSBJTAG_WRITE_EP,
             /*data*/                       tx_buf,
             /*length*/                     tx_buffer_idx,
-            /*transf.len*/                 &transferred_length,
+            /*transferred length*/         &transferred_length,
             /*timeout ms*/                 ESPUSBJTAG_TIMEOUT_MS);
             if (ret != 0)
             {
@@ -589,23 +592,24 @@ int esp_usb_jtag::writeTDI(const uint8_t *tx, uint8_t *rx, uint32_t len, bool en
                 return -EXIT_FAILURE;
             }
             cerr << "writeTDI write" << endl;
+            // flush();
             // TODO support odd len for TDO
             // currently only even len TDO works correctly
             // for odd len first command sent is CMD_FUSH
             // so TDI rx_buf will be missing 1 bit
             ret = libusb_bulk_transfer(dev_handle,
             /*endpoint*/                   ESPUSBJTAG_READ_EP,
-            /*data*/                       rx + (i>>3),
-            /*length*/                     tx_buffer_idx>>3,
+            /*data*/                       &(rx[i>>3]),
+            /*length*/                     tx_buffer_idx>>2,
             /*transferred length*/         &transferred_length,
             /*timeout ms*/                 ESPUSBJTAG_TIMEOUT_MS);
             if (ret != 0)
             {
                 cerr << "writeTDI: usb bulk read failed " << ret << endl;
-                return -EXIT_FAILURE;
+                // return -EXIT_FAILURE;
             }
             cerr << "writeTDI read" << endl;
-            if ((tx_buffer_idx>>3) != transferred_length)
+            if (tx_buffer_idx>>2 != transferred_length)
             {
                 cerr << "writeTDI: usb bulk read expected=" << (tx_buffer_idx>>3) << " received=" << transferred_length << endl;
                 // return -EXIT_FAILURE;
