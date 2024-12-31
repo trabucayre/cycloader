@@ -567,7 +567,7 @@ int esp_usb_jtag::writeTDI(const uint8_t *tx, uint8_t *rx, uint32_t len, bool en
     if (len == 0)
 	return 0;
 
-    cerr << "real_bit_len=" << real_bit_len << endl;
+    cerr << "real_bit_len=0x" << real_bit_len << endl;
 
     // drain_in();
     uint8_t prev_high_nibble = CMD_FLUSH << 4; // for odd length 1st command is flush = nop
@@ -603,7 +603,10 @@ int esp_usb_jtag::writeTDI(const uint8_t *tx, uint8_t *rx, uint32_t len, bool en
         bits_in_tx_buf++;
         if (tx_buffer_idx >= sizeof(tx_buf) /*buf full*/ || i >= real_bit_len - 1 /*last*/)
         {
-            cerr << endl << "writeTDI: write_ep len bytes=" << tx_buffer_idx << endl;
+            cerr << endl << "writeTDI: write_ep len bytes=0x" << tx_buffer_idx << endl;
+            for(int j = 0; j < tx_buffer_idx; j++)
+                cerr << " " << std::hex << (int)tx_buf[j];
+            cerr << endl;
             ret = libusb_bulk_transfer(dev_handle,
             /*endpoint*/                   ESPUSBJTAG_WRITE_EP,
             /*data*/                       tx_buf,
@@ -615,7 +618,7 @@ int esp_usb_jtag::writeTDI(const uint8_t *tx, uint8_t *rx, uint32_t len, bool en
                 cerr << "writeTDI: usb bulk write failed " << ret << endl;
                 return -EXIT_FAILURE;
             }
-            cerr << "writeTDI write " << tx_buffer_idx << " bytes" << endl;
+            cerr << "writeTDI write 0x" << tx_buffer_idx << " bytes" << endl;
             flush(); // must flush before reading
             // TODO support odd len for TDO
             // currently only even len TDO works correctly
