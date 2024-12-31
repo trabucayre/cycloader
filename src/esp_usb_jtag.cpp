@@ -320,6 +320,10 @@ bool esp_usb_jtag::getVersion()
 	for(int i = 0; i < jtag_caps_read_len; i++)
 	  cerr << " 0x" << std::hex << (int)(jtag_caps_desc[i]);
 	cerr << endl;
+	
+	_base_speed_khz = UINT32_MAX;
+	_div_min = 1;
+	_div_max = 1;
 
 	int p = esp_usb_jtag_caps ==
 		VEND_DESCR_BUILTIN_JTAG_CAPS ? JTAG_BUILTIN_DESCR_START_OFF : JTAG_EUB_DESCR_START_OFF;
@@ -345,7 +349,32 @@ bool esp_usb_jtag::getVersion()
 	/* TODO: grab from (future) descriptor if we ever have a device with larger IN buffers */
 	// priv->hw_in_fifo_len = 4;
 
-	cerr << "getversion" << endl;
+	p += sizeof(struct jtag_proto_caps_hdr);
+	while (p + sizeof(struct jtag_gen_hdr) < hdr->length) {
+		struct jtag_gen_hdr *dhdr = (struct jtag_gen_hdr *)&jtag_caps_desc[p];
+		if (dhdr->type == JTAG_PROTO_CAPS_SPEED_APB_TYPE) {
+			if (p + sizeof(struct jtag_proto_caps_speed_apb) < hdr->length) {
+				cerr << "esp_usb_jtag: not enough data to get caps speed" << endl;
+				return false;
+			}
+			struct jtag_proto_caps_speed_apb *spcap = (struct jtag_proto_caps_speed_apb *)dhdr;
+			/* base speed always is half APB speed */
+                        _base_speed_khz = (spcap->apb_speed_10khz[0] + 256 * spcap->apb_speed_10khz[1]) * 10 / 2;
+			_div_min = spcap->div_min[0] + 256 * spcap->div_min[1];
+			_div_max = spcap->div_max[0] + 256 * spcap->div_max[1];
+			/* TODO: mark in priv that this is apb-derived and as such may change if apb
+			 * ever changes? */
+		} else {
+			cerr << "esp_usb_jtag: unknown caps type 0x" << dhdr->type << endl;;
+		}
+		p += dhdr->length;
+	}
+	if (priv->base_speed_khz == UINT32_MAX) {
+		cerr << "esp_usb_jtag: No speed caps found... using sane-ish defaults." << endl;
+		_base_speed_khz = 1000;
+	}
+	cerr << "esp_usb_jtag: Device found. Base speed " << std::dec << _base_speed_khz << " KHz, div range " << (int)_div_min << " to " << (int)_div_max << endl;
+
 	_version = 1; // currently only protocol version 1 exists
 
 	/* inform bridge board about the connected target chip for the specific operations
@@ -369,14 +398,14 @@ int esp_usb_jtag::setClkFreq(uint32_t clkHZ)
     int actual_length;
     int ret = 0, req_freq = clkHZ;
 
-    if (clkHZ > 40000000) {
-	printWarn("esp_usb_jtag probe limited to 40000kHz");
-	clkHZ = 40000000;
+    uint32_t base_speed_Hz = _base_speed_khz * 1000; // TODO read base speed from caps
+
+    if (clkHZ > base_speed_Hz) {
+	printWarn("esp_usb_jtag probe limited to %d kHz", _base_speed_khz);
+	clkHZ = base_speed_Hz;
     }
 
-    uint32_t base_speed_Hz = 240000000; // TODO read base speed from caps
     uint16_t divisor = base_speed_Hz / clkHZ;
-    divisor = 100;
 
     _clkHZ = clkHZ;
 
