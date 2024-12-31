@@ -376,7 +376,7 @@ int esp_usb_jtag::setClkFreq(uint32_t clkHZ)
 
     uint32_t base_speed_Hz = 240000000; // TODO read base speed from caps
     uint16_t divisor = base_speed_Hz / clkHZ;
-    divisor = 10000;
+    divisor = 100;
 
     _clkHZ = clkHZ;
 
