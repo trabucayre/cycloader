@@ -15,7 +15,7 @@ on the OUT endpoint are one nibble wide and are processed high-nibble-first, low
 and in the order the bytes come in. Commands are defined as follows:
 
     bit     3   2    1    0
-CMD_CLK   [ 0   cap  tdi  tms  ]
+CMD_CLK   [ 0   cap  tms  tdi  ]
 CMD_RST   [ 1   0    0    srst ]
 CMD_FLUSH [ 1   0    1    0    ]
 CMD_RSV   [ 1   0    1    1    ]
@@ -168,12 +168,6 @@ struct jtag_proto_caps_speed_apb {
 #define VEND_JTAG_SET_CHIPID    3
 
 #define BIT(x) (1<<x)
-
-#define VEND_JTAG_SETIO_TDI     BIT(0)
-#define VEND_JTAG_SETIO_TMS     BIT(1)
-#define VEND_JTAG_SETIO_TCK     BIT(2)
-#define VEND_JTAG_SETIO_TRST    BIT(3)
-#define VEND_JTAG_SETIO_SRST    BIT(4)
 
 #define CMD_CLK(cap, tdi, tms) (((1&cap)<<2) | ((1&tms)<<1) | (1&tdi))
 #define CMD_RST(srst)   (0x8 | (1&srst))
@@ -544,6 +538,27 @@ int esp_usb_jtag::toggleClk(uint8_t tms, uint8_t tdi, uint32_t len)
     return EXIT_SUCCESS;
 }
 
+int esp_usb_jtag::setio(int srst, int tms, int tdi, int tck)
+{
+    uint16_t wvalue = ((1&srst)<<3) | ((1&tck)<<2) | ((1&tms)<<1) | (1&tdi);
+    int ret = libusb_control_transfer(dev_handle,
+    /*type*/            LIBUSB_REQUEST_TYPE_VENDOR,
+    /*brequest*/        VEND_JTAG_SETIO,
+    /*wvalue*/          wvalue,
+    /*interface*/       0,
+    /*data*/            NULL,
+    /*length*/          0,
+    /*timeout ms*/	ESPUSBJTAG_TIMEOUT_MS);
+
+    if (ret != 0)
+    {
+        cerr << "setio: control write failed " << ret << endl;
+        return -EXIT_FAILURE;
+    }
+    cerr << "setio 0x" << std::hex << wvalue << endl;
+    return 0;
+}
+
 int esp_usb_jtag::flush()
 {
     uint8_t buf[1] = { (CMD_FLUSH<<3) | CMD_FLUSH };
@@ -622,7 +637,7 @@ int esp_usb_jtag::writeTDI(const uint8_t *tx, uint8_t *rx, uint32_t len, bool en
     {
         uint8_t tdi_bit = (tx[i>>3] >> (i&7)) & 1; // get i'th bit from rx
         cerr << (int)tdi_bit;
-        uint8_t cmd = CMD_CLK(1, tdi_bit, 0); // with TDO capture
+        uint8_t cmd = CMD_CLK(/*tdo*/1, /*tdi*/tdi_bit, /*tms*/0); // with TDO capture
         if(is_high_nibble)
         {   // 1st (high nibble) = data
             tx_buf[tx_buffer_idx] = prev_high_nibble = cmd << 4;

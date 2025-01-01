@@ -49,11 +49,15 @@ class esp_usb_jtag : public JtagInterface {
     bool getVersion();
     
     void drain_in();
+    int setio(int srst, int tms, int tdi, int tck);
+    int gettdo();
 
     libusb_device_handle *dev_handle;
     libusb_context *usb_ctx;
     uint8_t _tdi;
     uint8_t _tms;
     uint8_t _version;
+    uint32_t _base_speed_khz;
+    uint8_t _div_min, _div_max;
 };
 #endif  // SRC_ESPUSBJTAG_HPP_
