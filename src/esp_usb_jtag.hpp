@@ -43,6 +43,8 @@ class esp_usb_jtag : public JtagInterface {
 		int flush() override;
 
 	private:
+		int xfer(const uint8_t *tx, uint8_t *rx, uint16_t length);
+
 		int8_t _verbose;
 
 		// int sendBitBang(uint8_t mask, uint8_t val, uint8_t *read, bool last);
