@@ -613,6 +613,7 @@ int esp_usb_jtag::writeTDI(const uint8_t *tx, uint8_t *rx, uint32_t len, bool en
 	// drain_in();
 	uint8_t prev_high_nibble = CMD_FLUSH << 4; // for odd length 1st command is flush = nop
 	uint32_t tx_buffer_idx = 0; // reset
+	uint32_t rx_buffer_idx = 0; // reset
 	uint8_t is_high_nibble = 1 & ~real_bit_len;
 	// for even len: start with is_high_nibble = 1
 	// for odd len:  start with is_high_nibble = 0
@@ -638,7 +639,6 @@ int esp_usb_jtag::writeTDI(const uint8_t *tx, uint8_t *rx, uint32_t len, bool en
 			tx_buf[tx_buffer_idx++] = prev_high_nibble | cmd;
 		}
 		is_high_nibble ^= 1;
-		bits_in_tx_buf++;
 		if (tx_buffer_idx >= sizeof(tx_buf) /*buf full*/ || i >= real_bit_len - 1 /*last*/) {
 			cerr << endl << "writeTDI: write_ep len bytes=0x" << tx_buffer_idx << endl;
 			for(int j = 0; j < tx_buffer_idx; j++)
@@ -663,7 +663,7 @@ int esp_usb_jtag::writeTDI(const uint8_t *tx, uint8_t *rx, uint32_t len, bool en
 			// read_byte_len = 1;
 			int received_bytes = 0;
 			while(received_bytes < read_byte_len) {
-				ret = xfer(NULL, &(rx[(i>>3)+received_bytes]), read_byte_len - received_bytes);
+				ret = xfer(NULL, &(rx[rx_buffer_idx + received_bytes]), read_byte_len - received_bytes);
 				if (ret < 0) {
 					printError("writeTDI: read failed");
 					// return -EXIT_FAILURE;
@@ -676,15 +676,18 @@ int esp_usb_jtag::writeTDI(const uint8_t *tx, uint8_t *rx, uint32_t len, bool en
 					break;
 				}
 				received_bytes += ret;
+				rx_buffer_idx += ret;
 			}
 			tx_buffer_idx = 0; // reset
 			bits_in_tx_buf = 0;
 		}
 	}
 
-#if 0
-	if(end) {
+#if 1
+	if (end) {
 		// TODO support end (DR_SHIFT, IR_SHIFT)
+		tx_buf[0] = CMD_FLUSH << 4 | CMD_CLK(0, 1, 1); // FIXME: TDI must be read from buffer
+		xfer(tx_buf, NULL, 1);
 	}
 #endif
 	return EXIT_SUCCESS;
