@@ -426,7 +426,6 @@ int esp_usb_jtag::writeTMS(const uint8_t *tms, uint32_t len,
 		__attribute__((unused)) const uint8_t tdi)
 {
 	uint8_t buf[OUT_BUF_SZ];
-	int transferred_length; // never used
 
 	if(flush_buffer)
 		flush();
@@ -476,7 +475,6 @@ int esp_usb_jtag::writeTMS(const uint8_t *tms, uint32_t len,
 int esp_usb_jtag::toggleClk(uint8_t tms, uint8_t tdi, uint32_t len)
 {
 	uint8_t buf[OUT_BUF_SZ];
-	int transferred_length; // never used
 
 	if (len == 0)
 		return 0;
@@ -490,7 +488,7 @@ int esp_usb_jtag::toggleClk(uint8_t tms, uint8_t tdi, uint32_t len)
 	//               2nd (low nibble) is data
 	// last byte in buf will have data in both nibbles, no flush
 	// exec order: high-nibble-first, low-nibble-second
-	uint8_t cmd = CMD_CLK(0, tdi, tms);
+	const uint8_t cmd = CMD_CLK(0, tdi, tms);
 	for (uint32_t i = 0; i < len; i++) {
 		// TODO: repeat clocking with CMD_REP
 		if(is_high_nibble) {   // 1st (high nibble) = cmd
@@ -599,7 +597,8 @@ int esp_usb_jtag::writeTDI(const uint8_t *tx, uint8_t *rx, uint32_t len, bool en
 {
 	int ret;
 	uint8_t tx_buf[OUT_EP_SZ];
-	memset(rx, 0, len>>3);
+	if (rx)
+		memset(rx, 0, len>>3);
 	#if 0
 	// for debug force IDCODE 0x12345678 returned
 	if(len >= 4) memcpy(rx, "\x78\x56\x34\x12", 4);
@@ -607,7 +606,6 @@ int esp_usb_jtag::writeTDI(const uint8_t *tx, uint8_t *rx, uint32_t len, bool en
 	#endif
 	uint32_t real_bit_len = len - (end ? 1 : 0);
 	// uint32_t kRealByteLen = (len + 7) / 8;
-	int transferred_length;
 
 	if (len == 0)
 		return 0;
