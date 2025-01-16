@@ -451,13 +451,12 @@ int esp_usb_jtag::writeTMS(const uint8_t *tms, uint32_t len,
 		uint8_t cmd = CMD_CLK(0, 0, tms_bit);
 		if(is_high_nibble) {   // 1st (high nibble) = data
 			buf[buffer_idx] = prev_high_nibble = cmd << 4;
-			is_high_nibble = 0;
 		} else { // low nibble
 			// 2nd (low nibble) = data, keep prev high nibble
 			buf[buffer_idx] = prev_high_nibble | cmd;
 			buffer_idx++; // byte complete, advance to the next byte in buf
-			is_high_nibble = 1;
 		}
+		is_high_nibble ^= 1;
 
 		if (buffer_idx >= sizeof(buf) /*buf full*/ || i == len - 1 /*last*/) {
 			int ret = xfer(buf, NULL, buffer_idx);
@@ -493,13 +492,12 @@ int esp_usb_jtag::toggleClk(uint8_t tms, uint8_t tdi, uint32_t len)
 		// TODO: repeat clocking with CMD_REP
 		if(is_high_nibble) {   // 1st (high nibble) = cmd
 			buf[buffer_idx] = prev_high_nibble;
-			is_high_nibble = 0;
 		} else { // low nibble
 			// 2nd (low nibble) = cmd, keep prev high nibble
 			buf[buffer_idx] = prev_high_nibble | cmd;
 			buffer_idx++; // byte complete, advance to the next byte in buf
-			is_high_nibble = 1;
 		}
+		is_high_nibble ^= 1;
 
 		if (buffer_idx >= sizeof(buf) /*buf full*/ || i == len - 1 /*last*/) {
 			int ret = xfer(buf, NULL, buffer_idx);
@@ -635,12 +633,11 @@ int esp_usb_jtag::writeTDI(const uint8_t *tx, uint8_t *rx, uint32_t len, bool en
 		uint8_t cmd = CMD_CLK(/*tdo*/1, /*tdi*/tdi_bit, /*tms*/0); // with TDO capture
 		if(is_high_nibble) {   // 1st (high nibble) = data
 			tx_buf[tx_buffer_idx] = prev_high_nibble = cmd << 4;
-			is_high_nibble = 0;
 		} else { // low nibble
 			// 2nd (low nibble) = data, keep prev high nibble
 			tx_buf[tx_buffer_idx++] = prev_high_nibble | cmd;
-			is_high_nibble = 1;
 		}
+		is_high_nibble ^= 1;
 		bits_in_tx_buf++;
 		if (tx_buffer_idx >= sizeof(tx_buf) /*buf full*/ || i >= real_bit_len - 1 /*last*/) {
 			cerr << endl << "writeTDI: write_ep len bytes=0x" << tx_buffer_idx << endl;
@@ -668,7 +665,7 @@ int esp_usb_jtag::writeTDI(const uint8_t *tx, uint8_t *rx, uint32_t len, bool en
 			while(received_bytes < read_byte_len) {
 				ret = xfer(NULL, &(rx[(i>>3)+received_bytes]), read_byte_len - received_bytes);
 				if (ret < 0) {
-					cerr << "writeTDI: usb bulk read failed " << ret << endl;
+					printError("writeTDI: read failed");
 					// return -EXIT_FAILURE;
 					break;
 				}
