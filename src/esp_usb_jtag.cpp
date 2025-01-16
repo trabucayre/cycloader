@@ -635,9 +635,9 @@ int esp_usb_jtag::writeTDI(const uint8_t *tx, uint8_t *rx, uint32_t len, bool en
 	cerr << "tdi_bits ";
 
 	for (uint32_t i = 0; i < real_bit_len; i++) {
-		uint8_t tdi_bit = (tx[i >> 3] >> (i & 7)) & 1; // get i'th bit from rx
-		cerr << (int)tdi_bit;
-		uint8_t cmd = CMD_CLK(/*tdo*/1, /*tdi*/tdi_bit, /*tms*/0); // with TDO capture
+		_tdi = (tx[i >> 3] >> (i & 7)) & 1; // get i'th bit from rx
+		cerr << (int)_tdi;
+		uint8_t cmd = CMD_CLK(/*tdo*/1, /*tdi*/_tdi, /*tms*/_tms); // with TDO capture
 		if(is_high_nibble) {   // 1st (high nibble) = data
 			tx_buf[tx_buffer_idx] = prev_high_nibble = cmd << 4;
 		} else { // low nibble
@@ -645,7 +645,7 @@ int esp_usb_jtag::writeTDI(const uint8_t *tx, uint8_t *rx, uint32_t len, bool en
 			tx_buf[tx_buffer_idx++] = prev_high_nibble | cmd;
 		}
 		is_high_nibble ^= 1;
-		if (tx_buffer_idx >= sizeof(tx_buf) /*buf full*/ || i >= real_bit_len - 1 /*last*/) {
+		if (tx_buffer_idx >= OUT_EP_SZ /*buf full*/ || i >= real_bit_len - 1 /*last*/) {
 			cerr << endl << "writeTDI: write_ep len bytes=0x" << tx_buffer_idx << endl;
 			for(int j = 0; j < tx_buffer_idx; j++)
 				cerr << " " << std::hex << (int)tx_buf[j];
@@ -662,9 +662,9 @@ int esp_usb_jtag::writeTDI(const uint8_t *tx, uint8_t *rx, uint32_t len, bool en
 			// currently only even len TDO works correctly
 			// for odd len first command sent is CMD_FUSH
 			// so TDI rx_buf will be missing 1 bit
-			uint16_t read_bit_len = tx_buffer_idx<<1;
+			uint16_t read_bit_len = tx_buffer_idx << 1;
 			// read_bit_len = bits_in_tx_buf;
-			uint16_t read_byte_len = (read_bit_len+7)>>3;
+			uint16_t read_byte_len = (read_bit_len + 7) >> 3;
 			// cerr << "read_bit_len=" << (int)read_bit_len << " read_byte_len=" << (int)read_byte_len << endl;
 			// read_byte_len = 1;
 			int received_bytes = 0;
@@ -692,7 +692,8 @@ int esp_usb_jtag::writeTDI(const uint8_t *tx, uint8_t *rx, uint32_t len, bool en
 #if 1
 	if (end) {
 		// TODO support end (DR_SHIFT, IR_SHIFT)
-		tx_buf[0] = CMD_FLUSH << 4 | CMD_CLK(0, 1, 1); // FIXME: TDI must be read from buffer
+		_tms = 1;
+		tx_buf[0] = CMD_FLUSH << 4 | CMD_CLK(0, 1, _tms); // FIXME: TDI must be read from buffer
 		xfer(tx_buf, NULL, 1);
 	}
 #endif
