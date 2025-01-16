@@ -421,9 +421,8 @@ int esp_usb_jtag::setClkFreq(uint32_t clkHZ)
 	return clkHZ;
 }
 
-int esp_usb_jtag::writeTMS(const uint8_t *tms, uint32_t len,
-		__attribute__((unused)) bool flush_buffer,
-		__attribute__((unused)) const uint8_t tdi)
+int esp_usb_jtag::writeTMS(const uint8_t *tms, uint32_t len, bool flush_buffer,
+		const uint8_t tdi)
 {
 	uint8_t buf[OUT_BUF_SZ];
 
@@ -437,6 +436,8 @@ int esp_usb_jtag::writeTMS(const uint8_t *tms, uint32_t len,
 		cerr << " " << std::hex << (int)tms[i];
 	cerr << endl;
 
+	_tdi = tdi & 0x01;
+
 	uint8_t prev_high_nibble = CMD_FLUSH << 4; // for odd length 1st command is flush = nop
 	uint32_t buffer_idx = 0; // reset
 	uint8_t is_high_nibble = 1 & ~len;
@@ -447,8 +448,8 @@ int esp_usb_jtag::writeTMS(const uint8_t *tms, uint32_t len,
 	// last byte in buf will have data in both nibbles, no flush
 	// exec order: high-nibble-first, low-nibble-second
 	for (uint32_t i = 0; i < len; i++) {
-		uint8_t tms_bit = (tms[i >> 3] >> (i & 7)) & 1; // get i'th bit from tms
-		uint8_t cmd = CMD_CLK(0, 0, tms_bit);
+		_tms = (tms[i >> 3] >> (i & 7)) & 1; // get i'th bit from tms
+		uint8_t cmd = CMD_CLK(0, _tdi, _tms);
 		if(is_high_nibble) {   // 1st (high nibble) = data
 			buf[buffer_idx] = prev_high_nibble = cmd << 4;
 		} else { // low nibble
@@ -458,7 +459,7 @@ int esp_usb_jtag::writeTMS(const uint8_t *tms, uint32_t len,
 		}
 		is_high_nibble ^= 1;
 
-		if (buffer_idx >= sizeof(buf) /*buf full*/ || i == len - 1 /*last*/) {
+		if (buffer_idx >= OUT_BUF_SZ /*buf full*/ || i == len - 1 /*last*/) {
 			int ret = xfer(buf, NULL, buffer_idx);
 			if (ret < 0) {
 				cerr << "writeTMS: usb bulk write failed " << ret << endl;
