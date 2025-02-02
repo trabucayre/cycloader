@@ -701,6 +701,80 @@ void Altera::max10_flow_program_donebit(const uint32_t done_bit_addr)
 	_jtag->toggleClk(icb_program_delay);  // must wait 305.0e-6
 }
 
+bool Altera::max10_read_section(FILE *fd, const uint32_t base_addr, const uint32_t len)
+{
+	const uint8_t read_cmd[2] = MAX10_ISC_READ;
+
+	ProgressBar progress("Dump", len, 50, _quiet);
+	for (uint32_t i = 0; i < len; i += 512) {
+		const uint32_t max = (i + 512 <= len)? 512 : len - i;
+		progress.display(i);
+
+		/* send address */
+		max10_addr_shift(base_addr + i);
+
+		/* send read command */
+		_jtag->shiftIR((unsigned char *)read_cmd, NULL, IRLENGTH, Jtag::PAUSE_IR);
+
+		for (uint32_t ii = 0; ii < max; ii++) {
+			uint8_t data[4];
+
+			_jtag->shiftDR(NULL, data, 32, Jtag::RUN_TEST_IDLE);
+			fwrite(data, sizeof(uint8_t), 4, fd);
+		}
+	}
+	progress.done();
+
+	return true;
+}
+
+bool Altera::max10_dump()
+{
+	uint32_t base_addr;
+
+	auto mem_map = max10_memory_map.find(_idcode);
+	if (mem_map == max10_memory_map.end()) {
+		printError("Model not supported. Please update max10_memory_map.");
+		return false;
+	}
+	const max10_mem_t mem = mem_map->second;
+
+	/* Access clk frequency to store clk_period required
+	 * for all operations. Can't be done at CTOR because
+	 * frequency be changed between these 2 methods.
+	 */
+	_clk_period = 1e9/static_cast<float>(_jtag->getClkFreq());
+
+	FILE *fd = fopen(_filename.c_str(), "w");
+	if (!fd) {
+		printError("Failed to open dump file.");
+		return false;
+	}
+
+	max_10_flow_enable();
+
+	/* UFM 1 -> 0 */
+	base_addr = mem.ufm_addr;
+	for (int i = 1; i >= 0; i--) {
+		printInfo("Dump UFM" + std::to_string(i));
+		max10_read_section(fd, base_addr, mem.ufm_len[i]);
+		base_addr += mem.ufm_len[i];
+	}
+
+	/* CFM 2 -> 0 */
+	base_addr = mem.cfm_addr;
+	for (int i = 2; i >= 0; i--) {
+		printInfo("Dump CFM" + std::to_string(i));
+		max10_read_section(fd, base_addr, mem.cfm_len[i]);
+		base_addr += mem.cfm_len[i];
+	}
+
+	max_10_flow_disable();
+
+	fclose(fd);
+	return true;
+}
+
 /* SPI interface */
 
 int Altera::spi_put(uint8_t cmd, const uint8_t *tx, uint8_t *rx, uint32_t len)

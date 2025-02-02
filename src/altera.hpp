@@ -36,6 +36,8 @@ class Altera: public Device, SPIInterface {
 		 * \return false if read fails or filename can't be open, true otherwise
 		 */
 		bool dumpFlash(uint32_t base_addr, uint32_t len) override {
+			if (_fpga_family == MAX10_FAMILY)
+				return max10_dump();
 			return SPIInterface::dump(base_addr, len);
 		}
 
@@ -106,6 +108,8 @@ class Altera: public Device, SPIInterface {
 		void max10_flow_erase();
 		void max10_dsm_program(const uint8_t *dsm_data, const uint32_t dsm_len);
 		bool max10_dsm_verify();
+		bool max10_dump();
+		bool max10_read_section(FILE *fd, const uint32_t base_addr, const uint32_t addr);
 
 		/*!
 		 * \brief with intel devices SPI flash direct access is not possible
