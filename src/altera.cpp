@@ -327,7 +327,7 @@ static const std::map<uint32_t, max10_mem_t> max10_memory_map = {
 
 void Altera::max10_program()
 {
-	POFParser _bit(_filename, true);
+	POFParser _bit(_filename, _verbose);
 	_bit.parse();
 	_bit.displayHeader();
 
