@@ -103,8 +103,8 @@ class Altera: public Device, SPIInterface {
 		void max10_dsm_program_success(const uint32_t pgm_success_addr);
 		void max10_flow_program_donebit(const uint32_t done_bit_addr);
 		void max10_addr_shift(uint32_t addr);
-		void max_10_flow_enable();
-		void max_10_flow_disable();
+		void max10_flow_enable();
+		void max10_flow_disable();
 		void max10_flow_erase();
 		void max10_dsm_program(const uint8_t *dsm_data, const uint32_t dsm_len);
 		bool max10_dsm_verify();

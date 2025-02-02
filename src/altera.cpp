@@ -401,7 +401,7 @@ void Altera::max10_program()
 
 
 	// Start!
-	max_10_flow_enable();
+	max10_flow_enable();
 
 	max10_flow_erase();
 	max10_dsm_verify();
@@ -454,7 +454,7 @@ void Altera::max10_program()
 	max10_dsm_verify();
 
 	/* disable ISC flow */
-	max_10_flow_disable();
+	max10_flow_disable();
 	_jtag->set_state(Jtag::RUN_TEST_IDLE);
 }
 
@@ -563,7 +563,7 @@ uint32_t Altera::verifyxFM(const uint8_t *cfg_data, uint32_t base_addr, uint32_t
 	return errors;
 }
 
-void Altera::max_10_flow_enable()
+void Altera::max10_flow_enable()
 {
 	const int enable_delay  = 350000120 / _clk_period;  // must be 1 tck
 	const uint8_t cmd[2] = MAX10_ISC_ENABLE;
@@ -573,7 +573,7 @@ void Altera::max_10_flow_enable()
 	_jtag->toggleClk(enable_delay);
 }
 
-void Altera::max_10_flow_disable()
+void Altera::max10_flow_disable()
 {
 	// ISC_DISABLE  WAIT  100.0e-3)
 	// BYPASS	   WAIT  305.0e-6
@@ -751,7 +751,7 @@ bool Altera::max10_dump()
 		return false;
 	}
 
-	max_10_flow_enable();
+	max10_flow_enable();
 
 	/* UFM 1 -> 0 */
 	base_addr = mem.ufm_addr;
@@ -769,7 +769,7 @@ bool Altera::max10_dump()
 		base_addr += mem.cfm_len[i];
 	}
 
-	max_10_flow_disable();
+	max10_flow_disable();
 
 	fclose(fd);
 	return true;
