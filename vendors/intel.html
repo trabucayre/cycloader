@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Intel notes &mdash; openFPGALoader: universal utility for programming FPGA latest documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/documentation_options.js?v=c6e86fd7"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Lattice notes" href="lattice.html" />
+    <link rel="prev" title="Gowin notes" href="gowin.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> openFPGALoader: universal utility for programming FPGA
+          </a>
+              <div class="version">
+                latest
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guide/first-steps.html">First steps with openFPGALoader</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guide/install.html">Installing openFPGALoader</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guide/troubleshooting.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guide/advanced.html">Advanced usage of openFPGALoader</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Compatibility</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../compatibility/fpga.html">FPGAs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../compatibility/board.html">Boards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../compatibility/cable.html">Cables</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Vendors</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="anlogic.html">Anlogic notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="colognechip.html">Cologne Chip notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="efinix.html">Efinix notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gowin.html">Gowin notes</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Intel notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#intel-altera">Intel/Altera</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#loading-a-bitstream">Loading a bitstream</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spi-flash">SPI flash</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#intel-altera-old-boards">Intel/Altera (Old Boards)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#loading-a-serial-vector-format-svf">Loading a Serial Vector Format (.svf)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="lattice.html">Lattice notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xilinx.html">Xilinx notes</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../todo.html">To Do</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">openFPGALoader: universal utility for programming FPGA</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+        
+          
+            <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Intel notes</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/trabucayre/openFPGALoader/blob/master/doc/vendors/intel.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="intel-notes">
+<span id="intel"></span><h1>Intel notes<a class="headerlink" href="#intel-notes" title="Link to this heading">¶</a></h1>
+<section id="intel-altera">
+<h2>Intel/Altera<a class="headerlink" href="#intel-altera" title="Link to this heading">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>CYC1000</p></li>
+<li><p>C10LP-RefKit</p></li>
+<li><p>DE0</p></li>
+<li><p>de0nano</p></li>
+</ul>
+</div>
+<section id="loading-a-bitstream">
+<h3>Loading a bitstream<a class="headerlink" href="#loading-a-bitstream" title="Link to this heading">¶</a></h3>
+<p>SVF and RBF files are supported.</p>
+<p><code class="docutils literal notranslate"><span class="pre">sof</span></code> to <code class="docutils literal notranslate"><span class="pre">svf</span></code> generation:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>quartus_cpf<span class="w"> </span>-c<span class="w"> </span>-q<span class="w"> </span><span class="m">12</span>.0MHz<span class="w"> </span>-g<span class="w"> </span><span class="m">3</span>.3<span class="w"> </span>-n<span class="w"> </span>p<span class="w"> </span>project_name.sof<span class="w"> </span>project_name.svf
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">sof</span></code> to <code class="docutils literal notranslate"><span class="pre">rbf</span></code> generation:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>quartus_cpf<span class="w">  </span>--option<span class="o">=</span><span class="nv">bitstream_compression</span><span class="o">=</span>off<span class="w"> </span>-c<span class="w"> </span>project_name.sof<span class="w"> </span>project_name.rbf
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>As mentioned in <code class="docutils literal notranslate"><span class="pre">cyclone</span></code> handbooks, real-time decompression is not supported by FPGA in JTAG mode.
+Keep in mind to disable this option.</p>
+</div>
+<p>You can have Quartus automatically generate SVF and RBF files by adding these lines to the <code class="docutils literal notranslate"><span class="pre">qsf</span></code> file, or include them in a <code class="docutils literal notranslate"><span class="pre">tcl</span></code> file in FuseSoC</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">set_global_assignment</span> <span class="o">-</span><span class="n">name</span> <span class="n">ON_CHIP_BITSTREAM_DECOMPRESSION</span> <span class="n">OFF</span>
+<span class="n">set_global_assignment</span> <span class="o">-</span><span class="n">name</span> <span class="n">GENERATE_RBF_FILE</span> <span class="n">ON</span>
+<span class="n">set_global_assignment</span> <span class="o">-</span><span class="n">name</span> <span class="n">GENERATE_SVF_FILE</span> <span class="n">ON</span>
+</pre></div>
+</div>
+<p>file load:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openFPGALoader<span class="w"> </span>-b<span class="w"> </span>boardname<span class="w"> </span>project_name.svf
+<span class="c1"># or</span>
+openFPGALoader<span class="w"> </span>-b<span class="w"> </span>boardname<span class="w"> </span>project_name.rbf
+</pre></div>
+</div>
+<p>with <code class="docutils literal notranslate"><span class="pre">boardname</span></code> = <code class="docutils literal notranslate"><span class="pre">de0</span></code>, <code class="docutils literal notranslate"><span class="pre">cyc1000</span></code>, <code class="docutils literal notranslate"><span class="pre">c10lp-refkit</span></code>, <code class="docutils literal notranslate"><span class="pre">de0nano</span></code>, <code class="docutils literal notranslate"><span class="pre">de0nanoSoc</span></code> or <code class="docutils literal notranslate"><span class="pre">qmtechCycloneV</span></code>.</p>
+</section>
+<section id="spi-flash">
+<h3>SPI flash<a class="headerlink" href="#spi-flash" title="Link to this heading">¶</a></h3>
+<p>RPD and RBF are supported. POF is only supported for MAX10 (internal flash).</p>
+<p><code class="docutils literal notranslate"><span class="pre">pof</span></code> to <code class="docutils literal notranslate"><span class="pre">rpd</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>quartus_cpf<span class="w"> </span>-c<span class="w"> </span>project_name.pof<span class="w"> </span>project_name.rpd
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">sof</span></code> to <code class="docutils literal notranslate"><span class="pre">rpd</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># CYC1000</span>
+quartus_cpf<span class="w"> </span>-o<span class="w"> </span><span class="nv">auto_create_rpd</span><span class="o">=</span>on<span class="w"> </span>-c<span class="w"> </span>-d<span class="w"> </span>EPCQ16A<span class="w"> </span>-s<span class="w"> </span>10CL025YU256C8G<span class="w"> </span>project_name.svf<span class="w"> </span>project_name.jic
+<span class="c1"># C10LP-RefKit</span>
+quartus_cpf<span class="w"> </span>-o<span class="w"> </span><span class="nv">auto_create_rpd</span><span class="o">=</span>on<span class="w"> </span>-c<span class="w"> </span>-d<span class="w"> </span>EPCQ16A<span class="w"> </span>-s<span class="w"> </span>10CL055YU484C8G<span class="w"> </span>project_name.svf<span class="w"> </span>project_name.jic
+</pre></div>
+</div>
+<p>file load:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openFPGALoader<span class="w"> </span>-b<span class="w"> </span>boardname<span class="w"> </span>-r<span class="w"> </span>project_name_auto.rpd
+<span class="c1"># or</span>
+openFPGALoader<span class="w"> </span>-b<span class="w"> </span>boardname<span class="w"> </span>-r<span class="w"> </span>project_name.rbf
+</pre></div>
+</div>
+<p>with <code class="docutils literal notranslate"><span class="pre">boardname</span></code> = <code class="docutils literal notranslate"><span class="pre">cyc1000</span></code>, <code class="docutils literal notranslate"><span class="pre">c10lp-refkit</span></code>.</p>
+<p>MAX10:</p>
+</section>
+</section>
+<section id="intel-altera-old-boards">
+<h2>Intel/Altera (Old Boards)<a class="headerlink" href="#intel-altera-old-boards" title="Link to this heading">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>Cyclone II (FPGA) (Tested OK: EP2C5T144C8N)</p></li>
+<li><p>Max II (CPLD) (Tested OK: EPM240T100C5N)</p></li>
+</ul>
+</div>
+<section id="loading-a-serial-vector-format-svf">
+<h3>Loading a Serial Vector Format (.svf)<a class="headerlink" href="#loading-a-serial-vector-format-svf" title="Link to this heading">¶</a></h3>
+<p>SVF files are supported.</p>
+<p>To load the file:</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openFPGALoader<span class="w"> </span>-c<span class="w"> </span>usb-blaster<span class="w"> </span>project_name.svf
+</pre></div>
+</div>
+</div></blockquote>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="gowin.html" class="btn btn-neutral float-left" title="Gowin notes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="lattice.html" class="btn btn-neutral float-right" title="Lattice notes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2022, Gwenhael Goavec-Merou and contributors.</p>
+  </div>Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/buildthedocs/sphinx.theme">theme</a>
+    provided by <a href="https://buildthedocs.github.io">Build the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

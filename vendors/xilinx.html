@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Xilinx notes &mdash; openFPGALoader: universal utility for programming FPGA latest documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/documentation_options.js?v=c6e86fd7"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="To Do" href="../todo.html" />
+    <link rel="prev" title="Lattice notes" href="lattice.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> openFPGALoader: universal utility for programming FPGA
+          </a>
+              <div class="version">
+                latest
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guide/first-steps.html">First steps with openFPGALoader</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guide/install.html">Installing openFPGALoader</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guide/troubleshooting.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guide/advanced.html">Advanced usage of openFPGALoader</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Compatibility</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../compatibility/fpga.html">FPGAs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../compatibility/board.html">Boards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../compatibility/cable.html">Cables</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Vendors</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="anlogic.html">Anlogic notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="colognechip.html">Cologne Chip notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="efinix.html">Efinix notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gowin.html">Gowin notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intel.html">Intel notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lattice.html">Lattice notes</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Xilinx notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#loading-a-bitstream">Loading a bitstream</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#spi-flash">SPI flash</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../todo.html">To Do</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">openFPGALoader: universal utility for programming FPGA</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+        
+          
+            <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Xilinx notes</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/trabucayre/openFPGALoader/blob/master/doc/vendors/xilinx.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="xilinx-notes">
+<span id="xilinx"></span><h1>Xilinx notes<a class="headerlink" href="#xilinx-notes" title="Link to this heading">¶</a></h1>
+<p>To simplify further explanations, we consider the project is generated in the current directory.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ol class="arabic simple">
+<li><p>Spartan Edge Accelerator Board has only pinheader, so the cable must be provided</p></li>
+<li><p>A <em>JTAG</em> &lt;-&gt; <em>SPI</em> bridge (used to write bitstream in FLASH) is available for some device, see
+<a class="reference external" href="https://github.com/trabucayre/openFPGALoader/blob/master/spiOverJtag">spiOverJtag</a> to check if your model is supported.</p></li>
+<li><p>Board provides the device/package model, but if the targeted board is not officially supported but the FPGA yes,
+you can use <code class="docutils literal notranslate"><span class="pre">--fpga-part</span></code> to provide the model.</p></li>
+<li><p>With spartan3, the flash is an independent JTAG device.
+User has to use <code class="docutils literal notranslate"><span class="pre">--index-chain</span></code> to access FPGA (RAM only) or flash (write/read only).</p></li>
+</ol>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><code class="docutils literal notranslate"><span class="pre">*.bin</span></code> may be loaded in memory or in flash, but this extension is a classic extension for CPU firmware and, by
+default, <em>openFPGALoader</em> loads file in memory.
+Double check <code class="docutils literal notranslate"><span class="pre">-m</span></code> / <code class="docutils literal notranslate"><span class="pre">-f</span></code> when you want to use a firmware for a softcore (or anything, other than a bitstream) to
+write somewhere in the FLASH device).</p>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">.bit</span></code> file is the default format generated by <em>vivado</em>, so nothing special task must be done to generate this
+bitstream.</p>
+<p><code class="docutils literal notranslate"><span class="pre">.bin</span></code> is not, by default, produced.
+To have access to this file you need to configure the tool:</p>
+<ul class="simple">
+<li><p>GUI: <em>Tools</em> -&gt; <em>Settings</em> -&gt; <em>Bitstreams</em> -&gt; check <code class="docutils literal notranslate"><span class="pre">-bin_file</span></code>.</p></li>
+<li><p>TCL: append your <em>TCL</em> file with <code class="docutils literal notranslate"><span class="pre">set_property</span> <span class="pre">STEPS.WRITE_BITSTREAM.ARGS.BIN_FILE</span> <span class="pre">true</span> <span class="pre">[get_runs</span> <span class="pre">impl_1]</span></code>.</p></li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>For alchitry board the bitstream must be configured with a buswidth of 1 or 2.
+Quad mode can’t be used with alchitry’s FLASH.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>For boards based on a Zynq (7000 or MPSoC), boot mode must be configured for JTAG (for Zedboard JP7-&gt;JP11 must be
+to GND).</p>
+</div>
+<section id="loading-a-bitstream">
+<h2>Loading a bitstream<a class="headerlink" href="#loading-a-bitstream" title="Link to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">.bit</span></code> and <code class="docutils literal notranslate"><span class="pre">.bin</span></code> are allowed to be loaded in memory.</p>
+<p>File load:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openFPGALoader<span class="w"> </span><span class="o">[</span>-m<span class="o">]</span><span class="w"> </span>-b<span class="w"> </span>arty<span class="w"> </span>*.runs/impl_1/*.bit<span class="w"> </span><span class="o">(</span>or<span class="w"> </span>*.bin<span class="o">)</span>
+</pre></div>
+</div>
+<p>or</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openFPGALoader<span class="w"> </span><span class="o">[</span>-m<span class="o">]</span><span class="w"> </span>-b<span class="w"> </span>spartanEdgeAccelBoard<span class="w"> </span>-c<span class="w"> </span>digilent_hs2<span class="w"> </span>*.runs/impl_1/*.bit<span class="w"> </span><span class="o">(</span>or<span class="w"> </span>*.bin<span class="o">)</span>
+</pre></div>
+</div>
+<section id="spi-flash">
+<h3>SPI flash<a class="headerlink" href="#spi-flash" title="Link to this heading">¶</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">.bit</span></code>, <code class="docutils literal notranslate"><span class="pre">.bin</span></code>, and <code class="docutils literal notranslate"><span class="pre">.mcs</span></code> are supported for FLASH.</p>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">.mcs</span></code> must be generated through Vivado with a tcl script like:</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>For boards based on Zynq device (7000 and MPSoC) SPI flash is not accessible through PL.</p>
+</div>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="k">set</span><span class="w"> </span>project<span class="w"> </span><span class="k">[</span><span class="nb">lindex</span><span class="w"> </span><span class="nv">$argv</span><span class="w"> </span><span class="mi">0</span><span class="k">]</span>
+
+<span class="k">set</span><span class="w"> </span>bitfile<span class="w"> </span><span class="s2">&quot;${project}.runs/impl_1/${project}.bit&quot;</span>
+<span class="k">set</span><span class="w"> </span>mcsfile<span class="w"> </span><span class="s2">&quot;${project}.runs/impl_1/${project}.mcs&quot;</span>
+
+<span class="nv">write_cfgmem</span><span class="w"> </span><span class="o">-</span>format<span class="w"> </span>mcs<span class="w"> </span><span class="o">-</span>interface<span class="w"> </span>spix4<span class="w"> </span><span class="o">-</span>size<span class="w"> </span><span class="mi">16</span><span class="w"> </span><span class="err">\</span>
+<span class="w">   </span><span class="nv">-loadbit</span><span class="w"> </span><span class="s2">&quot;up 0x0 $bitfile&quot;</span><span class="w"> </span><span class="o">-</span>loaddata<span class="w"> </span><span class="s2">&quot;&quot;</span><span class="w"> </span><span class="err">\</span>
+<span class="w">   </span><span class="nv">-file</span><span class="w"> </span><span class="nv">$mcsfile</span><span class="w"> </span><span class="o">-</span>force
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">-interface</span> <span class="pre">spix4</span></code> and <code class="docutils literal notranslate"><span class="pre">-size</span> <span class="pre">16</span></code> depends on SPI flash capability and size.</p>
+</div>
+<p>The tcl script is used with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>vivado<span class="w"> </span>-nolog<span class="w"> </span>-nojournal<span class="w"> </span>-mode<span class="w"> </span>batch<span class="w"> </span>-source<span class="w"> </span>script.tcl<span class="w"> </span>-tclargs<span class="w"> </span>myproject
+</pre></div>
+</div>
+<p>File load:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openFPGALoader<span class="w"> </span><span class="o">[</span>--fpga-part<span class="w"> </span>xxxx<span class="o">]</span><span class="w"> </span>-f<span class="w"> </span>-b<span class="w"> </span>arty<span class="w"> </span>*.runs/impl_1/*.mcs<span class="w"> </span><span class="o">(</span>or<span class="w"> </span>.bit<span class="w"> </span>/<span class="w"> </span>.bin<span class="o">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">-f</span></code> is required to write bitstream (without them <code class="docutils literal notranslate"><span class="pre">.bit</span></code> and <code class="docutils literal notranslate"><span class="pre">.bin</span></code> are loaded in memory).</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">--fpga-part</span></code> is only required if this information is not provided at <code class="docutils literal notranslate"><span class="pre">board.hpp</span></code> level or if the board is not
+officially supported.
+device/package format is something like xc7a35tcsg324 (arty model).
+See <a class="reference external" href="https://github.com/trabucayre/openFPGALoader/blob/master/src/board.hpp">src/board.hpp</a>, or <a class="reference external" href="https://github.com/trabucayre/openFPGALoader/blob/master/spiOverJtag">spiOverJtag</a> directory for examples.</p>
+</div>
+<p>Some boards with UltraScale FPGAs, like the VCU118 and KCU16, support the SPIx8 (Dual Quad SPI) configuration.
+In this case, the <code class="docutils literal notranslate"><span class="pre">spix8</span></code> option <code class="docutils literal notranslate"><span class="pre">write_cfgmem</span></code> on the above example can be used to generate two <code class="docutils literal notranslate"><span class="pre">.mcs</span></code> files,
+to fit bigger designs or for faster programming. Only <code class="docutils literal notranslate"><span class="pre">.mcs</span></code> files can be used to program the FPGA in this case.</p>
+<p>In this case, to load the two <code class="docutils literal notranslate"><span class="pre">.mcs</span></code> files:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openFPGALoader<span class="w"> </span>--board<span class="w"> </span>vcu118<span class="w"> </span>-f<span class="w"> </span>--target-flash<span class="w"> </span>both<span class="w"> </span>--bitstream<span class="w"> </span>*.runs/impl_1/*_primary.mcs<span class="w"> </span>--secondary-bitstream<span class="w"> </span>*.runs/impl_1/*_secondary.mcs
+</pre></div>
+</div>
+<p>On these boards, each SPI flash can be programmed independently with the <code class="docutils literal notranslate"><span class="pre">--target-flash</span></code> option.
+The default target is the <code class="docutils literal notranslate"><span class="pre">primary</span></code> flash.</p>
+<p>For example, to program only the secondary flash with arbitrary data not related to FPGA configuration:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openFPGALoader<span class="w"> </span>--board<span class="w"> </span>vcu118<span class="w"> </span>-f<span class="w"> </span>--target-flash<span class="w"> </span>secondary<span class="w"> </span>--bitstream<span class="w"> </span>arbitrary_data
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="lattice.html" class="btn btn-neutral float-left" title="Lattice notes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../todo.html" class="btn btn-neutral float-right" title="To Do" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2022, Gwenhael Goavec-Merou and contributors.</p>
+  </div>Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/buildthedocs/sphinx.theme">theme</a>
+    provided by <a href="https://buildthedocs.github.io">Build the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

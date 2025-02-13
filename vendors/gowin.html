@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gowin notes &mdash; openFPGALoader: universal utility for programming FPGA latest documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/documentation_options.js?v=c6e86fd7"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Intel notes" href="intel.html" />
+    <link rel="prev" title="Efinix notes" href="efinix.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> openFPGALoader: universal utility for programming FPGA
+          </a>
+              <div class="version">
+                latest
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guide/first-steps.html">First steps with openFPGALoader</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guide/install.html">Installing openFPGALoader</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guide/troubleshooting.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guide/advanced.html">Advanced usage of openFPGALoader</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Compatibility</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../compatibility/fpga.html">FPGAs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../compatibility/board.html">Boards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../compatibility/cable.html">Cables</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Vendors</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="anlogic.html">Anlogic notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="colognechip.html">Cologne Chip notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="efinix.html">Efinix notes</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Gowin notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#gowin-gw1n">GOWIN GW1N</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#flash-sram">Flash SRAM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#flash">Flash</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#user-flash">User Flash</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="intel.html">Intel notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lattice.html">Lattice notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xilinx.html">Xilinx notes</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../todo.html">To Do</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">openFPGALoader: universal utility for programming FPGA</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+        
+          
+            <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Gowin notes</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/trabucayre/openFPGALoader/blob/master/doc/vendors/gowin.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="gowin-notes">
+<span id="gowin"></span><h1>Gowin notes<a class="headerlink" href="#gowin-notes" title="Link to this heading">¶</a></h1>
+<section id="gowin-gw1n">
+<h2>GOWIN GW1N<a class="headerlink" href="#gowin-gw1n" title="Link to this heading">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>Trenz TEC0117</p></li>
+<li><p>Sipeed Tang Nano</p></li>
+<li><p>Sipeed Tang Nano 4K</p></li>
+<li><p>Honeycomb</p></li>
+<li><p>RUNBER</p></li>
+</ul>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">.fs</span></code> file is the default format generated by <em>Gowin IDE</em>, so nothing special must be done to generates this file.</p>
+<p>Since the same file is used for SRAM and Flash a CLI argument is used to specify the destination.</p>
+<section id="flash-sram">
+<h3>Flash SRAM<a class="headerlink" href="#flash-sram" title="Link to this heading">¶</a></h3>
+<p>with <code class="docutils literal notranslate"><span class="pre">-m</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openFPGALoader<span class="w"> </span>-m<span class="w"> </span>-b<span class="w"> </span>BOARD_NAME<span class="w"> </span>impl/pnr/*.fs
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">BOARD_NAME</span></code> is:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">tec0117</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tangnano</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tangnano1k</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tangnano4k</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tangnano9k</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tangnano20k</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tangprimer20k</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">runber</span></code></p></li>
+</ul>
+</section>
+<section id="flash">
+<h3>Flash<a class="headerlink" href="#flash" title="Link to this heading">¶</a></h3>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>Only with Trenz TEC0117 and runber.</p>
+</div>
+<p>with <code class="docutils literal notranslate"><span class="pre">-f</span></code>, file load:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openFPGALoader<span class="w"> </span>-f<span class="w"> </span>-b<span class="w"> </span>BOARD_NAME<span class="w"> </span>impl/pnr/*.fs
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">BOARD_NAME</span></code> is:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">tec0117</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">runber</span></code></p></li>
+</ul>
+<p>It’s possible to flash external SPI Flash (connected to MSPI) in bscan mode by using <code class="docutils literal notranslate"><span class="pre">--external-flash</span></code> instead of
+<code class="docutils literal notranslate"><span class="pre">-f</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Gowin’s FPGA may fails to be detected if <strong>JTAGSEL_N</strong> (pin 08 for <em>GW1N-4K</em>) is used as a GPIO.
+To recover you have to pull down this pin (before power up) to recover JTAG interface (<em>UG292 - JTAGSELL_N section</em>).</p>
+</div>
+</section>
+<section id="user-flash">
+<h3>User Flash<a class="headerlink" href="#user-flash" title="Link to this heading">¶</a></h3>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>User Flash support is based on reverse engineering of the JTAG protocol. This functionality should be considered
+experimental as it hasn’t been thoroughly tested, and may in some circumstances destroy your device.</p>
+</div>
+<p>Gowin FPGA come with extra flash space that can be read and written from the programmable logic (“User Flash”). This
+flash section can also be programmed via the JTAG interface:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openFPGALoader<span class="w"> </span>--write-flash<span class="w"> </span>/path/to/bitstream.fs<span class="w"> </span>--user-flash<span class="w"> </span>/path/to/flash.bin
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="efinix.html" class="btn btn-neutral float-left" title="Efinix notes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="intel.html" class="btn btn-neutral float-right" title="Intel notes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2022, Gwenhael Goavec-Merou and contributors.</p>
+  </div>Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/buildthedocs/sphinx.theme">theme</a>
+    provided by <a href="https://buildthedocs.github.io">Build the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

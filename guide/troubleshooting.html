@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Troubleshooting &mdash; openFPGALoader: universal utility for programming FPGA latest documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/documentation_options.js?v=c6e86fd7"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Advanced usage of openFPGALoader" href="advanced.html" />
+    <link rel="prev" title="Installing openFPGALoader" href="install.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> openFPGALoader: universal utility for programming FPGA
+          </a>
+              <div class="version">
+                latest
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="first-steps.html">First steps with openFPGALoader</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installing openFPGALoader</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Troubleshooting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#i-installed-openfpgaloader-but-it-says-command-not-found-when-i-try-to-launch-it">I installed openFPGALoader but it says <cite>command not found</cite> when I try to launch it</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gowin-device-could-not-communicate-since-last-bitstream-flashed-issue-206">Gowin device could not communicate since last bitstream flashed. (issue #206)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#jtag-init-failed">JTAG init failed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tang-primer-20k-program-slow-and-stucked-issue-250">Tang Primer 20k program slow and stucked (issue #250)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cannot-flash-tang-nano-9k-issue-251">Cannot flash Tang Nano 9k (issue #251)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#unable-to-open-ftdi-device-4-usb-open-failed-issue-245">Unable to open FTDI device: -4 (usb_open() failed) (issue #245)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="advanced.html">Advanced usage of openFPGALoader</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Compatibility</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../compatibility/fpga.html">FPGAs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../compatibility/board.html">Boards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../compatibility/cable.html">Cables</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Vendors</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../vendors/anlogic.html">Anlogic notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vendors/colognechip.html">Cologne Chip notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vendors/efinix.html">Efinix notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vendors/gowin.html">Gowin notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vendors/intel.html">Intel notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vendors/lattice.html">Lattice notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vendors/xilinx.html">Xilinx notes</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../todo.html">To Do</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">openFPGALoader: universal utility for programming FPGA</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+        
+          
+            <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Troubleshooting</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/trabucayre/openFPGALoader/blob/master/doc/guide/troubleshooting.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="troubleshooting">
+<span id="id1"></span><h1>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading">¶</a></h1>
+<section id="i-installed-openfpgaloader-but-it-says-command-not-found-when-i-try-to-launch-it">
+<h2>I installed openFPGALoader but it says <cite>command not found</cite> when I try to launch it<a class="headerlink" href="#i-installed-openfpgaloader-but-it-says-command-not-found-when-i-try-to-launch-it" title="Link to this heading">¶</a></h2>
+<p>The correct spelling of the program is <em>openFPGALoader</em> with FPGA and the “L” of “Loader” in uppercase.
+Ensure the spelling of the program is correct.</p>
+</section>
+<section id="gowin-device-could-not-communicate-since-last-bitstream-flashed-issue-206">
+<h2>Gowin device could not communicate since last bitstream flashed. (issue <a class="reference external" href="https://github.com/trabucayre/openFPGALoader/issues/206">#206</a>)<a class="headerlink" href="#gowin-device-could-not-communicate-since-last-bitstream-flashed-issue-206" title="Link to this heading">¶</a></h2>
+<p>Gowin’s FPGA may fails to be detected if <strong>JTAGSEL_N</strong> (pin 08 for <em>GW1N-4K</em>) is used as a GPIO.
+To recover you have to pull down this pin (before power up) to recover JTAG interface (<em>UG292 - JTAGSELL_N section</em>).</p>
+</section>
+<section id="jtag-init-failed">
+<h2>JTAG init failed<a class="headerlink" href="#jtag-init-failed" title="Link to this heading">¶</a></h2>
+<p>Avoid using USB hubs and connect it directly to your PC USB port.</p>
+</section>
+<section id="tang-primer-20k-program-slow-and-stucked-issue-250">
+<h2>Tang Primer 20k program slow and stucked (issue <a class="reference external" href="https://github.com/trabucayre/openFPGALoader/issues/250">#250</a>)<a class="headerlink" href="#tang-primer-20k-program-slow-and-stucked-issue-250" title="Link to this heading">¶</a></h2>
+<p>Check your openFPGALoader version:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openFPGALoader<span class="w"> </span>-V
+</pre></div>
+</div>
+<p>If it is older than release then v0.9.0, install the most recent version (from commit <a class="reference external" href="https://github.com/trabucayre/openFPGALoader/commit/fe259fb78d185b3113661d04cd7efa9ae0232425">f5b89bff68a5e2147404a895c075773884077438</a> or later).</p>
+</section>
+<section id="cannot-flash-tang-nano-9k-issue-251">
+<h2>Cannot flash Tang Nano 9k (issue <a class="reference external" href="https://github.com/trabucayre/openFPGALoader/issues/251">#251</a>)<a class="headerlink" href="#cannot-flash-tang-nano-9k-issue-251" title="Link to this heading">¶</a></h2>
+<p>This is a device issue, erase its Embedded Flash using Official GoWin Programmer (preferentially in Windows) and SRAM too, then you can use openFPGALoader again.</p>
+</section>
+<section id="unable-to-open-ftdi-device-4-usb-open-failed-issue-245">
+<h2>Unable to open FTDI device: -4 (usb_open() failed) (issue <a class="reference external" href="https://github.com/trabucayre/openFPGALoader/issues/245">#245</a>)<a class="headerlink" href="#unable-to-open-ftdi-device-4-usb-open-failed-issue-245" title="Link to this heading">¶</a></h2>
+<p>Edit your <cite>/etc/udev/rules.d/99-ftdi.rules</cite> file exchanging your programming device permissions.</p>
+<p>For more information, check the udev section from <a class="reference external" href="install.rst">this guide</a></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="install.html" class="btn btn-neutral float-left" title="Installing openFPGALoader" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="advanced.html" class="btn btn-neutral float-right" title="Advanced usage of openFPGALoader" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2022, Gwenhael Goavec-Merou and contributors.</p>
+  </div>Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/buildthedocs/sphinx.theme">theme</a>
+    provided by <a href="https://buildthedocs.github.io">Build the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

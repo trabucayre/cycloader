@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>First steps with openFPGALoader &mdash; openFPGALoader: universal utility for programming FPGA latest documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/documentation_options.js?v=c6e86fd7"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Installing openFPGALoader" href="install.html" />
+    <link rel="prev" title="openFPGALoader: universal utility for programming FPGA" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> openFPGALoader: universal utility for programming FPGA
+          </a>
+              <div class="version">
+                latest
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">First steps with openFPGALoader</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#install">Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#programming-a-development-board">Programming a development board</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#programming-an-standalone-fpga">Programming an “standalone” FPGA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#troubleshooting">Troubleshooting</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installing openFPGALoader</a></li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced.html">Advanced usage of openFPGALoader</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Compatibility</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../compatibility/fpga.html">FPGAs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../compatibility/board.html">Boards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../compatibility/cable.html">Cables</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Vendors</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../vendors/anlogic.html">Anlogic notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vendors/colognechip.html">Cologne Chip notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vendors/efinix.html">Efinix notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vendors/gowin.html">Gowin notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vendors/intel.html">Intel notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vendors/lattice.html">Lattice notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vendors/xilinx.html">Xilinx notes</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../todo.html">To Do</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">openFPGALoader: universal utility for programming FPGA</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+        
+          
+            <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>First steps with openFPGALoader</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/trabucayre/openFPGALoader/blob/master/doc/guide/first-steps.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="first-steps-with-openfpgaloader">
+<span id="first-steps"></span><h1>First steps with openFPGALoader<a class="headerlink" href="#first-steps-with-openfpgaloader" title="Link to this heading">¶</a></h1>
+<section id="install">
+<h2>Install<a class="headerlink" href="#install" title="Link to this heading">¶</a></h2>
+<p>Packages are available for Linux distributions, Windows (MSYS2) and macOS:</p>
+<ul class="simple">
+<li><p><em>Arch Linux</em>: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">pacman</span> <span class="pre">-S</span> <span class="pre">openfpgaloader</span></code></p></li>
+<li><p><em>Fedora</em>: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">dnf</span> <span class="pre">copr</span> <span class="pre">enable</span> <span class="pre">mobicarte/openFPGALoader;</span> <span class="pre">sudo</span> <span class="pre">dnf</span> <span class="pre">install</span> <span class="pre">openFPGALoader</span></code></p></li>
+<li><p><em>MSYS2</em>: <code class="docutils literal notranslate"><span class="pre">pacman</span> <span class="pre">-S</span> <span class="pre">mingw-w64-ucrt-x86_64-openFPGALoader</span></code></p></li>
+<li><p><em>macOS</em>: <code class="docutils literal notranslate"><span class="pre">brew</span> <span class="pre">install</span> <span class="pre">openfpgaloader</span></code></p></li>
+</ul>
+<p>More instructions for other installation scenarios are available in <a class="reference internal" href="install.html#install"><span class="std std-ref">Installing openFPGALoader</span></a>.</p>
+</section>
+<section id="programming-a-development-board">
+<h2>Programming a development board<a class="headerlink" href="#programming-a-development-board" title="Link to this heading">¶</a></h2>
+<p>Just simply replace <code class="docutils literal notranslate"><span class="pre">my_fpga_board</span></code> with any FPGA board from <a class="reference internal" href="../compatibility/board.html#compatibility-boards"><span class="std std-ref">Boards</span></a>
+(or <code class="docutils literal notranslate"><span class="pre">openFPGALoader</span> <span class="pre">--list-boards</span></code>) in any of the two commands below, depending on if you want to program the volatile
+part of your FPGA (faster but not persistent) or the flash part of your FPGA (slower but persistent):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openFPGALoader<span class="w"> </span>-b<span class="w"> </span>my_fpga_board<span class="w"> </span>my_bitstream.bit<span class="w"> </span><span class="c1"># Program to SRAM</span>
+openFPGALoader<span class="w"> </span>-b<span class="w"> </span>my_fpga_board<span class="w"> </span>-f<span class="w"> </span>my_bitstream.bit<span class="w"> </span><span class="c1"># Program to flash</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When a bitstream file is compatible with both memory load and FLASH write, the default behavior is to load bitstream
+in memory.</p>
+</div>
+</section>
+<section id="programming-an-standalone-fpga">
+<h2>Programming an “standalone” FPGA<a class="headerlink" href="#programming-an-standalone-fpga" title="Link to this heading">¶</a></h2>
+<p>If your FPGA doesn’t come with a built-in programmer or if you prefer to use an external cable, you can specify a cable
+to use from <a class="reference internal" href="../compatibility/cable.html#compatibility-cables"><span class="std std-ref">Cables</span></a> (or <code class="docutils literal notranslate"><span class="pre">openFPGALoader</span> <span class="pre">--list-cables</span></code>):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openFPGALoader<span class="w"> </span>-c<span class="w"> </span>my_cable<span class="w"> </span>my_bitstream.bit<span class="w"> </span><span class="c1"># Program to SRAM</span>
+openFPGALoader<span class="w"> </span>-c<span class="w"> </span>my_cable<span class="w"> </span>-f<span class="w"> </span>my_bitstream.bit<span class="w"> </span><span class="c1"># Program to flash</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For some cable (like digilent adapters) signals from the converter are not just directly to the FPGA.
+For this case, the <code class="docutils literal notranslate"><span class="pre">-c</span></code> must be added.</p>
+</div>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>FTDI/FTDI-compatible cable users: the <code class="docutils literal notranslate"><span class="pre">-d</span></code> option lets you specify a specific FTDI device:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openFPGALoader<span class="w"> </span>-d<span class="w"> </span>/dev/ttyUSBX
+</pre></div>
+</div>
+<p>When the <code class="docutils literal notranslate"><span class="pre">-d</span></code> option is not provided, openFPGALoader will opens the first FTDI adapter it finds.
+Therefore it is preferable to use this flag if your computer is connected to multiple FTDI devices.</p>
+</div>
+</section>
+<section id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading">¶</a></h2>
+<p>Please refer to <a class="reference internal" href="troubleshooting.html#troubleshooting"><span class="std std-ref">Troubleshooting</span></a>.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="openFPGALoader: universal utility for programming FPGA" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="install.html" class="btn btn-neutral float-right" title="Installing openFPGALoader" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2022, Gwenhael Goavec-Merou and contributors.</p>
+  </div>Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/buildthedocs/sphinx.theme">theme</a>
+    provided by <a href="https://buildthedocs.github.io">Build the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

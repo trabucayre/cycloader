@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lattice notes &mdash; openFPGALoader: universal utility for programming FPGA latest documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/documentation_options.js?v=c6e86fd7"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Xilinx notes" href="xilinx.html" />
+    <link rel="prev" title="Intel notes" href="intel.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> openFPGALoader: universal utility for programming FPGA
+          </a>
+              <div class="version">
+                latest
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guide/first-steps.html">First steps with openFPGALoader</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guide/install.html">Installing openFPGALoader</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guide/troubleshooting.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guide/advanced.html">Advanced usage of openFPGALoader</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Compatibility</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../compatibility/fpga.html">FPGAs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../compatibility/board.html">Boards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../compatibility/cable.html">Cables</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Vendors</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="anlogic.html">Anlogic notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="colognechip.html">Cologne Chip notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="efinix.html">Efinix notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gowin.html">Gowin notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intel.html">Intel notes</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Lattice notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#machxo2-machxo3">MachXO2/MachXO3</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#flash-memory">Flash memory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sram">SRAM</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ice40">iCE40</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ecp5-crosslink-nx">ECP5/Crosslink-NX</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">SRAM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spi-flash">SPI Flash</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="xilinx.html">Xilinx notes</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../todo.html">To Do</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">openFPGALoader: universal utility for programming FPGA</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+        
+          
+            <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Lattice notes</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/trabucayre/openFPGALoader/blob/master/doc/vendors/lattice.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="lattice-notes">
+<span id="lattice"></span><h1>Lattice notes<a class="headerlink" href="#lattice-notes" title="Link to this heading">¶</a></h1>
+<section id="machxo2-machxo3">
+<h2>MachXO2/MachXO3<a class="headerlink" href="#machxo2-machxo3" title="Link to this heading">¶</a></h2>
+<section id="flash-memory">
+<h3>Flash memory<a class="headerlink" href="#flash-memory" title="Link to this heading">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">.jed</span></code> file is the default format generated by <em>Lattice Diamond</em>, so nothing special must be done to generates this
+file.</p>
+<p>File load:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openFPGALoader<span class="w"> </span><span class="o">[</span>-b<span class="w"> </span>yourboard<span class="o">]</span><span class="w"> </span><span class="o">[</span>--flash-sector<span class="w"> </span>CFG0<span class="o">]</span><span class="w"> </span>impl1/*.jed
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">yourboard</span></code> may be:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">machX02EVN</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">machX03EVN</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">machXO3SK</span></code></p></li>
+</ul>
+<p>and where <code class="docutils literal notranslate"><span class="pre">--flash-sector</span> <span class="pre">CFG0</span></code> is needed for the MachXO3D Breakout Board.</p>
+<p><code class="docutils literal notranslate"><span class="pre">.bit</span></code> may also be used for <em>machXO2</em></p>
+</section>
+<section id="sram">
+<h3>SRAM<a class="headerlink" href="#sram" title="Link to this heading">¶</a></h3>
+<p>To generates <code class="docutils literal notranslate"><span class="pre">.bit</span></code> file <em>Bitstream file</em> must be checked under <em>Exports Files</em> in <em>Lattice Diamond</em> left panel.</p>
+<p>File load:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openFPGALoader<span class="w"> </span><span class="o">[</span>-b<span class="w"> </span>yourboard<span class="o">]</span><span class="w"> </span>impl1/*.bit
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">yourboard</span></code> may be:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">machX02EVN</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">machX03EVN</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">machXO3SK</span></code></p></li>
+</ul>
+</section>
+</section>
+<section id="ice40">
+<h2>iCE40<a class="headerlink" href="#ice40" title="Link to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">.bin</span></code> is the default format generated by <em>nextpnr</em>, so nothing special must be done.</p>
+<p>Since most ice40 boards uses the same pinout between <em>FTDI</em> and <em>SPI flash</em> a generic <em>ice40_generic</em> board is provided.</p>
+<p>For the specific case of the <em>iCE40HXXK-EVB</em> where no onboard programmer is present, please use this:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>FTDI</p></th>
+<th class="head"><p>iCE40HXXK-EVB</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>SI  (ADBUS1)</p></td>
+<td><p>Pin 8</p></td>
+</tr>
+<tr class="row-odd"><td><p>SCK (ADBUS0)</p></td>
+<td><p>Pin 9</p></td>
+</tr>
+<tr class="row-even"><td><p>SO  (ADBUS2)</p></td>
+<td><p>Pin 7</p></td>
+</tr>
+<tr class="row-odd"><td><p>CS  (ABDUS4)</p></td>
+<td><p>Pin 10</p></td>
+</tr>
+<tr class="row-even"><td><p>RST (ADBUS6</p></td>
+<td><p>Pin 6</p></td>
+</tr>
+<tr class="row-odd"><td><p>DONE (ADBUS7)</p></td>
+<td><p>Pin 5</p></td>
+</tr>
+</tbody>
+</table>
+<p>Bin file load:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openFPGALoader<span class="w"> </span>-b<span class="w"> </span>ice40_generic<span class="w"> </span>/somewhere/*.bin
+</pre></div>
+</div>
+<p>Since it’s a direct access to the flash (SPI) the <code class="docutils literal notranslate"><span class="pre">-b</span></code> option is required.</p>
+</section>
+<section id="ecp5-crosslink-nx">
+<h2>ECP5/Crosslink-NX<a class="headerlink" href="#ecp5-crosslink-nx" title="Link to this heading">¶</a></h2>
+<section id="id1">
+<h3>SRAM<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openFPGALoader<span class="w"> </span><span class="o">[</span>-b<span class="w"> </span>yourBoard<span class="o">]</span><span class="w"> </span><span class="o">[</span>-c<span class="w"> </span>yourCable<span class="o">]</span><span class="w"> </span>-m<span class="w"> </span>project_name/*.bit
+</pre></div>
+</div>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>By default, openFPGALoader loads bitstream in memory, so the <code class="docutils literal notranslate"><span class="pre">-m</span></code> argument is optional.</p>
+</div>
+</section>
+<section id="spi-flash">
+<h3>SPI Flash<a class="headerlink" href="#spi-flash" title="Link to this heading">¶</a></h3>
+<p>BIT:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openFPGALoader<span class="w"> </span><span class="o">[</span>-b<span class="w"> </span>yourBoard<span class="o">]</span><span class="w"> </span><span class="o">[</span>-c<span class="w"> </span>yourCable<span class="o">]</span><span class="w"> </span>-f<span class="w"> </span>project_name/*.bit<span class="w"> </span><span class="c1"># or *.bin</span>
+</pre></div>
+</div>
+<p>MCS:</p>
+<p>To generate <code class="docutils literal notranslate"><span class="pre">.mcs</span></code> file <em>PROM File</em> must be checked under <em>Exports Files</em> in <em>Lattice Diamond</em> left panel.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openFPGALoader<span class="w"> </span><span class="o">[</span>-b<span class="w"> </span>yourBoard<span class="o">]</span><span class="w"> </span><span class="o">[</span>-c<span class="w"> </span>yourCable<span class="o">]</span><span class="w"> </span>project_name/*.mcs
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="intel.html" class="btn btn-neutral float-left" title="Intel notes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="xilinx.html" class="btn btn-neutral float-right" title="Xilinx notes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2022, Gwenhael Goavec-Merou and contributors.</p>
+  </div>Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/buildthedocs/sphinx.theme">theme</a>
+    provided by <a href="https://buildthedocs.github.io">Build the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

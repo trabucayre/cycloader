@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cables &mdash; openFPGALoader: universal utility for programming FPGA latest documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/documentation_options.js?v=c6e86fd7"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Anlogic notes" href="../vendors/anlogic.html" />
+    <link rel="prev" title="Boards" href="board.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> openFPGALoader: universal utility for programming FPGA
+          </a>
+              <div class="version">
+                latest
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guide/first-steps.html">First steps with openFPGALoader</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guide/install.html">Installing openFPGALoader</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guide/troubleshooting.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guide/advanced.html">Advanced usage of openFPGALoader</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Compatibility</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="fpga.html">FPGAs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="board.html">Boards</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Cables</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Vendors</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../vendors/anlogic.html">Anlogic notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vendors/colognechip.html">Cologne Chip notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vendors/efinix.html">Efinix notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vendors/gowin.html">Gowin notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vendors/intel.html">Intel notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vendors/lattice.html">Lattice notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vendors/xilinx.html">Xilinx notes</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../todo.html">To Do</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">openFPGALoader: universal utility for programming FPGA</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+        
+          
+            <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Cables</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/trabucayre/openFPGALoader/blob/master/doc/compatibility/cable.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="cables">
+<span id="compatibility-cables"></span><h1>Cables<a class="headerlink" href="#cables" title="Link to this heading">¶</a></h1>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>keyword</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>anlogicCable</p></td>
+<td><p><a class="reference external" href="https://github.com/AnlogicInfo/anlogic-usbjtag">anlogic JTAG adapter</a></p></td>
+<td><p>JTAG adapter firmware for stm32</p></td>
+</tr>
+<tr class="row-odd"><td><p>arm-usb-ocd-h</p></td>
+<td><p><a class="reference external" href="https://www.olimex.com/Products/ARM/JTAG/ARM-USB-OCD-H/">Olimex ARM-USB-OCD-H adapter</a></p></td>
+<td><p>High-speed 3-IN-1 fast USB ARM JTAG, USB-to-RS232 virtual port and power supply 5VDC device</p></td>
+</tr>
+<tr class="row-even"><td><p>bus_blaster</p></td>
+<td><p><a class="reference external" href="http://dangerousprototypes.com/docs/Bus_Blaster">Dangerousprototypes Bus Blaster</a></p></td>
+<td><p>Jtag adapter based on ft2232</p></td>
+</tr>
+<tr class="row-odd"><td><p>bus_blaster_b</p></td>
+<td><p><a class="reference external" href="http://dangerousprototypes.com/docs/Bus_Blaster">Dangerousprototypes Bus Blaster</a></p></td>
+<td><p>Jtag adapter based on ft2232 (interface B)</p></td>
+</tr>
+<tr class="row-even"><td><p>ch347_jtag</p></td>
+<td><p><a class="reference external" href="https://www.wch-ic.com/products/CH347.html">ch347 JTAG adapter</a></p></td>
+<td><p>QinHeng Electronics USB To UART+JTAG (mode 3)</p></td>
+</tr>
+<tr class="row-odd"><td><p>ch552_jtag</p></td>
+<td><p><a class="reference external" href="https://github.com/diodep/ch55x_jtag">ch552 JTAG adapter</a></p></td>
+<td><p>Tang Nano USB-JTAG interface. FT2232C clone firmware for CH552 microcontroler</p></td>
+</tr>
+<tr class="row-even"><td><p>cmsisdap</p></td>
+<td><p><a class="reference external" href="https://os.mbed.com/docs/mbed-os/v6.11/debug-test/daplink.html">ARM CMSIS DAP protocol interface</a></p></td>
+<td><p>ARM CMSIS DAP protocol interface (hid only)</p></td>
+</tr>
+<tr class="row-odd"><td><p>gatemate_pgm</p></td>
+<td><p><a class="reference external" href="https://colognechip.com/programmable-logic/gatemate/">gatemate pgm</a></p></td>
+<td><p>Cologne Chip GateMate FPGA Programmer. FT232H-based JTAG/SPI programmer cable</p></td>
+</tr>
+<tr class="row-even"><td><p>gatemate_evb_jtag</p></td>
+<td><p><a class="reference external" href="https://colognechip.com/programmable-logic/gatemate/">gatemate evb JTAG</a></p></td>
+<td><p>Cologne Chip GateMate JTAG programmer</p></td>
+</tr>
+<tr class="row-odd"><td><p>gatemate_evb_spi</p></td>
+<td><p><a class="reference external" href="https://colognechip.com/programmable-logic/gatemate/">gatemate evb spi</a></p></td>
+<td><p>Cologne Chip GateMate SPI programmer</p></td>
+</tr>
+<tr class="row-even"><td><p>gwu2x</p></td>
+<td><p><a class="reference external" href="https://www.gowinsemi.com/en/product/detail/55/">gwu2x</a></p></td>
+<td><p>Gowin GWUX2X</p></td>
+</tr>
+<tr class="row-odd"><td><p>dfu</p></td>
+<td><p><a class="reference external" href="http://www.usb.org/developers/docs/devclass_docs/DFU_1.1.pdf">DFU interface</a></p></td>
+<td><p>DFU (Device Firmware Upgrade) USB device compatible with DFU protocol</p></td>
+</tr>
+<tr class="row-even"><td><p>digilent</p></td>
+<td><p>digilent cable</p></td>
+<td><p>FT2232 JTAG / UART cable</p></td>
+</tr>
+<tr class="row-odd"><td><p>diglent_b</p></td>
+<td><p>digilent cable</p></td>
+<td><p>digilent FT2232 JTAG / UART cable (interface B)</p></td>
+</tr>
+<tr class="row-even"><td><p>digilent_hs2</p></td>
+<td><p><a class="reference external" href="https://store.digilentinc.com/jtag-hs2-programming-cable/">digilent hs2 cable</a></p></td>
+<td><p>FT232H JTAG programmer cable from digilent</p></td>
+</tr>
+<tr class="row-odd"><td><p>digilent_hs3</p></td>
+<td><p><a class="reference external" href="https://digilent.com/shop/jtag-hs3-programming-cable/">digilent hs3</a></p></td>
+<td><p>JTAG programmer cable from digilent</p></td>
+</tr>
+<tr class="row-even"><td><p>dirtyJtag</p></td>
+<td><p><a class="reference external" href="https://github.com/jeanthom/DirtyJTAG">dirty Jtag</a></p></td>
+<td><p>JTAG probe firmware for STM32F1</p></td>
+</tr>
+<tr class="row-odd"><td><p>efinix_spi_ft4232</p></td>
+<td><p>efinix SPI (ft4232)</p></td>
+<td><p>efinix SPI interface (FTDI4232 interface A)</p></td>
+</tr>
+<tr class="row-even"><td><p>efinix_jtag_ft4232</p></td>
+<td><p>efinix JTAG (ft4232)</p></td>
+<td><p>efinix JTAG interface (FTDI4232 interface B)</p></td>
+</tr>
+<tr class="row-odd"><td><p>efinix_spi_ft2232</p></td>
+<td><p>efinix SPI (ft2232)</p></td>
+<td><p>efinix SPI interface (FTDI2232 interface A)</p></td>
+</tr>
+<tr class="row-even"><td><p>efinix_jtag_ft2232</p></td>
+<td><p>efinix JTAG (ft2232)</p></td>
+<td><p>efinix JTAG interface (FTDI2232 interface B)</p></td>
+</tr>
+<tr class="row-odd"><td><p>ft2232</p></td>
+<td><p>FT2232 C/D/H</p></td>
+<td><p>generic programmer cable based on Ftdi FT2232 (interface A)</p></td>
+</tr>
+<tr class="row-even"><td><p>ft2232</p></td>
+<td><p><a class="reference external" href="https://github.com/sipeed/RV-Debugger-BL702">Tang Nano (1k, 4k, 8k) USB-JTAG interface</a></p></td>
+<td><p>USB-JTAG/UART debugger based on BL702 microcontroler.</p></td>
+</tr>
+<tr class="row-odd"><td><p>ft2232</p></td>
+<td><p><a class="reference external" href="https://github.com/sipeed/RV-Debugger-BL702">Sipeed RV-Debugger-BL702</a></p></td>
+<td><p>RV-Debugger-BL702 is an opensource project that implement a JTAG+UART debugger with BL702C-A0.</p></td>
+</tr>
+<tr class="row-even"><td><p>ft2232</p></td>
+<td><p><a class="reference external" href="https://github.com/Disasm/f042-ftdi">honeycomb USB-JTAG interface.</a></p></td>
+<td><p>FT2232C clone based on STM32F042 microcontroler</p></td>
+</tr>
+<tr class="row-odd"><td><p>ft2232_b</p></td>
+<td><p>FT2232 C/D/H</p></td>
+<td><p>generic programmer cable based on Ftdi FT2232 (interface B)</p></td>
+</tr>
+<tr class="row-even"><td><p>ft231X</p></td>
+<td><p><a class="reference external" href="https://www.ftdichip.com/old2020/Products/ICs/FT231X.html">FT231X</a></p></td>
+<td><p>generic USB&lt;-&gt;UART converters in bitbang mode (with some limitations and workaround)</p></td>
+</tr>
+<tr class="row-odd"><td><p>ft232</p></td>
+<td><p><a class="reference external" href="https://ftdichip.com/products/ft232hl/">FT232H</a></p></td>
+<td><p>generic programmer cable based on Ftdi FT232Hx. One interface, MPSSE capable</p></td>
+</tr>
+<tr class="row-even"><td><p>ft232RL</p></td>
+<td><p><a class="reference external" href="https://ftdichip.com/products/ft232rl/">FT232RL</a></p></td>
+<td><p>generic USB&lt;-&gt;UART converters in bitbang mode (with some limitations and workaround)</p></td>
+</tr>
+<tr class="row-odd"><td><p>ft4232</p></td>
+<td><p><a class="reference external" href="https://ftdichip.com/products/ft4232h-56q/">FT4232</a></p></td>
+<td><p>quad interface programmer cable. MPSSE capable.</p></td>
+</tr>
+<tr class="row-even"><td><p>ft4232hp</p></td>
+<td><p><a class="reference external" href="https://ftdichip.com/wp-content/uploads/2023/02/DS_FT4233HP.pdf">FT4232HP (interface A)</a></p></td>
+<td><p>quad interface programmer cable. MPSSE capable. High Speed USB Bridge with Type-C/PD3.0 Controller</p></td>
+</tr>
+<tr class="row-odd"><td><p>ft4232hp_b</p></td>
+<td><p><a class="reference external" href="https://ftdichip.com/wp-content/uploads/2023/02/DS_FT4233HP.pdf">FT4232HP (interface B)</a></p></td>
+<td><p>quad interface programmer cable. MPSSE capable. High Speed USB Bridge with Type-C/PD3.0 Controller</p></td>
+</tr>
+<tr class="row-even"><td><p>ecpix5-debug</p></td>
+<td><p><a class="reference external" href="https://shop.lambdaconcept.com/home/46-ecpix-5.html">ecpix5-debug</a></p></td>
+<td><p>LambdaConcept ECPIX5 (45k/85k) UART/JTAG interface</p></td>
+</tr>
+<tr class="row-odd"><td><p>jlink</p></td>
+<td><p><a class="reference external" href="https://www.segger.com/products/debug-probes/j-link">jlink</a></p></td>
+<td><p>SEGGER J-Link Debug Probes</p></td>
+</tr>
+<tr class="row-even"><td><p>jlink</p></td>
+<td><p>jlink_base</p></td>
+<td><p>SEGGER J-Link BASE Debug Probes</p></td>
+</tr>
+<tr class="row-odd"><td><p>jlink</p></td>
+<td><p>jtrace_pro</p></td>
+<td><p>SEGGER J-Trace PRO Debug Probes</p></td>
+</tr>
+<tr class="row-even"><td><p>jtag-smt2-nc</p></td>
+<td><p><a class="reference external" href="https://digilent.com/shop/jtag-smt2-nc-surface-mount-programming-module">jtag-smt2-nc</a></p></td>
+<td><p>JTAG-SMT2-NC Surface-mount Programming Module</p></td>
+</tr>
+<tr class="row-odd"><td><p>lpc-link2</p></td>
+<td><p><a class="reference external" href="https://www.nxp.com/design/microcontrollers-developer-resources/lpc-link2:OM13054">lpc-link2</a></p></td>
+<td><p>LPC-Link2 (OM13054) cmsisDAP firmware</p></td>
+</tr>
+<tr class="row-even"><td><p>numato</p></td>
+<td><p>numato</p></td>
+<td><p>Embedded cable for Numato Systems Mimas-A7 board</p></td>
+</tr>
+<tr class="row-odd"><td><p>orbtrace</p></td>
+<td><p><a class="reference external" href="https://github.com/orbcode/orbtrace">orbtrace interface</a></p></td>
+<td><p>Open source FPGA-based debug and trace interface</p></td>
+</tr>
+<tr class="row-even"><td><p>papilio</p></td>
+<td><p><a class="reference external" href="https://papilio.cc/">papilio</a></p></td>
+<td><p>Papilio FPGA Platform</p></td>
+</tr>
+<tr class="row-odd"><td><p>steppenprobe</p></td>
+<td><p><a class="reference external" href="https://github.com/diegoherranz/steppenprobe">steppenprobe</a></p></td>
+<td><p>Open Source Hardware JTAG/SWD/UART/SWO interface board based on FTDI FT2232H</p></td>
+</tr>
+<tr class="row-even"><td><p>remote-bitgang</p></td>
+<td><p><a class="reference external" href="https://github.com/openocd-org/openocd/blob/master/doc/manual/jtag/drivers/remote_bitbang.txt">OpenOCD remote bitbang</a></p></td>
+<td><p>The remote_bitbang JTAG driver is used to drive JTAG from a remote (TCP) process</p></td>
+</tr>
+<tr class="row-odd"><td><p>tigard</p></td>
+<td><p><a class="reference external" href="https://www.crowdsupply.com/securinghw/tigard">tigard</a></p></td>
+<td><p>SWD/JTAG/UART/SPI programmer based on Ftdi FT2232HQ</p></td>
+</tr>
+<tr class="row-even"><td><p>usb-blaster</p></td>
+<td><p>intel USB Blaster I interface</p></td>
+<td><p>JTAG programmer cable from intel/altera (FT245 + EPM7064)</p></td>
+</tr>
+<tr class="row-odd"><td><p>usb-blasterII</p></td>
+<td><p><a class="reference external" href="https://www.intel.com/content/dam/www/programmable/us/en/pdfs/literature/ug/ug_usb_blstr_ii_cable.pdf">intel USB Blaster II interface</a></p></td>
+<td><p>JTAG programmer cable from intel/altera (EZ-USB FX2 + EPM570)</p></td>
+</tr>
+<tr class="row-even"><td><p>xvc-client</p></td>
+<td><p><a class="reference external" href="https://github.com/Xilinx/XilinxVirtualCable">Xilinx Virtual Cable</a></p></td>
+<td><p>Xilinx Virtual Cable (XVC) is a TCP/IP-based protocol that acts like a JTAG cable.</p></td>
+</tr>
+<tr class="row-odd"><td><p>xvc-server</p></td>
+<td><p><a class="reference external" href="https://github.com/Xilinx/XilinxVirtualCable">Xilinx Virtual Cable (server side)</a></p></td>
+<td><p>Xilinx Virtual Cable (XVC) is a TCP/IP-based protocol that acts like a JTAG cable.</p></td>
+</tr>
+<tr class="row-even"><td><p>libgpiod</p></td>
+<td><p><a class="reference external" href="https://git.kernel.org/pub/scm/libs/libgpiod/libgpiod.git/">Bitbang GPIO</a></p></td>
+<td><p>Bitbang GPIO pins on Linux host.</p></td>
+</tr>
+<tr class="row-odd"><td><p>jetson-nano-gpio</p></td>
+<td><p><a class="reference external" href="https://github.com/jwatte/jetson-gpio-example">Bitbang GPIO</a></p></td>
+<td><p>Bitbang GPIO pins on Jetson Nano Linux host. Use /dev/mem to have a faster clock.</p></td>
+</tr>
+<tr class="row-even"><td><p>ch347</p></td>
+<td><p><a class="reference external" href="https://github.com/wuxx/USB-HS-Bridge">CH347</a></p></td>
+<td><p>CH347 is a USB HS bus converter with UART, I2C, SPI and JTAG interfaces</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="board.html" class="btn btn-neutral float-left" title="Boards" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../vendors/anlogic.html" class="btn btn-neutral float-right" title="Anlogic notes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2022, Gwenhael Goavec-Merou and contributors.</p>
+  </div>Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/buildthedocs/sphinx.theme">theme</a>
+    provided by <a href="https://buildthedocs.github.io">Build the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
