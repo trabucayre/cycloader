@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Boards &mdash; openFPGALoader: universal utility for programming FPGA latest documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/documentation_options.js?v=c6e86fd7"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Cables" href="cable.html" />
+    <link rel="prev" title="FPGAs" href="fpga.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> openFPGALoader: universal utility for programming FPGA
+          </a>
+              <div class="version">
+                latest
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guide/first-steps.html">First steps with openFPGALoader</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guide/install.html">Installing openFPGALoader</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guide/troubleshooting.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guide/advanced.html">Advanced usage of openFPGALoader</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Compatibility</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="fpga.html">FPGAs</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Boards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cable.html">Cables</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Vendors</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../vendors/anlogic.html">Anlogic notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vendors/colognechip.html">Cologne Chip notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vendors/efinix.html">Efinix notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vendors/gowin.html">Gowin notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vendors/intel.html">Intel notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vendors/lattice.html">Lattice notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vendors/xilinx.html">Xilinx notes</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../todo.html">To Do</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">openFPGALoader: universal utility for programming FPGA</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+        
+          
+            <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Boards</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/trabucayre/openFPGALoader/blob/master/doc/compatibility/board.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="boards">
+<span id="compatibility-boards"></span><h1>Boards<a class="headerlink" href="#boards" title="Link to this heading">¶</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><cite>arty</cite> can be any of the board names from the first column.</p>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openFPGALoader<span class="w"> </span>-b<span class="w"> </span>arty<span class="w"> </span>bitstream.bit<span class="w"> </span><span class="c1"># Loading in SRAM (volatile)</span>
+openFPGALoader<span class="w"> </span>-b<span class="w"> </span>arty<span class="w"> </span>-f<span class="w"> </span>bitstream.bit<span class="w"> </span><span class="c1"># Writing in flash (non-volatile)</span>
+</pre></div>
+</div>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Board name</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>FPGA</p></th>
+<th class="head"><p>Memory</p></th>
+<th class="head"><p>Flash</p></th>
+<th class="head"><p>Constraints</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>ac701</p></td>
+<td><p><a class="reference external" href="https://www.xilinx.com/products/boards-and-kits/ek-a7-ac701-g.html">Xilinx Artix-7 FPGA AC701 Evaluation Kit</a></p></td>
+<td><p>Artix xc7a200tfbg676</p></td>
+<td><p>OK</p></td>
+<td><p>NT</p></td>
+<td><p><a class="reference external" href="https://hdl.github.io/constraints/Data/Boards/index.html#boards-ac701" title="(in FPGA Board Constraints vlatest)"><span class="xref std std-ref">AC701 ➚</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>acornCle215</p></td>
+<td><p><a class="reference external" href="http://squirrelsresearch.com/acorn-cle-215">Acorn CLE 215+</a></p></td>
+<td><p>Artix xc7a200tsbg484</p></td>
+<td><p>OK</p></td>
+<td><p>OK</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>litex-acorn-baseboard-mini</p></td>
+<td><p><a class="reference external" href="https://github.com/enjoy-digital/litex-acorn-baseboard/">The LiteX-Acorn-Baseboards are baseboards developed around the SQRL’s Acorn board (or Nite/LiteFury)</a></p></td>
+<td><p>Artix xc7a200tsbg484</p></td>
+<td><p>OK</p></td>
+<td><p>OK</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>alchitry_au</p></td>
+<td><p><a class="reference external" href="https://alchitry.com/products/alchitry-au-fpga-development-board">Alchitry Au</a></p></td>
+<td><p>Artix xc7a35tftg256</p></td>
+<td><p>OK</p></td>
+<td><p>OK</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>alchitry_au_plus</p></td>
+<td><p><a class="reference external" href="https://www.sparkfun.com/products/17514">Alchitry Au+ (Plus)</a></p></td>
+<td><p>Artix xc7a100tftg256</p></td>
+<td><p>OK</p></td>
+<td><p>OK</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>alinx_ax516</p></td>
+<td><p><a class="reference external" href="https://www.alinx.com/en/detail/281">ALINX AX516</a></p></td>
+<td><p>Spartan6 xc6slx16csg324</p></td>
+<td><p>OK</p></td>
+<td><p>OK</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>alinx_ax7101</p></td>
+<td><p><a class="reference external" href="https://alinx.com/en/detail/494">ALINX AX/7101</a></p></td>
+<td><p>Artix xc7a100tfgg484</p></td>
+<td><p>OK</p></td>
+<td><p>OK</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>alinx_ax7102</p></td>
+<td><p><a class="reference external" href="https://alinx.com/en/detail/493">ALINX AX/7102</a></p></td>
+<td><p>Artix xc7a100tfgg484</p></td>
+<td><p>OK</p></td>
+<td><p>OK</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>analogMax</p></td>
+<td><p><a class="reference external" href="https://wiki.trenz-electronic.de/display/PD/TEI0010+-+AnalogMax">Trenz TEI0010 - AnalogMax</a></p></td>
+<td><p>Max 10 10M08SAU169C8G</p></td>
+<td><p>SVF</p></td>
+<td><p>SVF</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>antmicro_ddr4_tester</p></td>
+<td><p><a class="reference external" href="https://opensource.antmicro.com/projects/data-center-dram-tester">Antmicro Data Center DRAM Tester</a></p></td>
+<td><p>Kintex7 xc7k160t</p></td>
+<td><p>OK</p></td>
+<td><p>OK</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>antmicro_ddr5_tester</p></td>
+<td><p><a class="reference external" href="https://opensource.antmicro.com/projects/ddr5-tester">Antmicro DDR5 Tester</a></p></td>
+<td><p>Kintex7 xc7k160t</p></td>
+<td><p>OK</p></td>
+<td><p>OK</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>antmicro_lpddr4_tester</p></td>
+<td><p><a class="reference external" href="https://opensource.antmicro.com/projects/lpddr4-test-board">Antmicro LPDDR4 Test Board</a></p></td>
+<td><p>Kintex7 xc7k70t</p></td>
+<td><p>OK</p></td>
+<td><p>OK</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>arty_a7_35t</p></td>
+<td><p><a class="reference external" href="https://reference.digilentinc.com/reference/programmable-logic/arty-a7/start">Digilent Arty A7</a></p></td>
+<td><p>Artix xc7a35ticsg324</p></td>
+<td><p>OK</p></td>
+<td><p>OK</p></td>
+<td><p><a class="reference external" href="https://hdl.github.io/constraints/Data/Boards/index.html#boards-arty-a7-35t" title="(in FPGA Board Constraints vlatest)"><span class="xref std std-ref">Arty-A7-35T ➚</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>arty_a7_100t</p></td>
+<td><p><a class="reference external" href="https://reference.digilentinc.com/reference/programmable-logic/arty-a7/start">Digilent Arty A7</a></p></td>
+<td><p>Artix xc7a100tcsg324</p></td>
+<td><p>OK</p></td>
+<td><p>OK</p></td>
+<td><p><a class="reference external" href="https://hdl.github.io/constraints/Data/Boards/index.html#boards-arty-a7-100t" title="(in FPGA Board Constraints vlatest)"><span class="xref std std-ref">Arty-A7-100T ➚</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>arty_s7_25</p></td>
+<td><p><a class="reference external" href="https://reference.digilentinc.com/reference/programmable-logic/arty-s7/start">Digilent Arty S7</a></p></td>
+<td><p>Spartan7 xc7s25csga324</p></td>
+<td><p>OK</p></td>
+<td><p>OK</p></td>
+<td><p><a class="reference external" href="https://hdl.github.io/constraints/Data/Boards/index.html#boards-arty-s7-25" title="(in FPGA Board Constraints vlatest)"><span class="xref std std-ref">Arty-S7-25 ➚</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>arty_s7_50</p></td>
+<td><p><a class="reference external" href="https://reference.digilentinc.com/reference/programmable-logic/arty-s7/start">Digilent Arty S7</a></p></td>
+<td><p>Spartan7 xc7s50csga324</p></td>
+<td><p>OK</p></td>
+<td><p>OK</p></td>
+<td><p><a class="reference external" href="https://hdl.github.io/constraints/Data/Boards/index.html#boards-arty-s7-50" title="(in FPGA Board Constraints vlatest)"><span class="xref std std-ref">Arty-S7-50 ➚</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>arty_z7_10</p></td>
+<td><p><a class="reference external" href="https://reference.digilentinc.com/reference/programmable-logic/arty-z7/start">Digilent Arty S7</a></p></td>
+<td><p>Zynq7000 xc7z010csg400</p></td>
+<td><p>OK</p></td>
+<td><p>NA</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>arty_z7_20</p></td>
+<td><p><a class="reference external" href="https://reference.digilentinc.com/reference/programmable-logic/arty-z7/start">Digilent Arty S7</a></p></td>
+<td><p>Zynq7000 xc7z020csg400</p></td>
+<td><p>OK</p></td>
+<td><p>NA</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>arty</p></td>
+<td><p><a class="reference external" href="https://reference.digilentinc.com/test-and-measurement/analog-discovery-2/start">Digilent Analog Discovery 2</a></p></td>
+<td><p>Spartan6 xc6slx25</p></td>
+<td><p>OK</p></td>
+<td><p>NT</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>arty</p></td>
+<td><p><a class="reference external" href="https://reference.digilentinc.com/test-and-measurement/digital-discovery/start">Digilent Digital Discovery</a></p></td>
+<td><p>Spartan6 xc6slx25</p></td>
+<td><p>OK</p></td>
+<td><p>NT</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>axu2cga</p></td>
+<td><p><a class="reference external" href="http://www.alinx.com/en/index.php/default/content/101.html">Alinx AXU2CGA Zynq MPSoC Dev Board</a></p></td>
+<td><p>ZynqMPSoC XCZU2CG</p></td>
+<td><p>OK</p></td>
+<td><p>NA</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>basys3</p></td>
+<td><p><a class="reference external" href="https://reference.digilentinc.com/reference/programmable-logic/basys-3/start">Digilent Basys3</a></p></td>
+<td><p>Artix xc7a35tcpg236</p></td>
+<td><p>OK</p></td>
+<td><p>OK</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>cmod_s7</p></td>
+<td><p><a class="reference external" href="https://https://digilent.com/reference/programmable-logic/cmod-s7/start">Digilent Cmod S7</a></p></td>
+<td><p>Spartan7 xc7s25csga225</p></td>
+<td><p>NA</p></td>
+<td><p>OK</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>gatemate_evb_jtag</p></td>
+<td><p><a class="reference external" href="https://colognechip.com/programmable-logic/gatemate-evaluation-board/">Cologne Chip GateMate FPGA Evaluation Board (JTAG mode)</a></p></td>
+<td><p>Cologne Chip GateMate Series</p></td>
+<td><p>OK</p></td>
+<td><p>OK</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>gatemate_evb_spi</p></td>
+<td><p><a class="reference external" href="https://colognechip.com/programmable-logic/gatemate-evaluation-board/">Cologne Chip GateMate FPGA Evaluation Board (SPI mode)</a></p></td>
+<td><p>Cologne Chip GateMate Series</p></td>
+<td><p>OK</p></td>
+<td><p>OK</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>gatemate_pgm_spi</p></td>
+<td><p><a class="reference external" href="https://colognechip.com/programmable-logic/gatemate/">Cologne Chip GateMate FPGA Programmer (SPI mode)</a></p></td>
+<td><p>Cologne Chip GateMate Series</p></td>
+<td><p>OK</p></td>
+<td><p>OK</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>certusnx_versa_evn</p></td>
+<td><p><a class="reference external" href="https://www.latticesemi.com/products/developmentboardsandkits/certuspro-nx-versa-board">Certus-NX Versa Evaluation Board</a></p></td>
+<td><p>Certus LFD2NX-40</p></td>
+<td><p>OK</p></td>
+<td><p>OK</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>certuspronx_evn</p></td>
+<td><p><a class="reference external" href="https://www.latticesemi.com/products/developmentboardsandkits/certuspro-nxevaluationboard">CertusPro-NX Evaluation Board</a></p></td>
+<td><p>CertusPro-NX LFCPNX-100</p></td>
+<td><p>OK</p></td>
+<td><p>OK</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>certuspronx_versa_evn</p></td>
+<td><p><a class="reference external" href="https://www.latticesemi.com/products/developmentboardsandkits/certuspro-nx-versa-board">CertusPro-NX Versa</a></p></td>
+<td><p>CertusPro-NX LFCPNX-100</p></td>
+<td><p>OK</p></td>
+<td><p>OK</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>cmoda7_15t</p></td>
+<td><p><a class="reference external" href="https://digilent.com/reference/programmable-logic/cmod-a7/start">Digilent CmodA7</a></p></td>
+<td><p>Artix xc7a15tcpg236</p></td>
+<td><p>OK</p></td>
+<td><p>OK</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>cmoda7_35t</p></td>
+<td><p><a class="reference external" href="https://digilent.com/reference/programmable-logic/cmod-a7/start">Digilent CmodA7</a></p></td>
+<td><p>Artix xc7a35tcpg236</p></td>
+<td><p>OK</p></td>
+<td><p>OK</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>colorlight</p></td>
+<td><p><a class="reference external" href="https://fr.aliexpress.com/item/32281130824.html">Colorlight 5A-75B (version 7)</a></p></td>
+<td><p>ECP5 LFE5U-25F-6BG256C</p></td>
+<td><p>OK</p></td>
+<td><p>OK</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>colorlight-i5</p></td>
+<td><p><a class="reference external" href="https://www.colorlight-led.com/product/colorlight-i5-led-display-receiver-card.html">Colorlight I5</a></p></td>
+<td><p>ECP5 LFE5U-25F-6BG381C</p></td>
+<td><p>OK</p></td>
+<td><p>OK</p></td>
+<td><p><a class="reference external" href="https://hdl.github.io/constraints/Data/Boards/index.html#boards-colorlight-i5-v7-0" title="(in FPGA Board Constraints vlatest)"><span class="xref std std-ref">Colorlight-i5-v7.0 ➚</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>colorlight-i9</p></td>
+<td><p><a class="reference external" href="https://www.colorlightinside.com/Products/i%20Receiving-series/34_101.html">Colorlight I9</a></p></td>
+<td><p>ECP5 LFE5U-45F-6BG381C</p></td>
+<td><p>OK</p></td>
+<td><p>OK</p></td>
+<td><p><a class="reference external" href="https://hdl.github.io/constraints/Data/Boards/index.html#boards-colorlight-i9-v7-2" title="(in FPGA Board Constraints vlatest)"><span class="xref std std-ref">Colorlight-i9-v7.2 ➚</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>colorlight-i9+</p></td>
+<td><p><a class="reference external" href="https://www.colorlight-led.tech/colorlight-i9-2/">Colorlight I9+</a></p></td>
+<td><p>Artix xc7a50tfgg484</p></td>
+<td><p>OK</p></td>
+<td><p>OK</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>crosslinknx_evn</p></td>
+<td><p><a class="reference external" href="https://www.latticesemi.com/en/Products/DevelopmentBoardsAndKits/CrossLink-NXEvaluationBoard">Lattice CrossLink-NX Evaluation Board</a></p></td>
+<td><p>Nexus LIFCL-40</p></td>
+<td><p>OK</p></td>
+<td><p>OK</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>cyc1000</p></td>
+<td><p><a class="reference external" href="https://shop.trenz-electronic.de/en/TEI0003-02-CYC1000-with-Cyclone-10-FPGA-8-MByte-SDRAM">Trenz cyc1000</a></p></td>
+<td><p>Cyclone 10 LP 10CL025YU256C8G</p></td>
+<td><p>OK</p></td>
+<td><p>OK</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>cyc5000</p></td>
+<td><p><a class="reference external" href="https://shop.trenz-electronic.de/en/TEI0050-01-AAH13A-CYC5000-with-Cyclone-V-FPGA-25kLE-8-MByte-SDRAM">Trenz CYC5000</a></p></td>
+<td><p>Cyclone V 5CEBA2U15C8</p></td>
+<td><p>OK</p></td>
+<td><p>OK</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>c10lp-refkit</p></td>
+<td><p><a class="reference external" href="https://shop.trenz-electronic.de/en/TEI0009-02-055-8CA-Cyclone-10-LP-RefKit-10CL055-Development-Board-32-MByte-SDRAM-16-MByte-Flash">Trenz c10lp-refkit</a></p></td>
+<td><p>Cyclone 10 LP 10CL055YU484C8G</p></td>
+<td><p>OK</p></td>
+<td><p>OK</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>c5g</p></td>
+<td><p><a class="reference external" href="https://www.terasic.com.tw/cgi-bin/page/archive.pl?No=830">Terasic C5G (Cyclone V GX Starter Kit)</a></p></td>
+<td><p>Cyclone V GX 5CGXFC5C6F27C7N</p></td>
+<td><p>OK</p></td>
+<td><p>NT</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>de0</p></td>
+<td><p><a class="reference external" href="https://www.terasic.com.tw/cgi-bin/page/archive.pl?No=364">Terasic DE0</a></p></td>
+<td><p>Cyclone III EP3C16F484C6</p></td>
+<td><p>OK</p></td>
+<td><p>NT</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>de0nano</p></td>
+<td><p><a class="reference external" href="https://www.terasic.com.tw/cgi-bin/page/archive.pl?No=593">Terasic de0nano</a></p></td>
+<td><p>Cyclone IV E EP4CE22F17C6</p></td>
+<td><p>OK</p></td>
+<td><p>OK</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>de0nanoSoc</p></td>
+<td><p><a class="reference external" href="https://www.terasic.com.tw/cgi-bin/page/archive.pl?Language=English&amp;CategoryNo=205&amp;No=941">Terasic de0nanoSoc</a></p></td>
+<td><p>Cyclone V SoC 5CSEMA4U23C6</p></td>
+<td><p>OK</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>de10lite</p></td>
+<td><p><a class="reference external" href="https://www.terasic.com.tw/cgi-bin/page/archive.pl?Language=English&amp;CategoryNo=218&amp;No=1021&amp;PartNo=1">Terasic de10lite</a></p></td>
+<td><p>MAX 10 10M50DAF484C7G</p></td>
+<td><p>OK</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>de10nano</p></td>
+<td><p><a class="reference external" href="https://www.terasic.com.tw/cgi-bin/page/archive.pl?Language=English&amp;CategoryNo=205&amp;No=1046">Terasic de10Nano</a></p></td>
+<td><p>Cyclone V SoC 5CSEBA6U23I7</p></td>
+<td><p>OK</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>de1Soc</p></td>
+<td><p><a class="reference external" href="https://www.terasic.com.tw/cgi-bin/page/archive.pl?Language=English&amp;CategoryNo=167&amp;No=836">Terasic DE1-SoC</a></p></td>
+<td><p>Cyclone V SoC 5CSEMA5F31C6</p></td>
+<td><p>OK</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>deca</p></td>
+<td><p><a class="reference external" href="https://www.terasic.com.tw/cgi-bin/page/archive.pl?Language=English&amp;CategoryNo=&amp;No=944&amp;PartNo=1">Arrow/Terasic DECA</a></p></td>
+<td><p>MAX 10 10M50DAF484C6GES</p></td>
+<td><p>OK</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>dragonL</p></td>
+<td><p><a class="reference external" href="https://www.knjn.com/FPGA-Dragon-L.html">KNJN Dragon-L PCI Express &amp; HDMI FPGA board</a></p></td>
+<td><p>Spartan6 xc6slx25Tcsg324</p></td>
+<td><p>OK</p></td>
+<td><p>OK</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>ecp5_evn</p></td>
+<td><p><a class="reference external" href="https://www.latticesemi.com/en/Products/DevelopmentBoardsAndKits/ECP5EvaluationBoard">Lattice ECP5 5G Evaluation Board</a></p></td>
+<td><p>ECP5G LFE5UM5G-85F</p></td>
+<td><p>OK</p></td>
+<td><p>OK</p></td>
+<td><p><a class="reference external" href="https://hdl.github.io/constraints/Data/Boards/index.html#boards-ecp5-evn" title="(in FPGA Board Constraints vlatest)"><span class="xref std std-ref">ECP5-EVN ➚</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>ecpix5</p></td>
+<td><p><a class="reference external" href="https://shop.lambdaconcept.com/home/46-2-ecpix-5.html#/2-ecpix_5_fpga-ecpix_5_85f">LambdaConcept ECPIX-5 (FT2232)</a></p></td>
+<td><p>ECP5 LFE5UM5G-85F</p></td>
+<td><p>OK</p></td>
+<td><p>OK</p></td>
+<td><p><a class="reference external" href="https://hdl.github.io/constraints/Data/Boards/index.html#boards-ecpix-5-45f" title="(in FPGA Board Constraints vlatest)"><span class="xref std std-ref">ECPIX-5-45F ➚</span></a> <a class="reference external" href="https://hdl.github.io/constraints/Data/Boards/index.html#boards-ecpix-5-85f" title="(in FPGA Board Constraints vlatest)"><span class="xref std std-ref">ECPIX-5-85F ➚</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>ecpix5_r03</p></td>
+<td><p><a class="reference external" href="https://shop.lambdaconcept.com/home/46-2-ecpix-5.html#/2-ecpix_5_fpga-ecpix_5_85f">LambdaConcept ECPIX-5 (FT4232)</a></p></td>
+<td><p>ECP5 LFE5UM5G-85F</p></td>
+<td><p>OK</p></td>
+<td><p>OK</p></td>
+<td><p><a class="reference external" href="https://hdl.github.io/constraints/Data/Boards/index.html#boards-ecpix-5-45f" title="(in FPGA Board Constraints vlatest)"><span class="xref std std-ref">ECPIX-5-45F ➚</span></a> <a class="reference external" href="https://hdl.github.io/constraints/Data/Boards/index.html#boards-ecpix-5-85f" title="(in FPGA Board Constraints vlatest)"><span class="xref std std-ref">ECPIX-5-85F ➚</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>fireant</p></td>
+<td><p><a class="reference external" href="https://www.crowdsupply.com/jungle-elec/fireant">Fireant Trion T8</a></p></td>
+<td><p>Trion T8F81</p></td>
+<td><p>NA</p></td>
+<td><p>AS</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>fomu</p></td>
+<td><p><a class="reference external" href="https://tomu.im/fomu.html">Fomu PVT</a></p></td>
+<td><p>iCE40UltraPlus UP5K</p></td>
+<td><p>NA</p></td>
+<td><p>OK</p></td>
+<td><p><a class="reference external" href="https://hdl.github.io/constraints/Data/Boards/index.html#boards-fomu-pvt" title="(in FPGA Board Constraints vlatest)"><span class="xref std std-ref">Fomu-PVT ➚</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>gr740-mini</p></td>
+<td><p><a class="reference external" href="https://gaisler.com/index.php/products/boards/gr740-mini">GR740-MINI</a></p></td>
+<td><p>CertusPro-NX LFCPNX-100</p></td>
+<td><p>OK</p></td>
+<td><p>NA</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>honeycomb</p></td>
+<td><p><a class="reference external" href="https://github.com/Disasm/honeycomb-pcb">honeycomb</a></p></td>
+<td><p>littleBee GW1NS-2C</p></td>
+<td><p>OK</p></td>
+<td><p>IF</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>hseda-xc6slx16</p></td>
+<td><p><a class="reference external" href="http://hseda.com/product/xilinx/XC6SLX16/XC6SLX16.htm">XILINX SPARTAN6 XC6SLX16 Microblaze SDRAM USB2.0 FPGA</a></p></td>
+<td><p>Spartan6 xc6slx16-ftg256</p></td>
+<td><p>OK</p></td>
+<td><p>OK</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>ice40_generic</p></td>
+<td><p><a class="reference external" href="https://1bitsquared.com/collections/fpga/products/icebreaker">iCEBreaker</a></p></td>
+<td><p>iCE40UltraPlus UP5K</p></td>
+<td><p>NA</p></td>
+<td><p>AS</p></td>
+<td><p><a class="reference external" href="https://hdl.github.io/constraints/Data/Boards/index.html#boards-icebreaker" title="(in FPGA Board Constraints vlatest)"><span class="xref std std-ref">iCEBreaker ➚</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>icebreaker-bitsy</p></td>
+<td><p><a class="reference external" href="https://1bitsquared.com/collections/fpga/products/icebreaker-bitsy">iCEBreaker-bitsy</a></p></td>
+<td><p>iCE40UltraPlus UP5K</p></td>
+<td><p>NA</p></td>
+<td><p>OK</p></td>
+<td><p><a class="reference external" href="https://hdl.github.io/constraints/Data/Boards/index.html#boards-icebreaker-bitsy-v0" title="(in FPGA Board Constraints vlatest)"><span class="xref std std-ref">iCEBreaker-bitsy-v0 ➚</span></a> <a class="reference external" href="https://hdl.github.io/constraints/Data/Boards/index.html#boards-icebreaker-bitsy-v1" title="(in FPGA Board Constraints vlatest)"><span class="xref std std-ref">iCEBreaker-bitsy-v1 ➚</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>ice40_generic</p></td>
+<td><p><a class="reference external" href="https://www.latticesemi.com/icestick">icestick</a></p></td>
+<td><p>iCE40 HX1k</p></td>
+<td><p>NA</p></td>
+<td><p>AS</p></td>
+<td><p><a class="reference external" href="https://hdl.github.io/constraints/Data/Boards/index.html#boards-icestick" title="(in FPGA Board Constraints vlatest)"><span class="xref std std-ref">IceStick ➚</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>ice40_generic</p></td>
+<td><p><a class="reference external" href="https://www.latticesemi.com/Products/DevelopmentBoardsAndKits/iCE40HX8KBreakoutBoard.aspx">iCE40-HX8K</a></p></td>
+<td><p>iCE40 HX8k</p></td>
+<td><p>OK</p></td>
+<td><p>AS</p></td>
+<td><p><a class="reference external" href="https://hdl.github.io/constraints/Data/Boards/index.html#boards-ice40-hx8k" title="(in FPGA Board Constraints vlatest)"><span class="xref std std-ref">iCE40-HX8K ➚</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>ice40_generic</p></td>
+<td><p><a class="reference external" href="https://www.olimex.com/Products/FPGA/iCE40/iCE40HX1K-EVB/open-source-hardware">Olimex iCE40HX1K-EVB</a></p></td>
+<td><p>iCE40 HX1k</p></td>
+<td><p>NT</p></td>
+<td><p>AS</p></td>
+<td><p><a class="reference external" href="https://hdl.github.io/constraints/Data/Boards/index.html#boards-ice40hx1k-evb" title="(in FPGA Board Constraints vlatest)"><span class="xref std std-ref">iCE40HX1K-EVB ➚</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>ice40_generic</p></td>
+<td><p><a class="reference external" href="https://www.olimex.com/Products/FPGA/iCE40/iCE40HX8K-EVB/open-source-hardware">Olimex iCE40HX8K-EVB</a></p></td>
+<td><p>iCE40 HX8k</p></td>
+<td><p>NT</p></td>
+<td><p>AS</p></td>
+<td><p><a class="reference external" href="https://hdl.github.io/constraints/Data/Boards/index.html#boards-ice40hx8k-evb" title="(in FPGA Board Constraints vlatest)"><span class="xref std std-ref">iCE40HX8K-EVB ➚</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>ice40_generic</p></td>
+<td><p><a class="reference external" href="https://www.latticesemi.com/Products/DevelopmentBoardsAndKits/iCE40UltraPlusBreakoutBoard">iCE40 UltraPlus Breakout Board (iCE40UP5K-B-EVN)</a></p></td>
+<td><p>iCE40-UP5K</p></td>
+<td><p>NT</p></td>
+<td><p>AS</p></td>
+<td><p><a class="reference external" href="https://hdl.github.io/constraints/Data/Boards/index.html#boards-ice40-up" title="(in FPGA Board Constraints vlatest)"><span class="xref std std-ref">iCE40-UP ➚</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>ice40_generic</p></td>
+<td><p><a class="reference external" href="https://alhambrabits.com/alhambra">Icezum Alhambra II</a></p></td>
+<td><p>iCE40 HX4k</p></td>
+<td><p>NT</p></td>
+<td><p>AS</p></td>
+<td><p><a class="reference external" href="https://hdl.github.io/constraints/Data/Boards/index.html#boards-icezumalhambraii" title="(in FPGA Board Constraints vlatest)"><span class="xref std std-ref">IceZumAlhambraII ➚</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>kc705</p></td>
+<td><p><a class="reference external" href="https://www.xilinx.com/products/boards-and-kits/ek-k7-kc705-g.html">Xilinx KC705</a></p></td>
+<td><p>Kintex7 xc7k325t</p></td>
+<td><p>OK</p></td>
+<td><p>NT</p></td>
+<td><p><a class="reference external" href="https://hdl.github.io/constraints/Data/Boards/index.html#boards-kc705" title="(in FPGA Board Constraints vlatest)"><span class="xref std std-ref">KC705 ➚</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>kcu105</p></td>
+<td><p><a class="reference external" href="https://www.xilinx.com/products/boards-and-kits/kcu105.html">Xilinx KCU105</a></p></td>
+<td><p>Kintex UltraScale xcku040-ffva1156</p></td>
+<td><p>OK</p></td>
+<td><p>OK</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>kcu116</p></td>
+<td><p><a class="reference external" href="https://www.xilinx.com/products/boards-and-kits/kcu116.html">Xilinx KCU116</a></p></td>
+<td><p>Kintex UltraScale+ xcku5p-ffvb676</p></td>
+<td><p>OK</p></td>
+<td><p>OK</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>LD-KONFEKT</p></td>
+<td><p><a class="reference external" href="https://machdyne.com/product/konfekt-computer/">Lone Dynamics Corporation - Machdyne Konfekt computer</a></p></td>
+<td><p>ECP5 LFE5U-12F-6BG256C</p></td>
+<td><p>OK</p></td>
+<td><p>OK</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>LD-SCHOKO</p></td>
+<td><p><a class="reference external" href="https://machdyne.com/product/schoko-computer/">Lone Dynamics Corporation - Machdyne Schoko computer</a></p></td>
+<td><p>ECP5 LFE5U-45F-6CABGA256</p></td>
+<td><p>OK</p></td>
+<td><p>OK</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>licheeTang</p></td>
+<td><p><a class="reference external" href="https://tang.sipeed.com/en/hardware-overview/lichee-tang/">Sipeed Lichee Tang</a></p></td>
+<td><p>eagle s20 EG4S20BG256</p></td>
+<td><p>OK</p></td>
+<td><p>OK</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>lilygo-t-fpga</p></td>
+<td><p><a class="reference external" href="https://www.lilygo.cc/products/t-fpga">Lilygo T-FPGA</a></p></td>
+<td><p>Gowin GW1NSR-LV4CQN48PC6/15</p></td>
+<td><p>OK</p></td>
+<td><p>OK</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>machXO2EVN</p></td>
+<td><p><a class="reference external" href="https://www.latticesemi.com/products/developmentboardsandkits/machxo2breakoutboard">Lattice MachXO2 Breakout Board Evaluation Kit</a></p></td>
+<td><p>MachXO2 LCMXO2-7000HE</p></td>
+<td><p>OK</p></td>
+<td><p>OK</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>machXO3EVN</p></td>
+<td><p><a class="reference external" href="https://www.latticesemi.com/products/developmentboardsandkits/machxo3d_development_board">Lattice MachXO3D Development Board</a></p></td>
+<td><p>MachXO3D LCMXO3D-9400HC</p></td>
+<td><p>OK</p></td>
+<td><p>NT</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>machXO3SK</p></td>
+<td><p><a class="reference external" href="https://www.latticesemi.com/en/Products/DevelopmentBoardsAndKits/MachXO3LFStarterKit">Lattice MachXO3LF Starter Kit</a></p></td>
+<td><p>MachXO3 LCMX03LF-6900C</p></td>
+<td><p>OK</p></td>
+<td><p>OK</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>mini_itx</p></td>
+<td><p><a class="reference external" href="https://www.avnet.com/wps/portal/us/products/avnet-boards/avnet-board-families/mini-itx/">Avnet Mini-ITX Base Kit</a></p></td>
+<td><p>AMD Xilinx XC7Z045/XC7Z100-2FFG900</p></td>
+<td><p>OK</p></td>
+<td><p>NA</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>mimas_a7</p></td>
+<td><p><a class="reference external" href="https://numato.com/product/mimas-a7-artix-7-fpga-development-board/">Numato Systems Mimas A7</a></p></td>
+<td><p>Artix xc7a50tfgg484</p></td>
+<td><p>OK</p></td>
+<td><p>OK</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>nexys_a7_50</p></td>
+<td><p><a class="reference external" href="https://digilent.com/reference/programmable-logic/nexys-a7/start">Digilent Nexys A7(Nexys 4 DDR)</a></p></td>
+<td><p>Artix xc7a50tcsg324</p></td>
+<td><p>OK</p></td>
+<td><p>OK</p></td>
+<td><p><a class="reference external" href="https://hdl.github.io/constraints/Data/Boards/index.html#boards-nexys4ddr" title="(in FPGA Board Constraints vlatest)"><span class="xref std std-ref">Nexys4DDR ➚</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>nexys_a7_100</p></td>
+<td><p><a class="reference external" href="https://digilent.com/reference/programmable-logic/nexys-a7/start">Digilent Nexys A7(Nexys 4 DDR)</a></p></td>
+<td><p>Artix nexys_a7_100</p></td>
+<td><p>OK</p></td>
+<td><p>OK</p></td>
+<td><p><a class="reference external" href="https://hdl.github.io/constraints/Data/Boards/index.html#boards-nexys4ddr" title="(in FPGA Board Constraints vlatest)"><span class="xref std std-ref">Nexys4DDR ➚</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>nexysVideo</p></td>
+<td><p><a class="reference external" href="https://reference.digilentinc.com/reference/programmable-logic/nexys-video/start">Digilent Nexys Video</a></p></td>
+<td><p>Artix xc7a200tsbg484</p></td>
+<td><p>OK</p></td>
+<td><p>OK</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>xem8320</p></td>
+<td><p><a class="reference external" href="https://opalkelly.com/products/xem8320/">Opal Kelly XEM8320</a></p></td>
+<td><p>Artix UltraScale+ xcau25p-2ffvb676e</p></td>
+<td><p>OK</p></td>
+<td><p>TBD</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>olimex_gatemateevb</p></td>
+<td><p><a class="reference external" href="https://www.olimex.com/Products/FPGA/GateMate/GateMateA1-EVB/open-source-hardware">Olimex CCGMA1 Cologne Chip GateMate FPGA Evaluation Board</a></p></td>
+<td><p>Cologne Chip GateMate Series (GM1A1)</p></td>
+<td><p>OK</p></td>
+<td><p>NT</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>orbtrace_dfu</p></td>
+<td><p><a class="reference external" href="https://store.zyp.no/product/orbtrace-mini">ORBTrace mini (dfu mode)</a></p></td>
+<td><p>ECP5 LFE5U-25F-8BG256C</p></td>
+<td><p>NA</p></td>
+<td><p>OK (DFU)</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>orangeCrab</p></td>
+<td><p><a class="reference external" href="https://github.com/gregdavill/OrangeCrab">Orange Crab</a></p></td>
+<td><p>ECP5 LFE5U-25F-8MG285C</p></td>
+<td><p>OK (JTAG)</p></td>
+<td><p>OK (DFU)</p></td>
+<td><p><a class="reference external" href="https://hdl.github.io/constraints/Data/Boards/index.html#boards-orangecrab-r0-2" title="(in FPGA Board Constraints vlatest)"><span class="xref std std-ref">OrangeCrab-r0.2 ➚</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>papilio_one</p></td>
+<td><p><a class="reference external" href="https://papilio.cc/index.php?n=Papilio.PapilioOne">Papilio One</a></p></td>
+<td><p>Spartan3E xc3s500e-vq100</p></td>
+<td><p>OK</p></td>
+<td><p>OK</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>pipistrello</p></td>
+<td><p><a class="reference external" href="http://pipistrello.saanlima.com/index.php?title=Welcome_to_Pipistrello">Saanlima Pipistrello LX45</a></p></td>
+<td><p>Spartan6 xc6slx45-csg324</p></td>
+<td><p>OK</p></td>
+<td><p>OK</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>pynq_z1</p></td>
+<td><p><a class="reference external" href="https://digilent.com/reference/programmable-logic/pynq-z1/start">PYNQ-Z1</a></p></td>
+<td><p>Zynq7000 xc7z020clg400</p></td>
+<td><p>OK</p></td>
+<td><p>NA</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>pynq_z2</p></td>
+<td><p><a class="reference external" href="https://www.tulembedded.com/FPGA/ProductsPYNQ-Z2.html">PYNQ-Z2</a></p></td>
+<td><p>Zynq7000 xc7z020clg400</p></td>
+<td><p>OK</p></td>
+<td><p>NA</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>qmtechCyclone10</p></td>
+<td><p><a class="reference external" href="http://www.chinaqmtech.com/productinfo/1858435.html">QMTech Cyclone 10 Starter Kit</a></p></td>
+<td><p>Cyclone 10 LP 10CL016YU484C8G</p></td>
+<td><p>OK</p></td>
+<td><p>OK</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>qmtechCycloneIV</p></td>
+<td><p><a class="reference external" href="https://fr.aliexpress.com/item/32949281189.html">QMTech CycloneIV Core Board</a></p></td>
+<td><p>Cyclone IV EP4CE15F23C8N</p></td>
+<td><p>OK</p></td>
+<td><p>OK</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>qmtechCycloneV</p></td>
+<td><p><a class="reference external" href="https://fr.aliexpress.com/i/1000006622149.html">QMTech CycloneV Core Board</a></p></td>
+<td><p>Cyclone V 5CEFA2F23I7</p></td>
+<td><p>OK</p></td>
+<td><p>OK</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>qmtechCycloneV_5ce523</p></td>
+<td><p><a class="reference external" href="https://fr.aliexpress.com/item/1005001782703399.html">QMTech CycloneV Core Board</a></p></td>
+<td><p>Cyclone V 5CEFA5F23I7</p></td>
+<td><p>OK</p></td>
+<td><p>OK</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>qmtechKintex7</p></td>
+<td><p><a class="reference external" href="https://www.aliexpress.com/item/1005003668804223.html">QMTech Kintex7 Core Board</a></p></td>
+<td><p>Kintex xc7k325tffg676</p></td>
+<td><p>OK</p></td>
+<td><p>OK</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>genesys2</p></td>
+<td><p><a class="reference external" href="https://digilent.com/reference/programmable-logic/genesys-2/start">Digilent Kintex7 Evaluation Board</a></p></td>
+<td><p>Kintex xc7k325tffg900</p></td>
+<td><p>OK</p></td>
+<td><p>OK</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>redpitaya14</p></td>
+<td><p><a class="reference external" href="https://redpitaya.com/stemlab-125-14/">Redpitaya/STEMlab xc7z7010 with 125MHz 14 bits ADC</a></p></td>
+<td><p>Zynq7000 xc7z010clg400</p></td>
+<td><p>OK</p></td>
+<td><p>NA</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>runber</p></td>
+<td><p><a class="reference external" href="https://www.seeedstudio.com/Gowin-RUNBER-Development-Board-p-4779.html">SeeedStudio Gowin RUNBER</a></p></td>
+<td><p>littleBee GW1N-4</p></td>
+<td><p>OK</p></td>
+<td><p>IF/EF</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>runber</p></td>
+<td><p><a class="reference external" href="https://www.kickstarter.com/projects/1812459948/minispartan6-a-powerful-fpga-board-and-easy-to-use">Scarab Hardware MiniSpartan6+</a></p></td>
+<td><p>Spartan6 xc6slx25-3-ftg256</p></td>
+<td><p>OK</p></td>
+<td><p>NT</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>spartanEdgeAccelBoard</p></td>
+<td><p><a class="reference external" href="http://wiki.seeedstudio.com/Spartan-Edge-Accelerator-Board">SeeedStudio Spartan Edge Accelerator Board</a></p></td>
+<td><p>Spartan7 xc7s15ftgb196</p></td>
+<td><p>OK</p></td>
+<td><p>NA</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>SPEC45</p></td>
+<td><p><a class="reference external" href="https://ohwr.org/project/spec150/wikis/home">CERN Simple PCIe FMC carrier SPEC</a></p></td>
+<td><p>Spartan6 xc6slx45Tfgg484</p></td>
+<td><p>OK</p></td>
+<td><p>OK</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>SPEC150</p></td>
+<td><p><a class="reference external" href="https://ohwr.org/project/spec150/wikis/home">CERN Simple PCIe FMC carrier SPEC</a></p></td>
+<td><p>Spartan6 xc6slx150Tfgg484</p></td>
+<td><p>OK</p></td>
+<td><p>OK</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>stlv7325</p></td>
+<td><p><a class="reference external" href="https://www.aliexpress.com/item/1005001275162791.html">Sitlinv STLV7325 Board</a></p></td>
+<td><p>Kintex xc7k325tffg676</p></td>
+<td><p>OK</p></td>
+<td><p>OK</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>tangconsole</p></td>
+<td><p><a class="reference external" href="https://wiki.sipeed.com/hardware/en/tang/tang-console/mega-console.html">Sipeed Tang Console (dock board for Tang Mega 60k or 138k SOM)</a></p></td>
+<td><p>Gowin Arora V GW5AT-60 / GW5AT-138</p></td>
+<td><p>OK</p></td>
+<td><p>OK</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>tangnano</p></td>
+<td><p><a class="reference external" href="https://tangnano.sipeed.com/en/">Sipeed Tang Nano</a></p></td>
+<td><p>littleBee GW1N-1</p></td>
+<td><p>OK</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>tangnano1k</p></td>
+<td><p><a class="reference external" href="https://tangnano.sipeed.com/en/">Sipeed Tang Nano 1K</a></p></td>
+<td><p>littleBee GW1NZ-1</p></td>
+<td><p>OK</p></td>
+<td><p>IF</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>tangnano4k</p></td>
+<td><p><a class="reference external" href="https://tangnano.sipeed.com/en/">Sipeed Tang Nano 4K</a></p></td>
+<td><p>littleBee GW1NSR-4C</p></td>
+<td><p>OK</p></td>
+<td><p>IF/EF</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>tangnano9k</p></td>
+<td><p><a class="reference external" href="https://tangnano.sipeed.com/en/">Sipeed Tang Nano 9K</a></p></td>
+<td><p>littleBee GW1NR-9C</p></td>
+<td><p>OK</p></td>
+<td><p>IF/EF</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>tangnano20k</p></td>
+<td><p><a class="reference external" href="https://wiki.sipeed.com/nano20k">Sipeed Tang Nano 20k</a></p></td>
+<td><p>Gowin Arora GW2A(R)-18(C)</p></td>
+<td><p>OK</p></td>
+<td><p>EF</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>tangprimer20k</p></td>
+<td><p><a class="reference external" href="https://wiki.sipeed.com/en/primer20k">Sipeed Tang Primer 20k</a></p></td>
+<td><p>Gowin Arora GW2A(R)-18(C)</p></td>
+<td><p>OK</p></td>
+<td><p>EF</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>tangprimer25k</p></td>
+<td><p><a class="reference external" href="https://wiki.sipeed.com/hardware/zh/tang/tang-primer-25k/primer-25k.html">Sipeed Tang Primer 25k</a></p></td>
+<td><p>Gowin Arora V GW5A-25A (GW5A-LV25MG121)</p></td>
+<td><p>OK</p></td>
+<td><p>TBD</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>tangmega138k</p></td>
+<td><p><a class="reference external" href="https://wiki.sipeed.com/hardware/zh/tang/tang-mega-138k/mega-138k.html">Sipeed Tang Mega 138k</a></p></td>
+<td><p>Gowin Arora V GW5AST-138B (GW5AST-LV138FPG676A)</p></td>
+<td><p>OK</p></td>
+<td><p>TBD</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>te0712_8</p></td>
+<td><p><a class="reference external" href="https://shop.trenz-electronic.de/en/TE0712-03-81I36-A-FPGA-Module-with-AMD-Artix-7-XC7A200T-1FBG484I-1-GByte-DDR3-4-x-5-cm">Trenz Electronic TE0712 FPGA-Module mit AMD Artix™ 7(TE0712)</a></p></td>
+<td><p>XC7A200TFBG484</p></td>
+<td><p>OK</p></td>
+<td><p>OK</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>tec0117</p></td>
+<td><p><a class="reference external" href="https://shop.trenz-electronic.de/en/TEC0117-01-FPGA-Module-with-GOWIN-LittleBee-and-8-MByte-internal-SDRAM">Trenz Gowin LittleBee (TEC0117)</a></p></td>
+<td><p>littleBee GW1NR-9</p></td>
+<td><p>OK</p></td>
+<td><p>IF</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>trion_t20_bga256_jtag</p></td>
+<td><p><a class="reference external" href="https://www.efinixinc.com/products-devkits-triont20.html">Efinix Trion T20 BGA256 Dev Kit</a></p></td>
+<td><p>Trion T20BGA256</p></td>
+<td><p>OK</p></td>
+<td><p>NT</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>tec0330</p></td>
+<td><p><a class="reference external" href="https://shop.trenz-electronic.de//TEC0330-05-PCIe-FMC-Carrier-with-Xilinx-Virtex-7-FPGA-8-Lane-PCIe-GEN2-SODIMM-SDRAM">PCIe FMC Carrier with Xilinx Virtex-7 FPGA (TEC0330)</a></p></td>
+<td><p>XC7VX330T-2FFG1157C</p></td>
+<td><p>OK</p></td>
+<td><p>OK</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>trion_t120_bga576</p></td>
+<td><p><a class="reference external" href="https://www.efinixinc.com/products-devkits-triont120bga576.html">Efinix Trion T120 BGA576 Dev Kit (SPI mode)</a></p></td>
+<td><p>Trion T120BGA576</p></td>
+<td><p>NA</p></td>
+<td><p>AS</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>trion_t120_bga576_jtag</p></td>
+<td><p><a class="reference external" href="https://www.efinixinc.com/products-devkits-triont120bga576.html">Efinix Trion T120 BGA576 Dev Kit (JTAG mode)</a></p></td>
+<td><p>Trion T120BGA576</p></td>
+<td><p>OK</p></td>
+<td><p>OK</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>trion_ti60_f225</p></td>
+<td><p><a class="reference external" href="https://www.efinixinc.com/products-devkits-titaniumti60f225.html">Efinix Titanium F225 Dev Kit (SPI mode)</a></p></td>
+<td><p>Titanium Ti60F225</p></td>
+<td><p>NA</p></td>
+<td><p>AS</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>trion_ti60_f225_jtag</p></td>
+<td><p><a class="reference external" href="https://www.efinixinc.com/products-devkits-titaniumti60f225.html">Efinix Titanium F225 Dev Kit (JTAG mode)</a></p></td>
+<td><p>Titanium Ti60F225</p></td>
+<td><p>OK</p></td>
+<td><p>OK</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>ulx3s</p></td>
+<td><p><a class="reference external" href="https://radiona.org/ulx3s/">Radiona ULX3S</a></p></td>
+<td><p>ECP5 LFE5U</p></td>
+<td><p>OK</p></td>
+<td><p>OK</p></td>
+<td><p><a class="reference external" href="https://hdl.github.io/constraints/Data/Boards/index.html#boards-ulx3s-12f" title="(in FPGA Board Constraints vlatest)"><span class="xref std std-ref">ULX3S-12F ➚</span></a> <a class="reference external" href="https://hdl.github.io/constraints/Data/Boards/index.html#boards-ulx3s-25f" title="(in FPGA Board Constraints vlatest)"><span class="xref std std-ref">ULX3S-25F ➚</span></a> <a class="reference external" href="https://hdl.github.io/constraints/Data/Boards/index.html#boards-ulx3s-45f" title="(in FPGA Board Constraints vlatest)"><span class="xref std std-ref">ULX3S-45F ➚</span></a> <a class="reference external" href="https://hdl.github.io/constraints/Data/Boards/index.html#boards-ulx3s-85f" title="(in FPGA Board Constraints vlatest)"><span class="xref std std-ref">ULX3S-85F ➚</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>ulx3s_dfu</p></td>
+<td><p><a class="reference external" href="https://github.com/emard/had2019-playground">Radiona ULX3S DFU mode</a></p></td>
+<td><p>ECP5 LFE5U</p></td>
+<td><p>NA</p></td>
+<td><p>OK</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>vec_v6</p></td>
+<td><p><a class="reference external" href="https://vmm-srs.docs.cern.ch/">Xilinx VCU118</a></p></td>
+<td><p>xc6vlx130tff784</p></td>
+<td><p>OK</p></td>
+<td><p>OK</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>vc709</p></td>
+<td><p><a class="reference external" href="https://www.xilinx.com/products/boards-and-kits/dk-v7-vc709-g.html">AMD Virtex-7 FPGA VC709 Connectivity Kit</a></p></td>
+<td><p>Virtex7 xc7vx690tffg1761</p></td>
+<td><p>OK</p></td>
+<td><p>NA</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>vcu108</p></td>
+<td><p><a class="reference external" href="https://www.xilinx.com/products/boards-and-kits/vcu108.html">Xilinx VCU108</a></p></td>
+<td><p>Virtex UltraScale xcvu095-ffva2104</p></td>
+<td><p>OK</p></td>
+<td><p>TBD</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>vcu118</p></td>
+<td><p><a class="reference external" href="https://www.xilinx.com/products/boards-and-kits/vcu118.html">Xilinx VCU118</a></p></td>
+<td><p>Virtex UltraScale+ xcvu9p-flga2104</p></td>
+<td><p>OK</p></td>
+<td><p>OK</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>vcu128</p></td>
+<td><p><a class="reference external" href="https://www.xilinx.com/products/boards-and-kits/vcu128.html">Xilinx VCU128</a></p></td>
+<td><p>Virtex UltraScale+ xcvu37p-fsvh2892</p></td>
+<td><p>OK</p></td>
+<td><p>OK</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>vcu1525</p></td>
+<td><p><a class="reference external" href="https://www.xilinx.com/products/boards-and-kits/vcu1525-a.html">AMD Virtex UltraScale+ FPGA VCU1525 Acceleration Development Kit</a></p></td>
+<td><p>Virtex UltraScale+ xcvu9p-fsgd2104</p></td>
+<td><p>OK</p></td>
+<td><p>NT</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>xtrx</p></td>
+<td><p><a class="reference external" href="https://www.crowdsupply.com/fairwaves/xtrx">FairWaves XTRXPro</a></p></td>
+<td><p>Artix xc7a50tcpg236</p></td>
+<td><p>OK</p></td>
+<td><p>OK</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>xyloni_spi</p></td>
+<td><p><a class="reference external" href="https://www.efinixinc.com/products-devkits-xyloni.html">Efinix Xyloni</a></p></td>
+<td><p>Trion T8F81</p></td>
+<td><p>NA</p></td>
+<td><p>AS</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>usrpx300</p></td>
+<td><p><a class="reference external" href="https://www.ettus.com/all-products/x300-kit/">Ettus Research USRP X300</a></p></td>
+<td><p>Kintex xc7k325tffg900</p></td>
+<td><p>OK</p></td>
+<td><p>NA</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>usrpx310</p></td>
+<td><p><a class="reference external" href="https://www.ettus.com/all-products/x310-kit/">Ettus Research USRP X300</a></p></td>
+<td><p>Kintex xc7k410tffg900</p></td>
+<td><p>OK</p></td>
+<td><p>NA</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>xmf3</p></td>
+<td><p><a class="reference external" href="https://pldkit.com/xilinx/xmf3">PLDkit XMF3</a></p></td>
+<td><p>Xilinx xc3s200ft256, xcf01s</p></td>
+<td><p>OK</p></td>
+<td><p>OK</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>zc702</p></td>
+<td><p><a class="reference external" href="https://www.xilinx.com/products/boards-and-kits/ek-z7-zc702-g.html">Xilinx ZC702</a></p></td>
+<td><p>zynq7000 xc7z020clg484</p></td>
+<td><p>OK</p></td>
+<td><p>NA</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>zc706</p></td>
+<td><p><a class="reference external" href="https://www.xilinx.com/products/boards-and-kits/ek-z7-zc706-g.html">Xilinx ZC706</a></p></td>
+<td><p>zynq7000 xc7z045ffg900</p></td>
+<td><p>OK</p></td>
+<td><p>NA</p></td>
+<td><p><a class="reference external" href="https://hdl.github.io/constraints/Data/Boards/index.html#boards-zc706" title="(in FPGA Board Constraints vlatest)"><span class="xref std std-ref">ZC706 ➚</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>zcu102</p></td>
+<td><p><a class="reference external" href="https://www.xilinx.com/products/boards-and-kits/ek-u1-zcu102-g.html">Xilinx ZCU102</a></p></td>
+<td><p>zynqMPSoC XCZU9EG</p></td>
+<td><p>OK</p></td>
+<td><p>NA</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>zcu106</p></td>
+<td><p><a class="reference external" href="https://www.xilinx.com/products/boards-and-kits/zcu106.html">Xilinx ZCU106</a></p></td>
+<td><p>zynqMPSoC XCZU7EV</p></td>
+<td><p>OK</p></td>
+<td><p>NA</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>zedboard</p></td>
+<td><p><a class="reference external" href="https://www.avnet.com/wps/portal/us/products/avnet-boards/avnet-board-families/zedboard/">Avnet ZedBoard</a></p></td>
+<td><p>zynq7000 xc7z020clg484</p></td>
+<td><p>OK</p></td>
+<td><p>NA</p></td>
+<td><p><a class="reference external" href="https://hdl.github.io/constraints/Data/Boards/index.html#boards-zedboard" title="(in FPGA Board Constraints vlatest)"><span class="xref std std-ref">ZedBoard ➚</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p>zybo_z7_10</p></td>
+<td><p><a class="reference external" href="https://reference.digilentinc.com/reference/programmable-logic/zybo-z7/start">Digilent Zybo Z7-10</a></p></td>
+<td><p>zynq7000 xc7z010clg400</p></td>
+<td><p>OK</p></td>
+<td><p>NA</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>zybo_z7_20</p></td>
+<td><p><a class="reference external" href="https://reference.digilentinc.com/reference/programmable-logic/zybo-z7/start">Digilent Zybo Z7-20</a></p></td>
+<td><p>zynq7000 xc7z020clg400</p></td>
+<td><p>OK</p></td>
+<td><p>NA</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>VMM3</p></td>
+<td><p><a class="reference external" href="https://vmm-srs.docs.cern.ch/">CERN board with VMM3</a></p></td>
+<td><p>xc7s50csga324?</p></td>
+<td><p>OK</p></td>
+<td><p>OK</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>efinix_jtag_ft2232</p></td>
+<td><p><a class="reference external" href="https://www.efinixinc.com/products-devkits-titaniumti180j484.html">Efinix FT2232 development boards with JTAG on port 2 (Ti180J484 EVK, etc)</a></p></td>
+<td><p>Titanium Ti180J484 (and others)</p></td>
+<td><p>OK</p></td>
+<td><p>NA</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>step-max10_v1</p></td>
+<td><p><a class="reference external" href="https://wiki.stepfpga.com/step-max10">STEP MAX10 V1</a></p></td>
+<td><p>Altera 10M02SCM153C8G</p></td>
+<td><p>OK</p></td>
+<td><p>NA</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>step-mxo2_v2</p></td>
+<td><p><a class="reference external" href="https://wiki.stepfpga.com/xo2-4000hc">STEP MXO2 V2</a></p></td>
+<td><p>Lattice LCMXO2-4000HC-4MG132CC</p></td>
+<td><p>OK</p></td>
+<td><p>OK</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><p>IF: Internal Flash</p></li>
+<li><p>EF: External Flash</p></li>
+<li><p>AS: Active Serial flash mode</p></li>
+<li><p>NA: Not Available</p></li>
+<li><p>NT: Not Tested</p></li>
+</ul>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="fpga.html" class="btn btn-neutral float-left" title="FPGAs" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="cable.html" class="btn btn-neutral float-right" title="Cables" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2022, Gwenhael Goavec-Merou and contributors.</p>
+  </div>Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/buildthedocs/sphinx.theme">theme</a>
+    provided by <a href="https://buildthedocs.github.io">Build the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Installing openFPGALoader &mdash; openFPGALoader: universal utility for programming FPGA latest documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/documentation_options.js?v=c6e86fd7"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Troubleshooting" href="troubleshooting.html" />
+    <link rel="prev" title="First steps with openFPGALoader" href="first-steps.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> openFPGALoader: universal utility for programming FPGA
+          </a>
+              <div class="version">
+                latest
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="first-steps.html">First steps with openFPGALoader</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installing openFPGALoader</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#linux">Linux</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#debian-ubuntu">Debian/Ubuntu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#guix">Guix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#arch-linux">Arch Linux</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fedora">Fedora</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#from-source">From source</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#udev-rules">Udev rules</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#macos">macOS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#windows">Windows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#common">Common</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced.html">Advanced usage of openFPGALoader</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Compatibility</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../compatibility/fpga.html">FPGAs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../compatibility/board.html">Boards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../compatibility/cable.html">Cables</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Vendors</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../vendors/anlogic.html">Anlogic notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vendors/colognechip.html">Cologne Chip notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vendors/efinix.html">Efinix notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vendors/gowin.html">Gowin notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vendors/intel.html">Intel notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vendors/lattice.html">Lattice notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../vendors/xilinx.html">Xilinx notes</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../todo.html">To Do</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">openFPGALoader: universal utility for programming FPGA</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+        
+          
+            <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Installing openFPGALoader</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/trabucayre/openFPGALoader/blob/master/doc/guide/install.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="installing-openfpgaloader">
+<span id="install"></span><h1>Installing openFPGALoader<a class="headerlink" href="#installing-openfpgaloader" title="Link to this heading">¶</a></h1>
+<section id="linux">
+<h2>Linux<a class="headerlink" href="#linux" title="Link to this heading">¶</a></h2>
+<section id="debian-ubuntu">
+<h3>Debian/Ubuntu<a class="headerlink" href="#debian-ubuntu" title="Link to this heading">¶</a></h3>
+<p>openFPGALoader is available in the default repositories:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>openfpgaloader
+</pre></div>
+</div>
+</section>
+<section id="guix">
+<h3>Guix<a class="headerlink" href="#guix" title="Link to this heading">¶</a></h3>
+<p>openFPGALoader is available in the default repositories:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>guix<span class="w"> </span>install<span class="w"> </span>openfpgaloader
+</pre></div>
+</div>
+</section>
+<section id="arch-linux">
+<h3>Arch Linux<a class="headerlink" href="#arch-linux" title="Link to this heading">¶</a></h3>
+<p>openFPGALoader is available in the default repositories:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>pacman<span class="w"> </span>-S<span class="w"> </span>openfpgaloader
+</pre></div>
+</div>
+<p>Alternatively, you could build from source. First: install required libraries:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>pacman<span class="w"> </span>-S<span class="w"> </span>git<span class="w"> </span>cmake<span class="w"> </span>make<span class="w"> </span>gcc<span class="w"> </span>pkgconf<span class="w"> </span>libftdi<span class="w"> </span>libusb<span class="w"> </span>zlib<span class="w"> </span>hidapi<span class="w"> </span>gzip
+</pre></div>
+</div>
+<p>Build step is similar as Debian</p>
+</section>
+<section id="fedora">
+<h3>Fedora<a class="headerlink" href="#fedora" title="Link to this heading">¶</a></h3>
+<p>openFPGALoader is available as a Copr repository:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>dnf<span class="w"> </span>copr<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>mobicarte/openFPGALoader
+sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>openFPGALoader
+</pre></div>
+</div>
+</section>
+<section id="from-source">
+<h3>From source<a class="headerlink" href="#from-source" title="Link to this heading">¶</a></h3>
+<p>This application uses <code class="docutils literal notranslate"><span class="pre">libftdi1</span></code>, so this library must be installed (and, depending on the distribution, headers too):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>git<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>gzip<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>libftdi1-2<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>libftdi1-dev<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>libhidapi-hidraw0<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>libhidapi-dev<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>libudev-dev<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>zlib1g-dev<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>cmake<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>pkg-config<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>make<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>g++
+</pre></div>
+</div>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p><code class="docutils literal notranslate"><span class="pre">libudev-dev</span></code> is optional, may be replaced by <code class="docutils literal notranslate"><span class="pre">eudev-dev</span></code> or just not installed.</p>
+</div>
+<p>By default, <code class="docutils literal notranslate"><span class="pre">(e)udev</span></code> support is enabled (used to open a device by his <code class="docutils literal notranslate"><span class="pre">/dev/xx</span></code> node).
+If you don’t want this option, use:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>-DENABLE_UDEV<span class="o">=</span>OFF
+</pre></div>
+</div>
+<p>By default, <code class="docutils literal notranslate"><span class="pre">cmsisdap</span></code> support is enabled (used for colorlight I5, I9).
+If you don’t want this option, use:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>-DENABLE_CMSISDAP<span class="o">=</span>OFF
+</pre></div>
+</div>
+<p>Alternatively you can manually specify the location of <code class="docutils literal notranslate"><span class="pre">libusb</span></code> and <code class="docutils literal notranslate"><span class="pre">libftdi1</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>-DUSE_PKGCONFIG<span class="o">=</span>OFF<span class="w"> </span><span class="se">\</span>
+-DLIBUSB_LIBRARIES<span class="o">=</span>&lt;path_to_libusb&gt;<span class="w"> </span><span class="se">\</span>
+-DLIBFTDI_LIBRARIES<span class="o">=</span>&lt;path_to_libftdi&gt;<span class="w"> </span><span class="se">\</span>
+-DLIBFTDI_VERSION<span class="o">=</span>&lt;version&gt;<span class="w"> </span><span class="se">\</span>
+-DCMAKE_CXX_FLAGS<span class="o">=</span><span class="s2">&quot;-I&lt;libusb_include_dir&gt; -I&lt;libftdi1_include_dir&gt;&quot;</span>
+</pre></div>
+</div>
+<p>You may also need to add this if you see link errors between <code class="docutils literal notranslate"><span class="pre">libusb</span></code> and <code class="docutils literal notranslate"><span class="pre">pthread</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>-DLINK_CMAKE_THREADS<span class="o">=</span>ON
+</pre></div>
+</div>
+<p>By default, <code class="docutils literal notranslate"><span class="pre">libgpiod</span></code> support is enabled
+If you don’t want this option, use:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>-DENABLE_LIBGPIOD<span class="o">=</span>OFF
+</pre></div>
+</div>
+<p>Additionaly you have to install <code class="docutils literal notranslate"><span class="pre">libgpiod</span></code></p>
+<p>To build the app:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/trabucayre/openFPGALoader
+<span class="nb">cd</span><span class="w"> </span>openFPGALoader
+mkdir<span class="w"> </span>build
+<span class="nb">cd</span><span class="w"> </span>build
+cmake<span class="w"> </span>..<span class="w"> </span><span class="c1"># add -DBUILD_STATIC=ON to build a static version</span>
+<span class="w">         </span><span class="c1"># add -DENABLE_UDEV=OFF to disable udev support and -d /dev/xxx</span>
+<span class="w">         </span><span class="c1"># add -DENABLE_CMSISDAP=OFF to disable CMSIS DAP support</span>
+cmake<span class="w"> </span>--build<span class="w"> </span>.
+<span class="c1"># or</span>
+make<span class="w"> </span>-j<span class="k">$(</span>nproc<span class="k">)</span>
+</pre></div>
+</div>
+<p>To install</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>make<span class="w"> </span>install
+</pre></div>
+</div>
+<p>The default install path is <code class="docutils literal notranslate"><span class="pre">/usr/local</span></code>, to change it, use <code class="docutils literal notranslate"><span class="pre">-DCMAKE_INSTALL_PREFIX=myInstallDir</span></code> in cmake invokation.</p>
+</section>
+<section id="udev-rules">
+<h3>Udev rules<a class="headerlink" href="#udev-rules" title="Link to this heading">¶</a></h3>
+<p>By default, users have no access to converters.
+A rule file (<a class="reference external" href="https://github.com/trabucayre/openFPGALoader/blob/master/99-openfpgaloader.rules">99-openfpgaloader.rules</a>) for <code class="docutils literal notranslate"><span class="pre">udev</span></code> is provided at the root directory
+of this repository.
+These rules set access right and group (<code class="docutils literal notranslate"><span class="pre">plugdev</span></code>) when a converter is plugged.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>cp<span class="w"> </span><span class="m">99</span>-openfpgaloader.rules<span class="w"> </span>/etc/udev/rules.d/
+sudo<span class="w"> </span>udevadm<span class="w"> </span>control<span class="w"> </span>--reload-rules<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>udevadm<span class="w"> </span>trigger<span class="w"> </span><span class="c1"># force udev to take new rule</span>
+sudo<span class="w"> </span>usermod<span class="w"> </span>-a<span class="w"> </span><span class="nv">$USER</span><span class="w"> </span>-G<span class="w"> </span>plugdev<span class="w"> </span><span class="c1"># add user to plugdev group</span>
+</pre></div>
+</div>
+<p>After that you need to unplug and replug your device.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p><code class="docutils literal notranslate"><span class="pre">usermod</span></code> is used to add <code class="docutils literal notranslate"><span class="pre">$USER</span></code> as a member of <code class="docutils literal notranslate"><span class="pre">plugdev</span></code> group.
+However this update is not taken into account immediately: it’s required to
+logout from current session and login again.
+Check, by using <code class="docutils literal notranslate"><span class="pre">id</span> <span class="pre">$USER</span></code>, if <code class="docutils literal notranslate"><span class="pre">plugdev</span></code> is mentioned after <code class="docutils literal notranslate"><span class="pre">groups=</span></code>.
+An alternate (and temporary) solution is to use <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">-</span> <span class="pre">$USER</span></code> to have
+your user seen as a member of <code class="docutils literal notranslate"><span class="pre">plugdev</span></code> group (works only for the current terminal).</p>
+</div>
+</section>
+</section>
+<section id="macos">
+<h2>macOS<a class="headerlink" href="#macos" title="Link to this heading">¶</a></h2>
+<p>openFPGALoader is available as a <a class="reference external" href="https://brew.sh">Homebrew</a> formula:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>brew<span class="w"> </span>install<span class="w"> </span>openfpgaloader
+</pre></div>
+</div>
+<p>Alternatively, if you want to build it by hand:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>brew<span class="w"> </span>install<span class="w"> </span>--only-dependencies<span class="w"> </span>openfpgaloader
+brew<span class="w"> </span>install<span class="w"> </span>cmake<span class="w"> </span>pkg-config<span class="w"> </span>zlib<span class="w"> </span>gzip
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/trabucayre/openFPGALoader
+<span class="nb">cd</span><span class="w"> </span>openFPGALoader
+mkdir<span class="w"> </span>build
+<span class="nb">cd</span><span class="w"> </span>build
+cmake<span class="w"> </span>..
+make<span class="w"> </span>-j
+</pre></div>
+</div>
+</section>
+<section id="windows">
+<h2>Windows<a class="headerlink" href="#windows" title="Link to this heading">¶</a></h2>
+</section>
+<section id="common">
+<h2>Common<a class="headerlink" href="#common" title="Link to this heading">¶</a></h2>
+<p>Bitstreams for <em>XC2C (coolrunner-II)</em> needs to be remapped using <code class="docutils literal notranslate"><span class="pre">.map</span></code> shipped with <em>ISE</em>.
+<em>ISE</em> path is set at configure time using:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>-DISE_PATH<span class="o">=</span>/somewhere/Xilinx/ISE_VERS/
+</pre></div>
+</div>
+<p>default: <code class="docutils literal notranslate"><span class="pre">/opt/Xilinx/14.7</span></code>.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="first-steps.html" class="btn btn-neutral float-left" title="First steps with openFPGALoader" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="troubleshooting.html" class="btn btn-neutral float-right" title="Troubleshooting" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2022, Gwenhael Goavec-Merou and contributors.</p>
+  </div>Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/buildthedocs/sphinx.theme">theme</a>
+    provided by <a href="https://buildthedocs.github.io">Build the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

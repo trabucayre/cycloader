@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Efinix notes &mdash; openFPGALoader: universal utility for programming FPGA latest documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/documentation_options.js?v=c6e86fd7"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Gowin notes" href="gowin.html" />
+    <link rel="prev" title="Cologne Chip notes" href="colognechip.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> openFPGALoader: universal utility for programming FPGA
+          </a>
+              <div class="version">
+                latest
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guide/first-steps.html">First steps with openFPGALoader</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guide/install.html">Installing openFPGALoader</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guide/troubleshooting.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guide/advanced.html">Advanced usage of openFPGALoader</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Compatibility</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../compatibility/fpga.html">FPGAs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../compatibility/board.html">Boards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../compatibility/cable.html">Cables</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Vendors</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="anlogic.html">Anlogic notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="colognechip.html">Cologne Chip notes</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Efinix notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#firant-and-xyloni-boards-efinix-trion-t8">Firant and Xyloni boards (efinix trion T8)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#hex-file-load">hex file load</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#trion-and-titanium-jtag-usage">Trion and Titanium JTAG usage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#bin-file-load">bin file load</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hex-file-flash">hex file flash</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="gowin.html">Gowin notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intel.html">Intel notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lattice.html">Lattice notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xilinx.html">Xilinx notes</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../todo.html">To Do</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">openFPGALoader: universal utility for programming FPGA</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+        
+          
+            <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Efinix notes</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/trabucayre/openFPGALoader/blob/master/doc/vendors/efinix.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="efinix-notes">
+<span id="efinix"></span><h1>Efinix notes<a class="headerlink" href="#efinix-notes" title="Link to this heading">¶</a></h1>
+<section id="firant-and-xyloni-boards-efinix-trion-t8">
+<h2>Firant and Xyloni boards (efinix trion T8)<a class="headerlink" href="#firant-and-xyloni-boards-efinix-trion-t8" title="Link to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">.hex</span></code> file is the default format generated by <em>Efinity IDE</em>, so nothing special must be done to generates this file.</p>
+<p><em>openFPGALoader</em> supports only active mode (SPI) (<em>JTAG</em> is WIP).</p>
+<section id="hex-file-load">
+<h3>hex file load<a class="headerlink" href="#hex-file-load" title="Link to this heading">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openFPGALoader<span class="w"> </span>-b<span class="w"> </span>fireant<span class="w"> </span>/somewhere/project/outflow/*.hex
+</pre></div>
+</div>
+<p>or, for xyloni board</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openFPGALoader<span class="w"> </span>-b<span class="w"> </span>xyloni_spi<span class="w"> </span>/somewhere/project/outflow/*.hex
+</pre></div>
+</div>
+<p>Since openFPGALoader access the flash directly in SPI mode the <code class="docutils literal notranslate"><span class="pre">-b</span> <span class="pre">fireant</span></code>, <code class="docutils literal notranslate"><span class="pre">-b</span> <span class="pre">xyloni_spi</span></code> is required (no
+autodetection possible).</p>
+</section>
+</section>
+<section id="trion-and-titanium-jtag-usage">
+<h2>Trion and Titanium JTAG usage<a class="headerlink" href="#trion-and-titanium-jtag-usage" title="Link to this heading">¶</a></h2>
+<p><em>openFPGALoader</em> supports loading to RAM and SPI Flash with JTAG</p>
+<p>Tested with J-Link BASE</p>
+<section id="bin-file-load">
+<h3>bin file load<a class="headerlink" href="#bin-file-load" title="Link to this heading">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openFPGALoader<span class="w"> </span>--cable<span class="w"> </span>jlink_base<span class="w"> </span>-m<span class="w">  </span>/somewhere/project/outflow/*.bin
+</pre></div>
+</div>
+</section>
+<section id="hex-file-flash">
+<h3>hex file flash<a class="headerlink" href="#hex-file-flash" title="Link to this heading">¶</a></h3>
+<p>Example for ti60f225.
+NOTE: JTAG chains with more than one device (eg –index-chain) are currently not supported for writing to SPI flash</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openFPGALoader<span class="w"> </span>--cable<span class="w"> </span>jlink_base<span class="w"> </span>--fpga-part<span class="w"> </span>ti60f225<span class="w"> </span>-f<span class="w">  </span>/somewhere/project/outflow/*.hex
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="colognechip.html" class="btn btn-neutral float-left" title="Cologne Chip notes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="gowin.html" class="btn btn-neutral float-right" title="Gowin notes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2022, Gwenhael Goavec-Merou and contributors.</p>
+  </div>Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/buildthedocs/sphinx.theme">theme</a>
+    provided by <a href="https://buildthedocs.github.io">Build the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

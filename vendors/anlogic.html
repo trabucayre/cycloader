@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anlogic notes &mdash; openFPGALoader: universal utility for programming FPGA latest documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/documentation_options.js?v=c6e86fd7"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Cologne Chip notes" href="colognechip.html" />
+    <link rel="prev" title="Cables" href="../compatibility/cable.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> openFPGALoader: universal utility for programming FPGA
+          </a>
+              <div class="version">
+                latest
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guide/first-steps.html">First steps with openFPGALoader</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guide/install.html">Installing openFPGALoader</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guide/troubleshooting.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guide/advanced.html">Advanced usage of openFPGALoader</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Compatibility</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../compatibility/fpga.html">FPGAs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../compatibility/board.html">Boards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../compatibility/cable.html">Cables</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Vendors</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Anlogic notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#sipeed-lichee-tang">Sipeed Lichee Tang</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#bit-file-load-memory">bit file load (memory)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bit-file-load-spi-flash">bit file load (spi flash)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#svf-file-load">svf file load</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="colognechip.html">Cologne Chip notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="efinix.html">Efinix notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gowin.html">Gowin notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intel.html">Intel notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lattice.html">Lattice notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="xilinx.html">Xilinx notes</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../todo.html">To Do</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">openFPGALoader: universal utility for programming FPGA</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+        
+          
+            <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Anlogic notes</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/trabucayre/openFPGALoader/blob/master/doc/vendors/anlogic.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="anlogic-notes">
+<span id="anlogic"></span><h1>Anlogic notes<a class="headerlink" href="#anlogic-notes" title="Link to this heading">¶</a></h1>
+<section id="sipeed-lichee-tang">
+<h2>Sipeed Lichee Tang<a class="headerlink" href="#sipeed-lichee-tang" title="Link to this heading">¶</a></h2>
+<p>For this target, <em>openFPGALoader</em> supports <em>svf</em> and <em>bit</em>.</p>
+<section id="bit-file-load-memory">
+<h3>bit file load (memory)<a class="headerlink" href="#bit-file-load-memory" title="Link to this heading">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openFPGALoader<span class="w"> </span>-m<span class="w"> </span>-b<span class="w"> </span>licheeTang<span class="w"> </span>/somewhere/project/prj/*.bit
+</pre></div>
+</div>
+<p>Since <code class="docutils literal notranslate"><span class="pre">-m</span></code> is the default, this argument is optional.</p>
+</section>
+<section id="bit-file-load-spi-flash">
+<h3>bit file load (spi flash)<a class="headerlink" href="#bit-file-load-spi-flash" title="Link to this heading">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openFPGALoader<span class="w"> </span>-f<span class="w"> </span>-b<span class="w"> </span>licheeTang<span class="w"> </span>/somewhere/project/prj/*.bit
+</pre></div>
+</div>
+</section>
+<section id="svf-file-load">
+<h3>svf file load<a class="headerlink" href="#svf-file-load" title="Link to this heading">¶</a></h3>
+<p>It’s possible to produce this file by using <em>TD</em>:</p>
+<ul class="simple">
+<li><p>Tools-&gt;Device Chain</p></li>
+<li><p>Add your bit file</p></li>
+<li><p>Option : Create svf</p></li>
+</ul>
+<p>or by using <a class="reference external" href="https://github.com/mmicko/prjtang">prjtang project</a>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>build
+<span class="nb">cd</span><span class="w"> </span>build
+cmake<span class="w"> </span>../
+make
+</pre></div>
+</div>
+<p>Now a file called <em>tangbit</em> is present in current directory and has to be used as follows:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>tangbit<span class="w"> </span>--input<span class="w"> </span>/somewhere.bit<span class="w"> </span>--svf<span class="w"> </span>bitstream.svf
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openFPGALoader<span class="w"> </span>-b<span class="w"> </span>licheeTang<span class="w"> </span>/somewhere/*.svf
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../compatibility/cable.html" class="btn btn-neutral float-left" title="Cables" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="colognechip.html" class="btn btn-neutral float-right" title="Cologne Chip notes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2022, Gwenhael Goavec-Merou and contributors.</p>
+  </div>Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/buildthedocs/sphinx.theme">theme</a>
+    provided by <a href="https://buildthedocs.github.io">Build the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
